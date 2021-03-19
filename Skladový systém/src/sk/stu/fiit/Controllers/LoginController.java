@@ -5,10 +5,22 @@
  */
 package sk.stu.fiit.Controllers;
 
+import sk.stu.fiit.GUI.IWindow;
+
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
-public class LoginController {
+public class LoginController extends Controller {
+
+    public LoginController(IWindow window) {
+        super(window);
+    }
+
+    
+    @Override
+    void initController() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
