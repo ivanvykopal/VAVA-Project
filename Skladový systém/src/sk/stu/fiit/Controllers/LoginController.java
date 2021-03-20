@@ -5,22 +5,101 @@
  */
 package sk.stu.fiit.Controllers;
 
-import sk.stu.fiit.GUI.IWindow;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import sk.stu.fiit.GUI.LoginWindow;
+import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.Type;
+import sk.stu.fiit.Model.User;
 
 /**
  *
  * @author Ivan Vykopal
  */
 public class LoginController extends Controller {
+    private final LoginWindow window;
 
-    public LoginController(IWindow window) {
-        super(window);
+    public LoginController(LoginWindow window, Database database) {
+        super(database);
+        this.window = window;
+        
+        window.setVisible(true);
+        initController();
     }
-
     
     @Override
     void initController() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        window.btnLoginAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                login();
+            }
+        });
+    }
+    
+    private void login() {
+        String userName = window.getTfLoginField();
+        String password;
+        try {
+            password = SHAtoString(getSHA(window.getPfPasswordField()));
+            System.out.println(password);
+        } catch (NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní hesla!\n Opakujte prihlásenie!");
+            return;
+        }
+        
+        try {
+            String query = "SELECT id, username, password, name, type FROM users WHERE username = '" + userName +"'\n"
+                    + "AND password = '" + password + "'";
+            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            Type type;
+            if (rs.next()) {
+                switch (rs.getString("type")) {
+                    case "administrator": 
+                        type = Type.ADMINISTRATOR;
+                        break;
+                    case "warehouseman": 
+                        type = Type.WAREHOUSEMAN;
+                        break;
+                    default: 
+                        type = Type.REFERENT;
+                }
+                User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("name"), type);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
+            return;
+        } finally {
+            database.closeConnection();
+        }
+        
+        
+    }
+    
+    private byte[] getSHA(String input) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        return md.digest(input.getBytes(StandardCharsets.UTF_8));
+    }
+    
+    private String SHAtoString(byte[] hash) {
+        BigInteger number = new BigInteger(1, hash);
+        StringBuilder hexString = new StringBuilder(number.toString(16));
+        while (hexString.length() < 32) {
+            hexString.insert(0,'0');
+        }
+        return hexString.toString();
     }
     
 }

@@ -6,16 +6,17 @@
 package sk.stu.fiit.Controllers;
 
 import sk.stu.fiit.GUI.IWindow;
+import sk.stu.fiit.Model.Database;
 
 /**
  *
  * @author Ivan Vykopal
  */
 public abstract class Controller {
-    protected IWindow window;
+    protected Database database;
 
-    public Controller(IWindow window) {
-        this.window = window;
+    public Controller(Database database) {
+        this.database = database;
     }
     
     abstract void initController();

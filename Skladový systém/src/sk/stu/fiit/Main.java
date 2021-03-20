@@ -5,7 +5,9 @@
  */
 package sk.stu.fiit;
 
+import sk.stu.fiit.Controllers.LoginController;
 import sk.stu.fiit.GUI.LoginWindow;
+import sk.stu.fiit.Model.Database;
 
 /**
  *
@@ -43,7 +45,7 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginWindow().setVisible(true);
+                LoginController loginController = new LoginController(new LoginWindow(), new Database());
             }
         });
     }

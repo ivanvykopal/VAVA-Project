@@ -144,8 +144,8 @@ public class LoginWindow extends javax.swing.JFrame implements IWindow{
         btnLogin.addMouseListener(mouseAdapter);
     }
 
-    public char[] getPfPasswordField() {
-        return pfPasswordField.getPassword();
+    public String getPfPasswordField() {
+        return new String(pfPasswordField.getPassword());
     }
 
     public String getTfLoginField() {
