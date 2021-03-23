@@ -5,6 +5,11 @@
  */
 package sk.stu.fiit.GUI;
 
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import sk.stu.fiit.Controllers.IMethod;
+
 /**
  *
  * @author Acer
@@ -32,38 +37,38 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnAddGoods = new javax.swing.JButton();
+        btnAddUser = new javax.swing.JButton();
+        btnAddStorage = new javax.swing.JButton();
+        btnEditGoods = new javax.swing.JButton();
+        btnEditUser = new javax.swing.JButton();
+        btnRemoveGoods = new javax.swing.JButton();
+        btnRemoveUser = new javax.swing.JButton();
+        btnRemoveStorage = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
+        btnChangePassword = new javax.swing.JButton();
+        lbUsername = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        miChangePassword = new javax.swing.JMenuItem();
+        miLogout = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        miExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        miAddGoods = new javax.swing.JMenuItem();
+        miAddUser = new javax.swing.JMenuItem();
+        miAddStorage = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        miEditGoods = new javax.swing.JMenuItem();
+        miEditUser = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        miRemoveGoods = new javax.swing.JMenuItem();
+        miRemoveUser = new javax.swing.JMenuItem();
+        miRemoveStorage = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        miAbout = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -78,103 +83,103 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton1.setText("Pridať tovar");
+        btnAddGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnAddGoods.setText("Pridať tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(btnAddGoods, gridBagConstraints);
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton2.setText("Pridať používateľa");
+        btnAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnAddUser.setText("Pridať používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton2, gridBagConstraints);
+        jPanel1.add(btnAddUser, gridBagConstraints);
 
-        jButton3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton3.setText("Pridať skladovací priestor");
+        btnAddStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnAddStorage.setText("Pridať skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton3, gridBagConstraints);
+        jPanel1.add(btnAddStorage, gridBagConstraints);
 
-        jButton4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton4.setText("Upraviť tovar");
+        btnEditGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnEditGoods.setText("Upraviť tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton4, gridBagConstraints);
+        jPanel1.add(btnEditGoods, gridBagConstraints);
 
-        jButton5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton5.setText("Upraviť používateľa");
+        btnEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnEditUser.setText("Upraviť používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton5, gridBagConstraints);
+        jPanel1.add(btnEditUser, gridBagConstraints);
 
-        jButton6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton6.setText("Odstrániť tovar");
+        btnRemoveGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnRemoveGoods.setText("Odstrániť tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton6, gridBagConstraints);
+        jPanel1.add(btnRemoveGoods, gridBagConstraints);
 
-        jButton7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton7.setText("Odstrániť používateľa");
+        btnRemoveUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnRemoveUser.setText("Odstrániť používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton7, gridBagConstraints);
+        jPanel1.add(btnRemoveUser, gridBagConstraints);
 
-        jButton8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton8.setText("Odstrániť skladovací priestor");
+        btnRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnRemoveStorage.setText("Odstrániť skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        jPanel1.add(jButton8, gridBagConstraints);
+        jPanel1.add(btnRemoveStorage, gridBagConstraints);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel1.setText("Meno:");
+        lbName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        lbName.setText("Meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        jPanel2.add(lbName, gridBagConstraints);
 
-        jButton9.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton9.setText("Odhlásiť sa");
+        btnLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnLogout.setText("Odhlásiť sa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -182,10 +187,10 @@ public class AdministratorWindow extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        jPanel2.add(jButton9, gridBagConstraints);
+        jPanel2.add(btnLogout, gridBagConstraints);
 
-        jButton10.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jButton10.setText("Zmeniť heslo");
+        btnChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnChangePassword.setText("Zmeniť heslo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -193,17 +198,17 @@ public class AdministratorWindow extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        jPanel2.add(jButton10, gridBagConstraints);
+        jPanel2.add(btnChangePassword, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel2.setText("Prihlasovacie meno:");
+        lbUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        lbUsername.setText("Prihlasovacie meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        jPanel2.add(lbUsername, gridBagConstraints);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -212,67 +217,67 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jMenu1.setText("Súbor");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        jMenuItem12.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem12.setText("Zmeniť heslo");
-        jMenu1.add(jMenuItem12);
+        miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miChangePassword.setText("Zmeniť heslo");
+        jMenu1.add(miChangePassword);
 
-        jMenuItem2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem2.setText("Odhlásiť sa");
-        jMenu1.add(jMenuItem2);
+        miLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miLogout.setText("Odhlásiť sa");
+        jMenu1.add(miLogout);
         jMenu1.add(jSeparator3);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem1.setText("Koniec");
-        jMenu1.add(jMenuItem1);
+        miExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miExit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miExit.setText("Koniec");
+        jMenu1.add(miExit);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Upraviť");
         jMenu2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        jMenuItem3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem3.setText("Pridať tovar");
-        jMenu2.add(jMenuItem3);
+        miAddGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miAddGoods.setText("Pridať tovar");
+        jMenu2.add(miAddGoods);
 
-        jMenuItem4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem4.setText("Pridať používateľa");
-        jMenu2.add(jMenuItem4);
+        miAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miAddUser.setText("Pridať používateľa");
+        jMenu2.add(miAddUser);
 
-        jMenuItem5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem5.setText("Pridať skladovací priestor");
-        jMenu2.add(jMenuItem5);
+        miAddStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miAddStorage.setText("Pridať skladovací priestor");
+        jMenu2.add(miAddStorage);
         jMenu2.add(jSeparator1);
 
-        jMenuItem6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem6.setText("Upraviť tovar");
-        jMenu2.add(jMenuItem6);
+        miEditGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miEditGoods.setText("Upraviť tovar");
+        jMenu2.add(miEditGoods);
 
-        jMenuItem7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem7.setText("Upraviť používateľa");
-        jMenu2.add(jMenuItem7);
+        miEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miEditUser.setText("Upraviť používateľa");
+        jMenu2.add(miEditUser);
         jMenu2.add(jSeparator2);
 
-        jMenuItem8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem8.setText("Odstrániť tovar");
-        jMenu2.add(jMenuItem8);
+        miRemoveGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miRemoveGoods.setText("Odstrániť tovar");
+        jMenu2.add(miRemoveGoods);
 
-        jMenuItem9.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem9.setText("Odstrániť používateľa");
-        jMenu2.add(jMenuItem9);
+        miRemoveUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miRemoveUser.setText("Odstrániť používateľa");
+        jMenu2.add(miRemoveUser);
 
-        jMenuItem10.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem10.setText("Odstrániť skladovací priestor");
-        jMenu2.add(jMenuItem10);
+        miRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miRemoveStorage.setText("Odstrániť skladovací priestor");
+        jMenu2.add(miRemoveStorage);
 
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Pomocník");
         jMenu5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        jMenuItem11.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem11.setText("O autorovi");
-        jMenu5.add(jMenuItem11);
+        miAbout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miAbout.setText("O autorovi");
+        jMenu5.add(miAbout);
 
         jMenuBar1.add(jMenu5);
 
@@ -281,54 +286,17 @@ public class AdministratorWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministratorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministratorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministratorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministratorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdministratorWindow().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnAddGoods;
+    private javax.swing.JButton btnAddStorage;
+    private javax.swing.JButton btnAddUser;
+    private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnEditGoods;
+    private javax.swing.JButton btnEditUser;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnRemoveGoods;
+    private javax.swing.JButton btnRemoveStorage;
+    private javax.swing.JButton btnRemoveUser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -336,22 +304,141 @@ public class AdministratorWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbUsername;
+    private javax.swing.JMenuItem miAbout;
+    private javax.swing.JMenuItem miAddGoods;
+    private javax.swing.JMenuItem miAddStorage;
+    private javax.swing.JMenuItem miAddUser;
+    private javax.swing.JMenuItem miChangePassword;
+    private javax.swing.JMenuItem miEditGoods;
+    private javax.swing.JMenuItem miEditUser;
+    private javax.swing.JMenuItem miExit;
+    private javax.swing.JMenuItem miLogout;
+    private javax.swing.JMenuItem miRemoveGoods;
+    private javax.swing.JMenuItem miRemoveStorage;
+    private javax.swing.JMenuItem miRemoveUser;
     // End of variables declaration//GEN-END:variables
+
+    public void addGoodsListener(IMethod iMethod) {
+        btnAddGoods.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miAddGoods.addActionListener(e -> iMethod.method());
+    }
+
+    public void addStorageListener(IMethod iMethod) {
+        btnAddStorage.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miAddStorage.addActionListener(e -> iMethod.method());
+    }
+
+    public void addUserListener(IMethod iMethod) {
+        btnAddUser.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miAddUser.addActionListener(e -> iMethod.method());
+    }
+
+    public void changePasswordListener(IMethod iMethod) {
+        btnChangePassword.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miChangePassword.addActionListener(e -> iMethod.method());
+    }
+
+    public void editGoodsListener(IMethod iMethod) {
+        btnEditGoods.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miEditGoods.addActionListener(e -> iMethod.method());
+    }
+
+    public void editUserListener(IMethod iMethod) {
+        btnEditUser.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miEditUser.addActionListener(e -> iMethod.method());
+    }
+
+    public void logoutListener(IMethod iMethod) {
+        btnLogout.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miLogout.addActionListener(e -> iMethod.method());
+    }
+
+    public void removeGoodsListener(IMethod iMethod) {
+        btnRemoveGoods.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miRemoveGoods.addActionListener(e -> iMethod.method());
+    }
+
+    public void removeStorageListener(IMethod iMethod) {
+        btnRemoveStorage.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miRemoveStorage.addActionListener(e -> iMethod.method());
+    }
+
+    public void removeUserListener(IMethod iMethod) {
+        btnRemoveUser.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                iMethod.method();
+            }
+        });
+        miRemoveUser.addActionListener(e -> iMethod.method());
+    }
+
+    public void aboutListener(ActionListener actionListener) {
+        miAbout.addActionListener(actionListener);
+    }
+
+    public void exitListener(ActionListener actionListener) {
+        miExit.addActionListener(actionListener);
+    }
+
+    public void setLbName(String text) {
+        this.lbName.setText(text);
+    }
+
+    public void setLbUsername(String text) {
+        this.lbUsername.setText(text);
+    }
+    
 }

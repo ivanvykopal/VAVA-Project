@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Type;
@@ -50,7 +51,6 @@ public class LoginController extends Controller {
         String password;
         try {
             password = SHAtoString(getSHA(window.getPfPasswordField()));
-            System.out.println(password);
         } catch (NoSuchAlgorithmException ex) {
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní hesla!\n Opakujte prihlásenie!");
             return;
@@ -61,8 +61,8 @@ public class LoginController extends Controller {
                     + "AND password = '" + password + "'";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            Type type;
             if (rs.next()) {
+                Type type;
                 switch (rs.getString("type")) {
                     case "administrator": 
                         type = Type.ADMINISTRATOR;
@@ -74,6 +74,15 @@ public class LoginController extends Controller {
                         type = Type.REFERENT;
                 }
                 User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("name"), type);
+                if (type == Type.ADMINISTRATOR) {
+                    new AdministratorController(database, new AdministratorWindow(), user);
+                    window.setVisible(false);
+                } else if (type == Type.WAREHOUSEMAN) {
+                    
+                }
+            } else {
+                JOptionPane.showMessageDialog(window, "Nesprávne prihlasovacie údaje!");
+                return; 
             }
             rs.close();
             ps.close();

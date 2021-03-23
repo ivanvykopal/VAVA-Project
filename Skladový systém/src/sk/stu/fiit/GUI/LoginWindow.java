@@ -6,9 +6,6 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -151,6 +148,5 @@ public class LoginWindow extends javax.swing.JFrame implements IWindow{
     public String getTfLoginField() {
         return tfLoginField.getText();
     }
-
 
 }
