@@ -13,13 +13,17 @@ import java.util.Date;
  */
 public class Item {
     private int id;
-    private Goods goods;
-    private int quantity;
-    private double price;
-    private Date receiptDate;
-    private Date exportDate;
-    private Position position;
-    private boolean consumed;
+    private Goods goods = null;
+    private int quantity = 0;
+    private double price = 0;
+    private Date receiptDate = null;
+    private Date exportDate = null;
+    private Position position = null;
+    private boolean consumed = false;
+    
+    public Item() {
+        
+    }
 
     public Item(int id, Goods goods, int quantity, double price, Date receiptDate,
             Date exportDate, Position position, boolean consumed) {
@@ -31,6 +35,10 @@ public class Item {
         this.exportDate = exportDate;
         this.position = position;
         this.consumed = consumed;
+    }
+    
+    public boolean isAnyAttributeEmpty() {
+        return goods == null || quantity == 0 || price == 0 || receiptDate == null;
     }
 
     public int getId() {

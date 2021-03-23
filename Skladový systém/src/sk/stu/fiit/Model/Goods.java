@@ -11,11 +11,15 @@ package sk.stu.fiit.Model;
  */
 public class Goods {
     private int id;
-    private String name;
-    private String code;
-    private String description;
-    private double incomePrice;
-    private double exportPrice;
+    private String name = "";
+    private String code = "";
+    private String description= "";
+    private double incomePrice = 0;
+    private double exportPrice = 0;
+    
+    public Goods() {
+        
+    }
 
     public Goods(int id, String name, String code, String description, double incomePrice, double exportPrice) {
         this.id = id;
@@ -24,6 +28,11 @@ public class Goods {
         this.description = description;
         this.incomePrice = incomePrice;
         this.exportPrice = exportPrice;
+    }
+    
+    public boolean isAnyAttributeEmpty() {
+        return name.equals("") || code.equals("") || description.equals("") || 
+                incomePrice == 0 || exportPrice == 0;
     }
 
     public int getId() {

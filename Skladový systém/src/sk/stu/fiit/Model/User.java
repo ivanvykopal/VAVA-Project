@@ -11,10 +11,13 @@ package sk.stu.fiit.Model;
  */
 public class User {
     private int id;
-    private String username;
-    private String password;
-    private String name;
-    private Type type;
+    private String username = "";
+    private String password = "";
+    private String name = "";
+    private Type type = null;
+    
+    public User() {
+    }
 
     public User(int id, String username, String password, String name, Type type) {
         this.id = id;
@@ -22,6 +25,10 @@ public class User {
         this.password = password;
         this.name = name;
         this.type = type;
+    }
+    
+    public boolean isAnyAttributeEmpty() {
+        return username.equals("") || password.equals("") || name.equals("") || type == null;
     }
     
     public int getId() {

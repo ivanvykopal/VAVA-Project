@@ -13,10 +13,14 @@ import java.util.ArrayList;
  */
 public class Storage {
     private int id;
-    private String code;
-    private String building;
-    private String shelf;
+    private String code = "";
+    private String building = "";
+    private String shelf = "";
     private ArrayList<Item> items;
+    
+    public Storage() {
+        
+    }
 
     public Storage(int id, String code, String building, String shelf, ArrayList<Item> items) {
         this.id = id;
@@ -24,6 +28,10 @@ public class Storage {
         this.building = building;
         this.shelf = shelf;
         this.items = items;
+    }
+    
+    public boolean isAnyAttributeEmpty() {
+        return code.equals("") || building.equals("") || shelf.equals("");
     }
 
     public int getId() {

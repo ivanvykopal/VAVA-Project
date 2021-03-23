@@ -87,7 +87,6 @@ public class LoginController extends Controller {
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
             return;
         } finally {
