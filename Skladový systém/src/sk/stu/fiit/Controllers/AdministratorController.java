@@ -6,6 +6,7 @@
 package sk.stu.fiit.Controllers;
 
 import sk.stu.fiit.GUI.About;
+import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -58,6 +59,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void addGoods() {
+        new AddGoodsController(database, new AddGoodsWindow());
     }
     
     private void addStorage() {

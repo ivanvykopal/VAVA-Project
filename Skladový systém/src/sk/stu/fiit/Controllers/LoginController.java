@@ -73,7 +73,7 @@ public class LoginController extends Controller {
                     default: 
                         type = Type.REFERENT;
                 }
-                User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("name"), type);
+                User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),  rs.getString("password"), rs.getString("name"), type);
                 if (type == Type.ADMINISTRATOR) {
                     new AdministratorController(database, new AdministratorWindow(), user);
                     window.setVisible(false);

@@ -12,6 +12,7 @@ package sk.stu.fiit.Model;
 public class User {
     private int id;
     private String username = "";
+    private String email = "";
     private String password = "";
     private String name = "";
     private Type type = null;
@@ -19,9 +20,10 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String name, Type type) {
+    public User(int id, String username, String email, String password, String name, Type type) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.type = type;
@@ -39,6 +41,14 @@ public class User {
         this.id = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getUsername() {
         return username;
     }
