@@ -56,7 +56,6 @@ public class EditGoodsWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editácia tovaru");
-        setPreferredSize(new java.awt.Dimension(1200, 1000));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -196,7 +195,9 @@ public class EditGoodsWindow extends javax.swing.JFrame {
 
         taDescription.setColumns(20);
         taDescription.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        taDescription.setLineWrap(true);
         taDescription.setRows(5);
+        taDescription.setWrapStyleWord(true);
         jScrollPane2.setViewportView(taDescription);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

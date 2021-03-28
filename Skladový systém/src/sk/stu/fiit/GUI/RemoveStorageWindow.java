@@ -6,7 +6,6 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -15,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Acer
  */
-public class EditUserWindow extends javax.swing.JFrame {
+public class RemoveStorageWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditUserWindow
+     * Creates new form RemoveStorageWindow
      */
-    public EditUserWindow() {
+    public RemoveStorageWindow() {
         initComponents();
     }
 
@@ -34,42 +33,41 @@ public class EditUserWindow extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsers = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbStorages = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnChooseUser = new javax.swing.JButton();
+        btnChooseStorage = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        tfUsername = new javax.swing.JTextField();
-        tfName = new javax.swing.JTextField();
-        tfEmail = new javax.swing.JTextField();
-        btnEditUser = new javax.swing.JButton();
-        cbType = new javax.swing.JComboBox<>();
+        tfCode = new javax.swing.JTextField();
+        tfBuilding = new javax.swing.JTextField();
+        tfShelf = new javax.swing.JTextField();
+        btnRemoveStorage = new javax.swing.JButton();
+        tfContainItem = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
-
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
+        setTitle("Odstránenie skladovacieho priestoru");
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1200));
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 500));
+        jScrollPane2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(600, 500));
 
-        tbUsers.setModel(new javax.swing.table.DefaultTableModel(
+        tbStorages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Prihlasovacie meno", "Meno používateľa", "E-mail", "Typ"
+                "Kód", "Budova", "Regál", "Obsahuje položku"
             }
         ) {
             Class[] types = new Class [] {
@@ -87,8 +85,8 @@ public class EditUserWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbUsers.setPreferredSize(new java.awt.Dimension(600, 0));
-        jScrollPane1.setViewportView(tbUsers);
+        tbStorages.setPreferredSize(new java.awt.Dimension(600, 0));
+        jScrollPane2.setViewportView(tbStorages);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -96,10 +94,10 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 1000;
         gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
+        jPanel1.add(jScrollPane2, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jLabel1.setText("Výber používateľa zo systému");
+        jLabel1.setText("Výber skladovacieho priestoru zo systému");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -107,25 +105,25 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jLabel2.setText("Úprava informácií");
+        jLabel2.setText("Informácie o skladovacom priestore");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        btnChooseUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnChooseUser.setText("Vybrať používateľa");
+        btnChooseStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnChooseStorage.setText("Vybrať skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 100);
-        jPanel1.add(btnChooseUser, gridBagConstraints);
+        jPanel1.add(btnChooseStorage, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel3.setText("Prihlasovacie meno:");
+        jLabel3.setText("Kód skladovacieho priestoru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -134,7 +132,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel4.setText("Meno používateľa:");
+        jLabel4.setText("Budova skladu:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -143,7 +141,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel6.setText("Pracovný e-mail:");
+        jLabel6.setText("Regál:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -152,7 +150,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel6, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel7.setText("Typ:");
+        jLabel7.setText("Obsahuje položku:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -160,63 +158,65 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel7, gridBagConstraints);
 
-        tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfCode.setEditable(false);
+        tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
-        jPanel1.add(tfUsername, gridBagConstraints);
+        jPanel1.add(tfCode, gridBagConstraints);
 
-        tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfBuilding.setEditable(false);
+        tfBuilding.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
-        jPanel1.add(tfName, gridBagConstraints);
+        jPanel1.add(tfBuilding, gridBagConstraints);
 
-        tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfShelf.setEditable(false);
+        tfShelf.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
-        jPanel1.add(tfEmail, gridBagConstraints);
+        jPanel1.add(tfShelf, gridBagConstraints);
 
-        btnEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnEditUser.setText("Upraviť vybraného používateľa");
+        btnRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnRemoveStorage.setText("Vymazať vybraný skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
-        jPanel1.add(btnEditUser, gridBagConstraints);
+        jPanel1.add(btnRemoveStorage, gridBagConstraints);
 
-        cbType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        tfContainItem.setEditable(false);
+        tfContainItem.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 500, 25, 200);
-        jPanel1.add(cbType, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
+        jPanel1.add(tfContainItem, gridBagConstraints);
 
-        jScrollPane3.setViewportView(jPanel1);
+        jScrollPane1.setViewportView(jPanel1);
 
-        getContentPane().add(jScrollPane3);
+        getContentPane().add(jScrollPane1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChooseUser;
-    private javax.swing.JButton btnEditUser;
-    private javax.swing.JComboBox<String> cbType;
+    private javax.swing.JButton btnChooseStorage;
+    private javax.swing.JButton btnRemoveStorage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -225,43 +225,44 @@ public class EditUserWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tbUsers;
-    private javax.swing.JTextField tfEmail;
-    private javax.swing.JTextField tfName;
-    private javax.swing.JTextField tfUsername;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbStorages;
+    private javax.swing.JTextField tfBuilding;
+    private javax.swing.JTextField tfCode;
+    private javax.swing.JTextField tfContainItem;
+    private javax.swing.JTextField tfShelf;
     // End of variables declaration//GEN-END:variables
 
-    public JComboBox<String> getCbType() {
-        return cbType;
-    }
-
-    public JTable getTbUsersTable() {
-        return tbUsers;
+    public JTable getTbStoragesTable() {
+        return tbStorages;
     }
     
-    public DefaultTableModel getTbUsersModel() {
-        return (DefaultTableModel) tbUsers.getModel();
+    public DefaultTableModel getTbStoragesModel() {
+        return (DefaultTableModel) tbStorages.getModel();
     }
 
-    public String getTfEmail() {
-        return tfEmail.getText().trim();
+    public void setTfBuilding(String text) {
+        this.tfBuilding.setText(text);
     }
 
-    public String getTfName() {
-        return tfName.getText().trim();
+    public void setTfCode(String text) {
+        this.tfCode.setText(text);
     }
 
-    public String getTfUsername() {
-        return tfUsername.getText().trim();
+    public void setTfContainItem(String text) {
+        this.tfContainItem.setText(text);
     }
 
-    public void btnEditUserAddMouseListener(MouseAdapter mouseAdapter) {
-        btnEditUser.addMouseListener(mouseAdapter);
+    public void setTfShelf(String text) {
+        this.tfShelf.setText(text);
     }
     
-    public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
-        btnChooseUser.addMouseListener(mouseAdapter);
+    public void btnRemoveStorageAddMouseListener(MouseAdapter mouseAdapter) {
+        btnRemoveStorage.addMouseListener(mouseAdapter);
     }
     
+    public void btnChooseStorageAddMouseListener(MouseAdapter mouseAdapter) {
+        btnChooseStorage.addMouseListener(mouseAdapter);
+    }
+
 }

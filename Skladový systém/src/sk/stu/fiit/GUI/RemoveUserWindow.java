@@ -6,7 +6,6 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -15,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Acer
  */
-public class EditUserWindow extends javax.swing.JFrame {
+public class RemoveUserWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditUserWindow
+     * Creates new form RemoveUserWindow
      */
-    public EditUserWindow() {
+    public RemoveUserWindow() {
         initComponents();
     }
 
@@ -48,10 +47,11 @@ public class EditUserWindow extends javax.swing.JFrame {
         tfUsername = new javax.swing.JTextField();
         tfName = new javax.swing.JTextField();
         tfEmail = new javax.swing.JTextField();
-        btnEditUser = new javax.swing.JButton();
-        cbType = new javax.swing.JComboBox<>();
+        btnRemoveUser = new javax.swing.JButton();
+        tfType = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Odstránenie používateľa");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -107,7 +107,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jLabel2.setText("Úprava informácií");
+        jLabel2.setText("Informácie o používateľovi");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -160,6 +160,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel7, gridBagConstraints);
 
+        tfUsername.setEditable(false);
         tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -169,6 +170,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfUsername, gridBagConstraints);
 
+        tfName.setEditable(false);
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -178,6 +180,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfName, gridBagConstraints);
 
+        tfEmail.setEditable(false);
         tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -187,24 +190,24 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfEmail, gridBagConstraints);
 
-        btnEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnEditUser.setText("Upraviť vybraného používateľa");
+        btnRemoveUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnRemoveUser.setText("Vymazať vybraného používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
-        jPanel1.add(btnEditUser, gridBagConstraints);
+        jPanel1.add(btnRemoveUser, gridBagConstraints);
 
-        cbType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        tfType.setEditable(false);
+        tfType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 500, 25, 200);
-        jPanel1.add(cbType, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
+        jPanel1.add(tfType, gridBagConstraints);
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -215,8 +218,7 @@ public class EditUserWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChooseUser;
-    private javax.swing.JButton btnEditUser;
-    private javax.swing.JComboBox<String> cbType;
+    private javax.swing.JButton btnRemoveUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -229,35 +231,36 @@ public class EditUserWindow extends javax.swing.JFrame {
     private javax.swing.JTable tbUsers;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfName;
+    private javax.swing.JTextField tfType;
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
-
-    public JComboBox<String> getCbType() {
-        return cbType;
-    }
 
     public JTable getTbUsersTable() {
         return tbUsers;
     }
-    
+
     public DefaultTableModel getTbUsersModel() {
         return (DefaultTableModel) tbUsers.getModel();
     }
 
-    public String getTfEmail() {
-        return tfEmail.getText().trim();
+    public void setTfEmail(String text) {
+        this.tfEmail.setText(text);
     }
 
-    public String getTfName() {
-        return tfName.getText().trim();
+    public void setTfName(String text) {
+        this.tfName.setText(text);
     }
 
-    public String getTfUsername() {
-        return tfUsername.getText().trim();
+    public void setTfType(String text) {
+        this.tfType.setText(text);
     }
 
-    public void btnEditUserAddMouseListener(MouseAdapter mouseAdapter) {
-        btnEditUser.addMouseListener(mouseAdapter);
+    public void setTfUsername(String text) {
+        this.tfUsername.setText(text);
+    }
+    
+    public void btnRemoveUserAddMouseListener(MouseAdapter mouseAdapter) {
+        btnRemoveUser.addMouseListener(mouseAdapter);
     }
     
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
