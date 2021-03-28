@@ -11,70 +11,68 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.GUI.AddUserWindow;
+import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.Model.Database;
-import sk.stu.fiit.Model.User;
+import sk.stu.fiit.Model.Storage;
 
 /**
  *
  * @author Ivan Vykopal
  */
-public final class AddUserController extends Controller {
-    private final AddUserWindow window;
+public final class AddStorageController extends Controller {
+    private final AddStorageWindow window;
 
-    private AddUserController(Database database, AddUserWindow window) {
+    private AddStorageController(Database database, AddStorageWindow window) {
         super(database);
         this.window = window;
         
         initController();
     }
-
-    public static void createController(Database database, AddUserWindow window) {
-        new AddUserController(database, window);
+    
+    public static void createController(Database database, AddStorageWindow window) {
+        new AddStorageController(database, window);
     }
 
     @Override
     void initController() {
-        window.btnAddUserAddMouseListener(new MouseAdapter() {
+        window.btnAddStorageAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                addUser();
+                addStorage();
             }
         });
     }
     
-    private void addUser() {
-        User user = new User();
-        user.setUsername(window.getTfUsername());
-        user.setName(window.getTfName());
-        user.setEmail(window.getTfEmail());
-        user.setType((String) window.getCbType().getSelectedItem());
+    private void addStorage() {
+        Storage storage = new Storage();
+        storage.setBuilding(window.getTfBuilding());
+        storage.setCode(window.getTfCode());
+        storage.setShelf(window.getTfShelf());
         
-        if (user.isAnyAttributeEmpty()) {
+        if (storage.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
             return;
         }
         
         try {
-            String query = "INSERT INTO user (username, name, type, email) VALUES (?, ?, ?, ?);";
+            String query = "INSERT INTO storage (code, building, shelf) VALUES (?, ?, ?);";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, "'" + user.getUsername() + "'");
-            ps.setString(2, "'" + user.getName() + "'");
-            ps.setString(3, "'" + user.getTypeString() + "'");
-            ps.setString(4, "'" + user.getEmail() + "'");
+            ps.setString(1, "'" + storage.getCode() + "'");
+            ps.setString(2, "'" + storage.getBuilding() + "'");
+            ps.setString(3, "'" + storage.getShelf() + "'");
             
             ResultSet rs = ps.executeQuery();
             
             //TODO: zistiť či tovar bol skutočne pridaný
             rs.close();
             ps.close();
-            JOptionPane.showMessageDialog(window, "Používateľ bol pridaný!");
+            JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
             window.setVisible(false);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
         } finally {
             database.closeConnection();
-        }    
+        }
     }
     
 }
