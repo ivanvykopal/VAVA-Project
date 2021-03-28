@@ -7,12 +7,11 @@ package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class RemoveStorageWindow extends javax.swing.JFrame {
 

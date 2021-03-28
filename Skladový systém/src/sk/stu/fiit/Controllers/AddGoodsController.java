@@ -19,12 +19,18 @@ import sk.stu.fiit.Model.Goods;
  *
  * @author Ivan Vykopal
  */
-public class AddGoodsController extends Controller {
+public final class AddGoodsController extends Controller {
     private AddGoodsWindow window;
     
-    public AddGoodsController(Database database, AddGoodsWindow window) {
+    private AddGoodsController(Database database, AddGoodsWindow window) {
         super(database);
         this.window = window;
+        
+        initController();
+    }
+    
+    public static void createController(Database database, AddGoodsWindow window) {
+        new AddGoodsController(database, window);
     }
 
     @Override

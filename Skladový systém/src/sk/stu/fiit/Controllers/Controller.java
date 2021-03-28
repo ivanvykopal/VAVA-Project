@@ -5,7 +5,6 @@
  */
 package sk.stu.fiit.Controllers;
 
-import sk.stu.fiit.GUI.IWindow;
 import sk.stu.fiit.Model.Database;
 
 /**

@@ -7,6 +7,7 @@ package sk.stu.fiit.Controllers;
 
 import sk.stu.fiit.GUI.About;
 import sk.stu.fiit.GUI.AddGoodsWindow;
+import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -18,7 +19,7 @@ import sk.stu.fiit.Model.User;
 public final class AdministratorController extends Controller {
     private final AdministratorWindow window;
 
-    public AdministratorController(Database database, AdministratorWindow window, User user) {
+    private AdministratorController(Database database, AdministratorWindow window, User user) {
         super(database);
         this.window = window;
         
@@ -28,6 +29,10 @@ public final class AdministratorController extends Controller {
         window.setLbUsername("Prihlasovacie meno: " + user.getUsername());
         
         initController();
+    }
+    
+    public static void createController(Database database, AdministratorWindow window, User user) {
+        new AdministratorController(database, window, user);
     }
 
     @Override
@@ -59,7 +64,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void addGoods() {
-        new AddGoodsController(database, new AddGoodsWindow());
+        AddGoodsController.createController(database, new AddGoodsWindow());
     }
     
     private void addStorage() {
@@ -67,7 +72,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void addUser() {
-        
+        AddUserController.createController(database, new AddUserWindow());
     }
     
     private void changePassword() {

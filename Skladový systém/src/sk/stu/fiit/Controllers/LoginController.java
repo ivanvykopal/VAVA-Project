@@ -75,7 +75,7 @@ public class LoginController extends Controller {
                 }
                 User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),  rs.getString("password"), rs.getString("name"), type);
                 if (type == Type.ADMINISTRATOR) {
-                    new AdministratorController(database, new AdministratorWindow(), user);
+                    AdministratorController.createController(database, new AdministratorWindow(), user);
                     window.setVisible(false);
                 } else if (type == Type.WAREHOUSEMAN) {
                     

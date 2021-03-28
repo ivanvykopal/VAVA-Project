@@ -30,7 +30,7 @@ public class User {
     }
     
     public boolean isAnyAttributeEmpty() {
-        return username.equals("") || password.equals("") || name.equals("") || type == null;
+        return username.equals("") || name.equals("") || type == null;
     }
     
     public int getId() {
@@ -76,10 +76,36 @@ public class User {
     public Type getType() {
         return type;
     }
+    
+    public String getTypeString() {
+        switch (type) {
+            case ADMINISTRATOR:
+                return "administrator";
+            case REFERENT:
+                return "referent";
+            default:
+                return "warehouseman";
+        }
+    }
 
     public void setType(Type type) {
         this.type = type;
     }
     
+    public void setType(String typeString) {
+        Type userType;
+        switch (typeString) {
+            case "Administrátor" : 
+                userType = Type.ADMINISTRATOR;
+                break;
+            case "Referent" : 
+                userType = Type.REFERENT;
+                break;
+            default: 
+                userType = Type.WAREHOUSEMAN;
+                break;
+        }
+        this.type = userType;
+    }
     
 }
