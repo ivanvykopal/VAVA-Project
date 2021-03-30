@@ -70,14 +70,13 @@ public final class AddGoodsController extends Controller {
             ps.setDouble(4, goods.getIncomePrice());
             ps.setDouble(5, goods.getExportPrice());
             
-            ResultSet rs = ps.executeQuery();
+            ps.executeUpdate();
             
-            //TODO: zistiť či tovar bol skutočne pridaný
-            rs.close();
             ps.close();
             JOptionPane.showMessageDialog(window, "Tovar bol pridaný!");
             window.setVisible(false);
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
         } finally {
             database.closeConnection();

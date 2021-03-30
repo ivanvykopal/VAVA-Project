@@ -61,14 +61,13 @@ public final class AddStorageController extends Controller {
             ps.setString(2, "'" + storage.getBuilding() + "'");
             ps.setString(3, "'" + storage.getShelf() + "'");
             
-            ResultSet rs = ps.executeQuery();
-            
-            //TODO: zistiť či tovar bol skutočne pridaný
-            rs.close();
+            ps.executeUpdate();
+
             ps.close();
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
             window.setVisible(false);
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
         } finally {
             database.closeConnection();

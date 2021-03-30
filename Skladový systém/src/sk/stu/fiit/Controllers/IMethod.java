@@ -5,8 +5,6 @@
  */
 package sk.stu.fiit.Controllers;
 
-import java.awt.AWTEvent;
-
 /**
  *
  * @author Ivan Vykopa

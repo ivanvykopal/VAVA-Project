@@ -10,6 +10,7 @@ import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
+import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
@@ -93,7 +94,8 @@ public final class AdministratorController extends Controller {
     }
     
     private void logout() {
-        
+        new LoginController(new LoginWindow(), database);
+        window.setVisible(false);
     }
     
     private void removeGoods() {

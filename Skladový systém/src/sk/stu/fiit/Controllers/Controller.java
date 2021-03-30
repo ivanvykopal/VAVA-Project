@@ -12,7 +12,7 @@ import sk.stu.fiit.Model.Database;
  * @author Ivan Vykopal
  */
 public abstract class Controller {
-    protected Database database;
+    protected static Database database;
 
     public Controller(Database database) {
         this.database = database;
