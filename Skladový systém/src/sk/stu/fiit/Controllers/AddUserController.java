@@ -8,7 +8,6 @@ package sk.stu.fiit.Controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddUserWindow;
@@ -58,10 +57,10 @@ public final class AddUserController extends Controller {
         try {
             String query = "INSERT INTO user (username, name, type, email) VALUES (?, ?, ?, ?);";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, "'" + user.getUsername() + "'");
-            ps.setString(2, "'" + user.getName() + "'");
-            ps.setString(3, "'" + user.getTypeString() + "'");
-            ps.setString(4, "'" + user.getEmail() + "'");
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getTypeString());
+            ps.setString(4, user.getEmail());
             
             ps.executeUpdate();
             

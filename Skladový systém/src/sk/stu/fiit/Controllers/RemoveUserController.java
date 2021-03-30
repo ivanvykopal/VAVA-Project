@@ -12,11 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static sk.stu.fiit.Controllers.Controller.database;
 import sk.stu.fiit.GUI.RemoveUserWindow;
 import sk.stu.fiit.Model.Database;
-import sk.stu.fiit.Model.Goods;
-import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
 
 /**

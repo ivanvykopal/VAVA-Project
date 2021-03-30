@@ -16,18 +16,19 @@ public class Storage {
     private String code = "";
     private String building = "";
     private String shelf = "";
+    private boolean containsItem = false;
     private ArrayList<Item> items;
     
     public Storage() {
         
     }
 
-    public Storage(int id, String code, String building, String shelf, ArrayList<Item> items) {
+    public Storage(int id, String code, String building, String shelf, boolean containsItem) {
         this.id = id;
         this.code = code;
         this.building = building;
         this.shelf = shelf;
-        this.items = items;
+        this.containsItem = containsItem;
     }
     
     public boolean isAnyAttributeEmpty() {
@@ -72,6 +73,14 @@ public class Storage {
 
     public void setItems(ArrayList<Item> items) {
         this.items = items;
+    }
+
+    public boolean isContainsItem() {
+        return containsItem;
+    }
+
+    public void setContainsItem(boolean containsItem) {
+        this.containsItem = containsItem;
     }
     
 }

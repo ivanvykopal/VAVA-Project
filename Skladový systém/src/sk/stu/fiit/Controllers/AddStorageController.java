@@ -8,7 +8,6 @@ package sk.stu.fiit.Controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddStorageWindow;
@@ -57,9 +56,9 @@ public final class AddStorageController extends Controller {
         try {
             String query = "INSERT INTO storage (code, building, shelf) VALUES (?, ?, ?);";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, "'" + storage.getCode() + "'");
-            ps.setString(2, "'" + storage.getBuilding() + "'");
-            ps.setString(3, "'" + storage.getShelf() + "'");
+            ps.setString(1,storage.getCode());
+            ps.setString(2,storage.getBuilding());
+            ps.setString(3,storage.getShelf());
             
             ps.executeUpdate();
 

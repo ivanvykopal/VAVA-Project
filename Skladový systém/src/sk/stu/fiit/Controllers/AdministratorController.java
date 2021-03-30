@@ -11,6 +11,8 @@ import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.GUI.LoginWindow;
+import sk.stu.fiit.GUI.RemoveGoodsWindow;
+import sk.stu.fiit.GUI.RemoveUserWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
@@ -99,7 +101,8 @@ public final class AdministratorController extends Controller {
     }
     
     private void removeGoods() {
-        
+        new RemoveGoodsController(database, new RemoveGoodsWindow());
+        window.setVisible(true);
     }
     
     private void removeStorage() {
@@ -107,6 +110,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void removeUser() {
-        
+        new RemoveUserController(database, new RemoveUserWindow());
+        window.setVisible(true);
     }
 }

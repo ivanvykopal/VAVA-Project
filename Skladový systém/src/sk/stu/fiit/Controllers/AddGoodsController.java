@@ -8,7 +8,6 @@ package sk.stu.fiit.Controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddGoodsWindow;
@@ -64,9 +63,9 @@ public final class AddGoodsController extends Controller {
         try {
             String query = "INSERT INTO goods (name, code, description, incomePrice, exportPrice) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, "'" + goods.getName() + "'");
-            ps.setString(2, "'" + goods.getCode() + "'");
-            ps.setString(3, "'" + goods.getDescription() + "'");
+            ps.setString(1, goods.getName());
+            ps.setString(2, goods.getCode());
+            ps.setString(3, goods.getDescription());
             ps.setDouble(4, goods.getIncomePrice());
             ps.setDouble(5, goods.getExportPrice());
             

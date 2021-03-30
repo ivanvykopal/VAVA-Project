@@ -51,7 +51,7 @@ public final class RemoveGoodsController extends Controller {
         }
     }
 
-    private RemoveGoodsController(Database database, RemoveGoodsWindow window) {
+    RemoveGoodsController(Database database, RemoveGoodsWindow window) {
         super(database);
         this.window = window;
         
