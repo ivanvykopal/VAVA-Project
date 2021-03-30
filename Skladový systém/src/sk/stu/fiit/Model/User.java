@@ -19,6 +19,14 @@ public class User {
     
     public User() {
     }
+    
+    public User(int id, String username, String email, String name, String typeString) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.name = name;
+        setType(typeString);
+    }
 
     public User(int id, String username, String email, String password, String name, Type type) {
         this.id = id;
@@ -95,10 +103,12 @@ public class User {
     public void setType(String typeString) {
         Type userType;
         switch (typeString) {
-            case "Administrátor" : 
+            case "Administrátor": 
+            case "administrator":    
                 userType = Type.ADMINISTRATOR;
                 break;
-            case "Referent" : 
+            case "Referent": 
+            case "referent":    
                 userType = Type.REFERENT;
                 break;
             default: 

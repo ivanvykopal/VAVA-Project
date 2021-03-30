@@ -22,12 +22,12 @@ import sk.stu.fiit.Model.Goods;
  */
 public final class RemoveGoodsController extends Controller {
     private final RemoveGoodsWindow window;
-    private static ArrayList<Goods> goodsList;
+    private static ArrayList<Goods> goodsList = new ArrayList<>();
     private Goods goods = null;
     
     static {
         try {
-            String query = "SELECT (name, code, description, incomePrice, exportPrice) FROM goods WHERE deleted = FALSE";
+            String query = "SELECT (id, name, code, description, incomePrice, exportPrice) FROM goods WHERE deleted = FALSE";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -129,7 +129,7 @@ public final class RemoveGoodsController extends Controller {
             ps.setInt(1, goods.getId());
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(window, "Vybraný tovar bol nastavený ak vymazaný!");
+            JOptionPane.showMessageDialog(window, "Vybraný tovar bol nastavený ako vymazaný!");
             ps.close();
             window.setVisible(false);
         } catch (SQLException ex) {
