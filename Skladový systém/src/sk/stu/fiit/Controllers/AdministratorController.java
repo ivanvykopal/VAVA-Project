@@ -10,6 +10,7 @@ import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
+import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.GUI.EditGoodsWindow;
 import sk.stu.fiit.GUI.EditUserWindow;
 import sk.stu.fiit.GUI.LoginWindow;
@@ -25,10 +26,12 @@ import sk.stu.fiit.Model.User;
  */
 public final class AdministratorController extends Controller {
     private final AdministratorWindow window;
+    private final User user;
 
     private AdministratorController(Database database, AdministratorWindow window, User user) {
         super(database);
         this.window = window;
+        this.user = user;
         
         window.setVisible(true);
         
@@ -83,7 +86,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void changePassword() {
-        
+        ChangePasswordController.createController(database, new ChangePasswordWindow(), user);
     }
     
     private void editGoods() {
@@ -95,7 +98,7 @@ public final class AdministratorController extends Controller {
     }
     
     private void exit() {
-        
+        System.exit(0);
     }
     
     private void logout() {

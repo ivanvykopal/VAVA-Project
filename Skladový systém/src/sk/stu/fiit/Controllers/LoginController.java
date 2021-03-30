@@ -55,9 +55,6 @@ public final class LoginController extends Controller {
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní hesla!\n Opakujte prihlásenie!");
             return;
         }
-        //TODO: vyriešiť heslo nedáva 0 na začiatku
-        System.out.println(userName);
-        System.out.println(password);
         
         try {
             String query = "SELECT id, username, password, name, type, email FROM users WHERE username = '" + userName +"'\n"
@@ -77,13 +74,15 @@ public final class LoginController extends Controller {
                         type = Type.REFERENT;
                 }
                 User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),  rs.getString("password"), rs.getString("name"), type);
-                if (type == Type.ADMINISTRATOR) {
-                    AdministratorController.createController(database, new AdministratorWindow(), user);
-                    window.setVisible(false);
-                } else if (type == Type.WAREHOUSEMAN) {
-                    
-                } else if (type == Type.REFERENT) {
-                    
+                switch (type) {
+                    case ADMINISTRATOR:
+                        AdministratorController.createController(database, new AdministratorWindow(), user);
+                        window.setVisible(false);
+                        break;
+                    case WAREHOUSEMAN:
+                        break;
+                    case REFERENT:
+                        break;
                 }
             } else {
                 JOptionPane.showMessageDialog(window, "Nesprávne prihlasovacie údaje!");
@@ -101,6 +100,7 @@ public final class LoginController extends Controller {
         
         
     }
+    //https://www.baeldung.com/sha-256-hashing-java
     
     private byte[] getSHA(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -108,10 +108,13 @@ public final class LoginController extends Controller {
     }
     
     private String SHAtoString(byte[] hash) {
-        BigInteger number = new BigInteger(1, hash);
-        StringBuilder hexString = new StringBuilder(number.toString(16));
-        while (hexString.length() < 32) {
-            hexString.insert(0,'0');
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
         }
         return hexString.toString();
     }
