@@ -27,7 +27,7 @@ public final class RemoveUserController extends Controller {
     
     static {
         try {
-            String query = "SELECT id, username, name, type, email FROM users";
+            String query = "SELECT id, username, name, type, email FROM users;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -92,7 +92,7 @@ public final class RemoveUserController extends Controller {
         String username = (String) window.getTbUsersModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT id, username, name, type, email FROM users WHERE username = ?";
+            String query = "SELECT id, username, name, type, email FROM users WHERE username = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
@@ -137,7 +137,7 @@ public final class RemoveUserController extends Controller {
         }
         
         try {
-            String query = "DELETE FROM users WHERE id = ?";
+            String query = "DELETE FROM users WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setInt(1, user.getId());
             ps.executeUpdate();

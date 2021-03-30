@@ -28,7 +28,7 @@ public final class EditGoodsController extends Controller {
     
     static {
         try {
-            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods WHERE deleted = FALSE";
+            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods WHERE deleted = FALSE;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -45,6 +45,7 @@ public final class EditGoodsController extends Controller {
             
             rs.close();
             ps.close();
+            System.out.println(goodsList.size());
         } catch (SQLException ex) {
             System.out.println("chyba!");
         } finally {
@@ -93,7 +94,7 @@ public final class EditGoodsController extends Controller {
         String code = (String) window.getTbGoodsModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT name, code, description, incomePrice, exportPrice FROM goods WHERE code = ?";
+            String query = "SELECT name, code, description, incomePrice, exportPrice FROM goods WHERE code = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs = ps.executeQuery();
@@ -146,7 +147,7 @@ public final class EditGoodsController extends Controller {
         }
         
         try {
-            String query = "UPDATE goods SET name = ?, code = ?, description = ?, incomePrice = ?, exportPrice = ? WHERE id = ?";
+            String query = "UPDATE goods SET name = ?, code = ?, description = ?, incomePrice = ?, exportPrice = ? WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, goods.getName());
             ps.setString(2, goods.getCode());

@@ -34,8 +34,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsers = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnChooseUser = new javax.swing.JButton();
@@ -48,6 +46,8 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfEmail = new javax.swing.JTextField();
         btnRemoveUser = new javax.swing.JButton();
         tfType = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbUsers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Odstránenie používateľa");
@@ -59,43 +59,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1200));
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        tbUsers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Prihlasovacie meno", "Meno používateľa", "E-mail", "Typ"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbUsers.setPreferredSize(new java.awt.Dimension(600, 0));
-        jScrollPane1.setViewportView(tbUsers);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
-        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
         jLabel1.setText("Výber používateľa zo systému");
@@ -207,6 +170,39 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfType, gridBagConstraints);
+
+        tbUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Použivateľské meno", "Meno používateľa", "E-mail", "Typ"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbUsers);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 1000;
+        gridBagConstraints.ipady = 500;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
+        jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jScrollPane3.setViewportView(jPanel1);
 

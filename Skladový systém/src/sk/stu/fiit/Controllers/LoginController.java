@@ -55,10 +55,13 @@ public final class LoginController extends Controller {
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní hesla!\n Opakujte prihlásenie!");
             return;
         }
+        //TODO: vyriešiť heslo nedáva 0 na začiatku
+        System.out.println(userName);
+        System.out.println(password);
         
         try {
             String query = "SELECT id, username, password, name, type, email FROM users WHERE username = '" + userName +"'\n"
-                    + "AND password = '" + password + "'";
+                    + "AND password = '" + password + "';";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -78,6 +81,8 @@ public final class LoginController extends Controller {
                     AdministratorController.createController(database, new AdministratorWindow(), user);
                     window.setVisible(false);
                 } else if (type == Type.WAREHOUSEMAN) {
+                    
+                } else if (type == Type.REFERENT) {
                     
                 }
             } else {

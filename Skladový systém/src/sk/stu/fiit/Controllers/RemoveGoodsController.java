@@ -27,7 +27,7 @@ public final class RemoveGoodsController extends Controller {
     
     static {
         try {
-            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods WHERE deleted = FALSE";
+            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods WHERE deleted = FALSE;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -93,7 +93,7 @@ public final class RemoveGoodsController extends Controller {
         String code = (String) window.getTbGoodsModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT name, code, description, incomePrice, exportPrice FROM goods WHERE code = ?";
+            String query = "SELECT name, code, description, incomePrice, exportPrice FROM goods WHERE code = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs = ps.executeQuery();
@@ -130,7 +130,7 @@ public final class RemoveGoodsController extends Controller {
         }
         
         try {
-            String query = "UPDATE goods SET deleted = TRUE WHERE id = ?";
+            String query = "UPDATE goods SET deleted = TRUE WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setInt(1, goods.getId());
             ps.executeUpdate();

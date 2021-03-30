@@ -34,8 +34,6 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbStorages = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnChooseStorage = new javax.swing.JButton();
@@ -48,52 +46,17 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfShelf = new javax.swing.JTextField();
         btnRemoveStorage = new javax.swing.JButton();
         tfContainItem = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbStorages = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Odstránenie skladovacieho priestoru");
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1200));
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        tbStorages.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Kód", "Budova", "Regál", "Obsahuje položku"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbStorages.setPreferredSize(new java.awt.Dimension(600, 0));
-        jScrollPane2.setViewportView(tbStorages);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
-        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
-        jPanel1.add(jScrollPane2, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
         jLabel1.setText("Výber skladovacieho priestoru zo systému");
@@ -206,6 +169,39 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfContainItem, gridBagConstraints);
 
+        tbStorages.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kód", "Budova", "Regál", "Obsahuje položku"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tbStorages);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 1000;
+        gridBagConstraints.ipady = 500;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
+        jPanel1.add(jScrollPane3, gridBagConstraints);
+
         jScrollPane1.setViewportView(jPanel1);
 
         getContentPane().add(jScrollPane1);
@@ -224,7 +220,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tbStorages;
     private javax.swing.JTextField tfBuilding;
     private javax.swing.JTextField tfCode;

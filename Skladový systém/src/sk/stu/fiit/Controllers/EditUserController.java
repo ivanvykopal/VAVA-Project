@@ -44,6 +44,7 @@ public final class EditUserController extends Controller {
             
             rs.close();
             ps.close();
+            System.out.println(usersList.size());
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("chyba!");
@@ -159,6 +160,7 @@ public final class EditUserController extends Controller {
     }
     
     private void fillUsersTable() {
+        System.out.println(usersList.size());
         for (User u : usersList) {
             Object[] row = new Object[4];
             row[0] = u.getUsername();

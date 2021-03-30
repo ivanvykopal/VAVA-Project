@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author Ivan Vykopal
  */
-public class Database {
+public final class Database {
     private Connection connection = null;
     private final String url = "jdbc:mysql://localhost:3306/project";
     private final String user = "root";

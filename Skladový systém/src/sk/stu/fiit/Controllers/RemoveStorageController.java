@@ -28,7 +28,7 @@ public final class RemoveStorageController extends Controller {
     
     static {
         try {
-            String query = "SELECT id, code, building, shelf, containsItem FROM storage";
+            String query = "SELECT id, code, building, shelf, containsItem FROM storage;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -93,7 +93,7 @@ public final class RemoveStorageController extends Controller {
         String code = (String) window.getTbStoragesModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT id, code, building, shelf, containsItem FROM storage WHERE code = ?";
+            String query = "SELECT id, code, building, shelf, containsItem FROM storage WHERE code = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs = ps.executeQuery();
@@ -131,7 +131,7 @@ public final class RemoveStorageController extends Controller {
         }
         
         try {
-            String query = "DELETE FROM storage WHERE id = ?";
+            String query = "DELETE FROM storage WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setInt(1, storage.getId());
             ps.executeUpdate();

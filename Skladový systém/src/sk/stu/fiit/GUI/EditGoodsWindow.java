@@ -36,8 +36,6 @@ public class EditGoodsWindow extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbGoods = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnChooseGoods = new javax.swing.JButton();
@@ -53,6 +51,8 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         tfImportPrice = new javax.swing.JTextField();
         tfExportPrice = new javax.swing.JTextField();
         btnEditGoods = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbGoods = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editácia tovaru");
@@ -64,43 +64,6 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1500));
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        tbGoods.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Kód tovaru", "Názov tovaru", "Nákupná cena", "Predajná cena"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbGoods.setPreferredSize(new java.awt.Dimension(600, 0));
-        jScrollPane1.setViewportView(tbGoods);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
-        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
         jLabel1.setText("Výber tovaru zo systému");
@@ -235,6 +198,39 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnEditGoods, gridBagConstraints);
+
+        tbGoods.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kód tovaru", "Názov tovaru", "Nákupná cena", "Predajná cena"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbGoods);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 1000;
+        gridBagConstraints.ipady = 500;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
+        jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jScrollPane3.setViewportView(jPanel1);
 
