@@ -12,7 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.GUI.RemoveGoodsWindow;
+import static sk.stu.fiit.Controllers.Controller.database;
+import sk.stu.fiit.GUI.EditGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
 
@@ -20,8 +21,8 @@ import sk.stu.fiit.Model.Goods;
  *
  * @author Ivan Vykopal
  */
-public final class RemoveGoodsController extends Controller {
-    private final RemoveGoodsWindow window;
+public final class EditGoodsController extends Controller {
+    private final EditGoodsWindow window;
     private static ArrayList<Goods> goodsList = new ArrayList<>();
     private Goods goods = null;
     
@@ -51,7 +52,7 @@ public final class RemoveGoodsController extends Controller {
         }
     }
 
-    private RemoveGoodsController(Database database, RemoveGoodsWindow window) {
+    private EditGoodsController(Database database, EditGoodsWindow window) {
         super(database);
         this.window = window;
         
@@ -59,11 +60,10 @@ public final class RemoveGoodsController extends Controller {
         window.setVisible(true);
         
         initController();
-        
     }
     
-    public static void createController(Database database, RemoveGoodsWindow window) {
-        new RemoveGoodsController(database, window);
+    public static void createController(Database database, EditGoodsWindow window) {
+        new EditGoodsController(database, window);
     }
 
     @Override
@@ -75,10 +75,10 @@ public final class RemoveGoodsController extends Controller {
             }
         });
         
-        window.btnRemoveGoodsAddMouseListener(new MouseAdapter() {
+        window.btnEditGoodsAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                removeGoods();
+                editGoods();
             }
         });
     }
@@ -123,23 +123,46 @@ public final class RemoveGoodsController extends Controller {
         }
     }
     
-    private void removeGoods() {
+    private void editGoods() {
         if (goods == null) {
             JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
             return;
         }
         
+        goods.setCode(window.getTfCode());
+        goods.setDescription(window.getTaDescription());
+        goods.setExportPrice(window.getTfExportPrice());
+        goods.setIncomePrice(window.getTfImportPrice());
+        goods.setName(window.getTfName());
+        
+        if (Boolean.logicalOr(goods.getIncomePrice() == -1, goods.getExportPrice() == -1)) {
+            JOptionPane.showMessageDialog(window, "Pri cenách sa využíva '.' namiesto ','!");
+            return;
+        }
+        
+        if (goods.isAnyAttributeEmpty()) {
+            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            return;
+        }
+        
         try {
-            String query = "UPDATE goods SET deleted = TRUE WHERE id = ?";
+            String query = "UPDATE goods SET name = ?, code = ?, description = ?, incomePrice = ?, exportPrice = ? WHERE id = ?";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setInt(1, goods.getId());
+            ps.setString(1, goods.getName());
+            ps.setString(2, goods.getCode());
+            ps.setString(3, goods.getDescription());
+            ps.setDouble(4, goods.getIncomePrice());
+            ps.setDouble(5, goods.getExportPrice());
+            ps.setInt(6, goods.getId());
+            
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(window, "Vybraný tovar bol nastavený ako vymazaný!");
             ps.close();
+            JOptionPane.showMessageDialog(window, "Tovar bol upravený!");
             window.setVisible(false);
         } catch (SQLException ex) {
-            System.out.println("Chyba!");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
         } finally {
             database.closeConnection();
         }

@@ -44,7 +44,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         tfExportPrice = new javax.swing.JTextField();
         btnAddGoods = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pridávanie tovaru");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));

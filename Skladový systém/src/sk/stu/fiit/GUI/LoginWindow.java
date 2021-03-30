@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
  *
  * @author Acer
  */
-public class LoginWindow extends javax.swing.JFrame implements IWindow{
+public class LoginWindow extends javax.swing.JFrame{
 
     /**
      * Creates new form LoginWindow

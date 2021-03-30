@@ -49,7 +49,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         btnRemoveUser = new javax.swing.JButton();
         tfType = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Odstránenie používateľa");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 

@@ -24,6 +24,7 @@ public final class AddUserController extends Controller {
     private AddUserController(Database database, AddUserWindow window) {
         super(database);
         this.window = window;
+        window.setVisible(true);
         
         initController();
     }
@@ -55,7 +56,7 @@ public final class AddUserController extends Controller {
         }
         
         try {
-            String query = "INSERT INTO user (username, name, type, email) VALUES (?, ?, ?, ?);";
+            String query = "INSERT INTO users (username, name, type, email) VALUES (?, ?, ?, ?);";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getName());

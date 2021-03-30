@@ -25,7 +25,7 @@ import sk.stu.fiit.Model.User;
  *
  * @author Ivan Vykopal
  */
-public class LoginController extends Controller {
+public final class LoginController extends Controller {
     private final LoginWindow window;
 
     public LoginController(LoginWindow window, Database database) {
@@ -57,7 +57,7 @@ public class LoginController extends Controller {
         }
         
         try {
-            String query = "SELECT id, username, password, name, type FROM users WHERE username = '" + userName +"'\n"
+            String query = "SELECT id, username, password, name, type, email FROM users WHERE username = '" + userName +"'\n"
                     + "AND password = '" + password + "'";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -87,6 +87,7 @@ public class LoginController extends Controller {
             rs.close();
             ps.close();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
             return;
         } finally {

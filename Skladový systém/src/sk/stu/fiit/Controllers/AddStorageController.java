@@ -24,6 +24,7 @@ public final class AddStorageController extends Controller {
     private AddStorageController(Database database, AddStorageWindow window) {
         super(database);
         this.window = window;
+        window.setVisible(true);
         
         initController();
     }

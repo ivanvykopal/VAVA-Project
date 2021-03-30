@@ -24,6 +24,7 @@ public final class AddGoodsController extends Controller {
     private AddGoodsController(Database database, AddGoodsWindow window) {
         super(database);
         this.window = window;
+        window.setVisible(true);
         
         initController();
     }

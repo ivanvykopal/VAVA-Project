@@ -8,7 +8,6 @@ package sk.stu.fiit.GUI;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,7 +50,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         btnEditUser = new javax.swing.JButton();
         cbType = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -256,6 +255,32 @@ public class EditUserWindow extends javax.swing.JFrame {
         return tfUsername.getText().trim();
     }
 
+    public void setCbType(sk.stu.fiit.Model.Type type) {
+        switch(type) {
+            case ADMINISTRATOR: 
+                this.cbType.setSelectedIndex(0);
+                break;
+            case REFERENT: 
+                this.cbType.setSelectedIndex(1);
+                break;
+            default: 
+                this.cbType.setSelectedIndex(2);
+                break;
+        }
+    }
+
+    public void setTfEmail(String text) {
+        this.tfEmail.setText(text);
+    }
+
+    public void setTfName(String text) {
+        this.tfName.setText(text);
+    }
+
+    public void setTfUsername(String text) {
+        this.tfUsername.setText(text);
+    }
+    
     public void btnEditUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnEditUser.addMouseListener(mouseAdapter);
     }

@@ -40,7 +40,7 @@ public class AddStorageWindow extends javax.swing.JFrame {
         tfShelf = new javax.swing.JTextField();
         btnAddStorage = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pridanie skladovacieho priestoru");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 

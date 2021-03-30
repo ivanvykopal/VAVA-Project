@@ -7,7 +7,6 @@ package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 /**
  *
@@ -43,9 +42,9 @@ public class AddUserWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pridanie používateľa");
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());

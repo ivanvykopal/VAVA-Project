@@ -10,8 +10,11 @@ import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.GUI.AdministratorWindow;
+import sk.stu.fiit.GUI.EditGoodsWindow;
+import sk.stu.fiit.GUI.EditUserWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;
+import sk.stu.fiit.GUI.RemoveStorageWindow;
 import sk.stu.fiit.GUI.RemoveUserWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -84,11 +87,11 @@ public final class AdministratorController extends Controller {
     }
     
     private void editGoods() {
-        
+        EditGoodsController.createController(database, new EditGoodsWindow());
     }
     
     private void editUser() {
-        
+        EditUserController.createController(database, new EditUserWindow());
     }
     
     private void exit() {
@@ -101,16 +104,15 @@ public final class AdministratorController extends Controller {
     }
     
     private void removeGoods() {
-        new RemoveGoodsController(database, new RemoveGoodsWindow());
-        window.setVisible(true);
+        RemoveGoodsController.createController(database, new RemoveGoodsWindow());
     }
     
     private void removeStorage() {
+        RemoveStorageController.createController(database, new RemoveStorageWindow());
         
     }
     
     private void removeUser() {
-        new RemoveUserController(database, new RemoveUserWindow());
-        window.setVisible(true);
+        RemoveUserController.createController(database, new RemoveUserWindow());
     }
 }

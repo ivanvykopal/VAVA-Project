@@ -54,7 +54,7 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         tfExportPrice = new javax.swing.JTextField();
         btnEditGoods = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editácia tovaru");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -299,6 +299,26 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         return tfName.getText().trim();
     }
 
+    public void setTfCode(String text) {
+        this.tfCode.setText(text);
+    }
+
+    public void setTfExportPrice(String text) {
+        this.tfExportPrice.setText(text);
+    }
+
+    public void setTfImportPrice(String text) {
+        this.tfImportPrice.setText(text);
+    }
+
+    public void setTfName(String text) {
+        this.tfName.setText(text);
+    }
+
+    public void setTaDescription(String text) {
+        this.taDescription.setText(text);
+    }
+    
     public void btnEditGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnEditGoods.addMouseListener(mouseAdapter);
     }

@@ -12,7 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.GUI.RemoveUserWindow;
+import static sk.stu.fiit.Controllers.Controller.database;
+import sk.stu.fiit.GUI.EditUserWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
@@ -20,14 +21,14 @@ import sk.stu.fiit.Model.User;
  *
  * @author Ivan Vykopal
  */
-public final class RemoveUserController extends Controller {
-    private final RemoveUserWindow window;
+public final class EditUserController extends Controller {
+    private final EditUserWindow window;
     private static ArrayList<User> usersList = new ArrayList<>();
     private User user = null;
-    
+
     static {
         try {
-            String query = "SELECT id, username, name, type, email FROM users";
+            String query = "SELECT id, username, name, type, email FROM users;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -50,19 +51,19 @@ public final class RemoveUserController extends Controller {
             database.closeConnection();
         }
     }
-
-    private RemoveUserController(Database database, RemoveUserWindow window) {
+    
+    private EditUserController(Database database, EditUserWindow window) {
         super(database);
         this.window = window;
         
-        fillUserTable();
+        fillUsersTable();
         window.setVisible(true);
-        
+    
         initController();
     }
     
-    public static void createController(Database database, RemoveUserWindow window) {
-        new RemoveUserController(database, window);
+    public static void createController(Database database, EditUserWindow window) {
+        new EditUserController(database, window);
     }
 
     @Override
@@ -73,11 +74,10 @@ public final class RemoveUserController extends Controller {
                 chooseUser();
             }
         });
-        
-        window.btnRemoveUserAddMouseListener(new MouseAdapter() {
+        window.btnEditUserAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                removeUser();
+                editUser();
             }
         });
     }
@@ -92,7 +92,7 @@ public final class RemoveUserController extends Controller {
         String username = (String) window.getTbUsersModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT id, username, name, type, email FROM users WHERE username = ?";
+            String query = "SELECT id, username, name, type, email FROM users WHERE username = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
@@ -108,17 +108,7 @@ public final class RemoveUserController extends Controller {
             
             window.setTfEmail(user.getEmail());
             window.setTfName(user.getName());
-            switch(user.getType()) {
-                case ADMINISTRATOR:
-                    window.setTfType("Administrátor");
-                    break;
-                case WAREHOUSEMAN:
-                    window.setTfType("Skladník");
-                    break;
-                default:
-                    window.setTfType("Referent");
-                    break;
-            }
+            window.setCbType(user.getType());
             window.setTfUsername(user.getUsername());
             rs.close();
             ps.close();
@@ -130,29 +120,45 @@ public final class RemoveUserController extends Controller {
         }
     }
     
-    private void removeUser() {
+    private void editUser() {
         if (user == null) {
             JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
             return;
         }
         
+        user.setEmail(window.getTfEmail());
+        user.setName(window.getTfName());
+        user.setType((String) window.getCbType().getSelectedItem());
+        user.setUsername(window.getTfUsername());
+        
+        if (user.isAnyAttributeEmpty()) {
+            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            return;
+        }
+        
         try {
-            String query = "DELETE FROM users WHERE id = ?";
+            String query = "UPDATE users SET username = ?, name = ?, type = ?, email = ? WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setInt(1, user.getId());
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getTypeString());
+            ps.setString(4, user.getEmail());
+            ps.setInt(5, user.getId());
+            
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(window, "Vybraný používateľ bol vymazaný!");
             ps.close();
+            JOptionPane.showMessageDialog(window, "Používateľ bol upravený!");
             window.setVisible(false);
         } catch (SQLException ex) {
-            System.out.println("Chyba!");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
         } finally {
             database.closeConnection();
-        }
+        }  
     }
     
-    private void fillUserTable() {
+    private void fillUsersTable() {
         for (User u : usersList) {
             Object[] row = new Object[4];
             row[0] = u.getUsername();

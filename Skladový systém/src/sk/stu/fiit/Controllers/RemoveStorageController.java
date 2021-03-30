@@ -28,7 +28,7 @@ public final class RemoveStorageController extends Controller {
     
     static {
         try {
-            String query = "SELECT (id, code, building, shelf, containsItem) FROM storage";
+            String query = "SELECT id, code, building, shelf, containsItem FROM storage";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -52,13 +52,18 @@ public final class RemoveStorageController extends Controller {
         }
     }
     
-    public RemoveStorageController(Database database, RemoveStorageWindow window) {
+    private RemoveStorageController(Database database, RemoveStorageWindow window) {
         super(database);
         this.window = window;
         
         fillStorageTable();
+        window.setVisible(true);
         
         initController();
+    }
+    
+    public static void createController(Database database, RemoveStorageWindow window) {
+        new RemoveStorageController(database, window);
     }
 
     @Override
@@ -88,7 +93,7 @@ public final class RemoveStorageController extends Controller {
         String code = (String) window.getTbStoragesModel().getValueAt(index, 0);
         
         try {
-            String query = "SELECT (id, code, building, shelf, containsItem) FROM storage WHERE code = ?";
+            String query = "SELECT id, code, building, shelf, containsItem FROM storage WHERE code = ?";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs = ps.executeQuery();
