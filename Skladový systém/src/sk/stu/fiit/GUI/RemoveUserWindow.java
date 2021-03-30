@@ -6,6 +6,7 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,6 +49,12 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfType = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbUsers = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        tfFilter = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnPrevious = new javax.swing.JButton();
+        cbTypeFilter = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Odstránenie používateľa");
@@ -56,7 +63,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1200));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1400));
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -72,7 +79,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel2.setText("Informácie o používateľovi");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel2, gridBagConstraints);
 
@@ -80,7 +87,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         btnChooseUser.setText("Vybrať používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 100);
@@ -90,7 +97,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel3.setText("Prihlasovacie meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
@@ -99,7 +106,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel4.setText("Meno používateľa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
@@ -108,7 +115,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel6.setText("Pracovný e-mail:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel6, gridBagConstraints);
@@ -117,7 +124,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel7.setText("Typ:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel7, gridBagConstraints);
@@ -126,7 +133,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -136,7 +143,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -146,7 +153,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -156,7 +163,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         btnRemoveUser.setText("Vymazať vybraného používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnRemoveUser, gridBagConstraints);
@@ -165,7 +172,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         tfType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -198,11 +205,70 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 1000;
         gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane1, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel5.setText("Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
+        jPanel1.add(jLabel5, gridBagConstraints);
+
+        tfFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfFilter.setMinimumSize(new java.awt.Dimension(250, 28));
+        tfFilter.setPreferredSize(new java.awt.Dimension(250, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 25, 0);
+        jPanel1.add(tfFilter, gridBagConstraints);
+
+        btnFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnFilter.setText("Filtrovať");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 450, 25, 0);
+        jPanel1.add(btnFilter, gridBagConstraints);
+
+        btnNext.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnNext.setText(">>");
+        btnNext.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 200, 15, 0);
+        jPanel1.add(btnNext, gridBagConstraints);
+
+        btnPrevious.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnPrevious.setText("<<");
+        btnPrevious.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 200);
+        jPanel1.add(btnPrevious, gridBagConstraints);
+
+        cbTypeFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        cbTypeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
+        jPanel1.add(cbTypeFilter, gridBagConstraints);
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -213,11 +279,16 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChooseUser;
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemoveUser;
+    private javax.swing.JComboBox<String> cbTypeFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -225,6 +296,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tbUsers;
     private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfFilter;
     private javax.swing.JTextField tfName;
     private javax.swing.JTextField tfType;
     private javax.swing.JTextField tfUsername;
@@ -253,6 +325,14 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     public void setTfUsername(String text) {
         this.tfUsername.setText(text);
     }
+
+    public JComboBox<String> getCbTypeFilter() {
+        return cbTypeFilter;
+    }
+
+    public String getTfFilter() {
+        return tfFilter.getText().trim();
+    }
     
     public void btnRemoveUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveUser.addMouseListener(mouseAdapter);
@@ -260,6 +340,18 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseUser.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnPreviousAddMouseListener(MouseAdapter mouseAdapter) {
+        btnPrevious.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnNextAddMouseListener(MouseAdapter mouseAdapter) {
+        btnNext.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
+        btnFilter.addMouseListener(mouseAdapter);
     }
     
 }

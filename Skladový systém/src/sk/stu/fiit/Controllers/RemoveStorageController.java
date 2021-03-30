@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static sk.stu.fiit.Controllers.Controller.database;
 import sk.stu.fiit.GUI.RemoveStorageWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Storage;
@@ -21,83 +20,80 @@ import sk.stu.fiit.Model.Storage;
  *
  * @author Ivan Vykopal
  */
-public final class RemoveStorageController extends Controller {
+public final class RemoveStorageController implements Controller {
+
+    private static Database database;
     private final RemoveStorageWindow window;
-    private static ArrayList<Storage> storageList = new ArrayList<>();
     private Storage storage = null;
-    
-    static {
-        try {
-            String query = "SELECT id, code, building, shelf, containsItem FROM storage;";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String code = rs.getString("code");
-                String building = rs.getString("building");
-                String shelf = rs.getString("shelf");
-                boolean containsItem = rs.getBoolean("containsItem");
-                storageList.add(new Storage(id, code, building, shelf, containsItem));
-            }
-            
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("chyba!");
-        } finally {
-            database.closeConnection();
-        }
-    }
-    
+    private int offset = 0;
+
     private RemoveStorageController(Database database, RemoveStorageWindow window) {
-        super(database);
+        this.database = database;
         this.window = window;
-        
-        fillStorageTable();
+
+        new Thread(() -> fillStorageTable("", offset)).start();
         window.setVisible(true);
-        
+
         initController();
     }
-    
+
     public static void createController(Database database, RemoveStorageWindow window) {
         new RemoveStorageController(database, window);
     }
 
     @Override
-    void initController() {
+    public void initController() {
         window.btnChooseStorageAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 chooseStorage();
             }
         });
-        
+
         window.btnRemoveStorageAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 removeStorage();
             }
         });
+
+        window.btnFilterAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                filter();
+            }
+        });
+
+        window.btnNextAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                next();
+            }
+        });
+
+        window.btnPreviousAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                previous();
+            }
+        });
     }
-    
+
     private void chooseStorage() {
         int index = window.getTbStoragesTable().getSelectedRow();
         if (index == -1) {
             JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
             return;
         }
-        
+
         String code = (String) window.getTbStoragesModel().getValueAt(index, 0);
-        
+
         try {
             String query = "SELECT id, code, building, shelf, containsItem FROM storage WHERE code = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 storage = new Storage();
                 storage.setId(rs.getInt("id"));
@@ -105,7 +101,7 @@ public final class RemoveStorageController extends Controller {
                 storage.setContainsItem(rs.getBoolean("containsItem"));
                 storage.setShelf(rs.getString("shelf"));
             }
-            
+
             window.setTfBuilding(storage.getBuilding());
             window.setTfCode(storage.getCode());
             window.setTfShelf(storage.getShelf());
@@ -123,19 +119,19 @@ public final class RemoveStorageController extends Controller {
             database.closeConnection();
         }
     }
-    
+
     private void removeStorage() {
         if (storage == null) {
             JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
             return;
         }
-        
+
         try {
             String query = "DELETE FROM storage WHERE id = ?;";
             PreparedStatement ps = database.connectDatabase().prepareStatement(query);
             ps.setInt(1, storage.getId());
             ps.executeUpdate();
-            
+
             JOptionPane.showMessageDialog(window, "Vybraný skladovací priestor bol vymazaný!");
             ps.close();
             window.setVisible(false);
@@ -145,20 +141,66 @@ public final class RemoveStorageController extends Controller {
             database.closeConnection();
         }
     }
-    
-    private void fillStorageTable() {
-        for (Storage s : storageList) {
+
+    private void next() {
+        offset += 100;
+        String filter = window.getTfFilter();
+        fillStorageTable(filter, offset);
+    }
+
+    private void previous() {
+        if (offset == 0) {
+            JOptionPane.showMessageDialog(window, "Ste na začiatku zoznamu.");
+            return;
+        }
+        offset -= 100;
+        String filter = window.getTfFilter();
+        fillStorageTable(filter, offset);
+    }
+
+    private void filter() {
+        offset = 0;
+        String filter = window.getTfFilter();
+        fillStorageTable(filter, offset);
+    }
+
+    private void fillStorageTable(String filter, int offset) {
+        window.getTbStoragesModel().setRowCount(0);
+        try {
+            String query = "SELECT id, code, building, shelf, containsItem FROM storage"
+                    + " WHERE UPPER(building) LIKE UPPER('%" + filter + "%')"
+                    + " ORDER BY building LIMIT 100 OFFSET " + offset + ";";
+            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            int pocet = 0;
             Object[] row = new Object[4];
-            row[0] = s.getCode();
-            row[1] = s.getBuilding();
-            row[2] = s.getShelf();
-            if (s.isContainsItem()) {
-                row[3] = "Áno";
-            } else {
-                row[3] = "Nie";
+            while (rs.next()) {
+                row[0] = rs.getString("code");
+                row[1] = rs.getString("building");
+                row[2] = rs.getDouble("shelf");
+                if (rs.getBoolean("containsItem")) {
+                    row[3] = rs.getDouble("Áno");
+                } else {
+                    row[3] = rs.getDouble("Nie");
+                }
+                window.getTbStoragesModel().addRow(row);
+                pocet++;
             }
-            window.getTbStoragesModel().addRow(row);
+
+            rs.close();
+            ps.close();
+            if (pocet == 0) {
+                JOptionPane.showMessageDialog(window, "Ste na konci zoznamu.");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("chyba!");
+        } finally {
+            database.closeConnection();
         }
     }
-    
+
 }

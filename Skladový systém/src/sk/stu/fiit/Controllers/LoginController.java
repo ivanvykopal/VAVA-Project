@@ -25,11 +25,12 @@ import sk.stu.fiit.Model.User;
  *
  * @author Ivan Vykopal
  */
-public final class LoginController extends Controller {
+public final class LoginController implements Controller {
+    private final Database database;
     private final LoginWindow window;
 
     public LoginController(LoginWindow window, Database database) {
-        super(database);
+        this.database = database;
         this.window = window;
         
         window.setVisible(true);
@@ -37,7 +38,7 @@ public final class LoginController extends Controller {
     }
     
     @Override
-    void initController() {
+    public void initController() {
         window.btnLoginAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {

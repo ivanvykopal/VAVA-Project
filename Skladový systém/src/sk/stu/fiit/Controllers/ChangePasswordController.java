@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import static sk.stu.fiit.Controllers.Controller.database;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -20,12 +19,13 @@ import sk.stu.fiit.Model.User;
  *
  * @author Ivan Vykopal
  */
-public final class ChangePasswordController extends Controller {
+public final class ChangePasswordController implements Controller {
+    private final Database database;
     private final ChangePasswordWindow window;
     private final User user;
 
     private ChangePasswordController(Database database, ChangePasswordWindow window, User user) {
-        super(database);
+        this.database = database;
         this.window = window;
         this.user = user;
         window.setVisible(true);
@@ -38,7 +38,7 @@ public final class ChangePasswordController extends Controller {
     }
 
     @Override
-    void initController() {
+    public void initController() {
         window.btnChangePasswordAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {

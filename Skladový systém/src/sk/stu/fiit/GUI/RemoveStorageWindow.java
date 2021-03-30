@@ -48,6 +48,11 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfContainItem = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbStorages = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        tfFilter = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
+        btnPrevious = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Odstránenie skladovacieho priestoru");
@@ -70,7 +75,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel2.setText("Informácie o skladovacom priestore");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel2, gridBagConstraints);
 
@@ -78,8 +83,8 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         btnChooseStorage.setText("Vybrať skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 50;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 100);
         jPanel1.add(btnChooseStorage, gridBagConstraints);
@@ -88,7 +93,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel3.setText("Kód skladovacieho priestoru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
@@ -97,7 +102,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel4.setText("Budova skladu:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
@@ -106,7 +111,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel6.setText("Regál:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel6, gridBagConstraints);
@@ -115,7 +120,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel7.setText("Obsahuje položku:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel7, gridBagConstraints);
@@ -124,7 +129,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -134,7 +139,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfBuilding.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -144,7 +149,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfShelf.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -154,7 +159,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         btnRemoveStorage.setText("Vymazať vybraný skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnRemoveStorage, gridBagConstraints);
@@ -163,7 +168,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         tfContainItem.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -202,6 +207,56 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane3, gridBagConstraints);
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel8.setText("Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
+        jPanel1.add(jLabel8, gridBagConstraints);
+
+        tfFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfFilter.setMinimumSize(new java.awt.Dimension(250, 28));
+        tfFilter.setPreferredSize(new java.awt.Dimension(250, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 25, 0);
+        jPanel1.add(tfFilter, gridBagConstraints);
+
+        btnFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnFilter.setText("Filtrovať");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 450, 25, 0);
+        jPanel1.add(btnFilter, gridBagConstraints);
+
+        btnPrevious.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnPrevious.setText("<<");
+        btnPrevious.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 200);
+        jPanel1.add(btnPrevious, gridBagConstraints);
+
+        btnNext.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnNext.setText(">>");
+        btnNext.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 200, 15, 0);
+        jPanel1.add(btnNext, gridBagConstraints);
+
         jScrollPane1.setViewportView(jPanel1);
 
         getContentPane().add(jScrollPane1);
@@ -211,6 +266,9 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChooseStorage;
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemoveStorage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -218,6 +276,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -225,6 +284,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfBuilding;
     private javax.swing.JTextField tfCode;
     private javax.swing.JTextField tfContainItem;
+    private javax.swing.JTextField tfFilter;
     private javax.swing.JTextField tfShelf;
     // End of variables declaration//GEN-END:variables
 
@@ -252,12 +312,28 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         this.tfShelf.setText(text);
     }
     
+    public String getTfFilter() {
+        return tfFilter.getText().trim();
+    }
+    
     public void btnRemoveStorageAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveStorage.addMouseListener(mouseAdapter);
     }
     
     public void btnChooseStorageAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseStorage.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnPreviousAddMouseListener(MouseAdapter mouseAdapter) {
+        btnPrevious.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnNextAddMouseListener(MouseAdapter mouseAdapter) {
+        btnNext.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
+        btnFilter.addMouseListener(mouseAdapter);
     }
 
 }

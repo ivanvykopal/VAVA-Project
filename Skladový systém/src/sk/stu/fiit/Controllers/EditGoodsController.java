@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static sk.stu.fiit.Controllers.Controller.database;
 import sk.stu.fiit.GUI.EditGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
@@ -21,43 +20,17 @@ import sk.stu.fiit.Model.Goods;
  *
  * @author Ivan Vykopal
  */
-public final class EditGoodsController extends Controller {
+public final class EditGoodsController implements Controller {
+    private static Database database;
     private final EditGoodsWindow window;
-    private static ArrayList<Goods> goodsList = new ArrayList<>();
     private Goods goods = null;
-    
-    static {
-        try {
-            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods WHERE deleted = FALSE;";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String code = rs.getString("code");
-                String description = rs.getString("description");
-                double incomePrice = rs.getDouble("incomePrice");
-                double exportPrice = rs.getDouble("exportPrice");
-                goodsList.add(new Goods(id, name, code, description, incomePrice, exportPrice));
-            }
-            
-            rs.close();
-            ps.close();
-            System.out.println(goodsList.size());
-        } catch (SQLException ex) {
-            System.out.println("chyba!");
-        } finally {
-            database.closeConnection();
-        }
-    }
+    private int offset = 0;
 
     private EditGoodsController(Database database, EditGoodsWindow window) {
-        super(database);
+        this.database = database;
         this.window = window;
         
-        fillGoodsTable();
+        new Thread(() -> fillGoodsTable("", offset)).start();
         window.setVisible(true);
         
         initController();
@@ -68,7 +41,7 @@ public final class EditGoodsController extends Controller {
     }
 
     @Override
-    void initController() {
+    public void initController() {
         window.btnChooseGoodsAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -80,6 +53,27 @@ public final class EditGoodsController extends Controller {
             @Override
             public void mouseReleased(MouseEvent e) {
                 editGoods();
+            }
+        });
+        
+        window.btnFilterAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                filter();
+            }
+        });
+        
+        window.btnNextAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+               next();
+            }
+        });
+        
+        window.btnPreviousAddMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                previous();
             }
         });
     }
@@ -169,14 +163,61 @@ public final class EditGoodsController extends Controller {
         }
     }
     
-    private void fillGoodsTable() {
-        for (Goods g : goodsList) {
+    private void next() {
+        offset += 100;
+        String filter = window.getTfFilter();
+        fillGoodsTable(filter, offset);
+    }
+    
+    private void previous() {
+        if (offset == 0) {
+            JOptionPane.showMessageDialog(window, "Ste na začiatku zoznamu.");
+            return;
+        }
+        offset -= 100;
+        String filter = window.getTfFilter();
+        fillGoodsTable(filter, offset);
+    }
+    
+    private void filter() {
+        offset = 0;
+        String filter = window.getTfFilter();
+        fillGoodsTable(filter, offset);
+    }
+    
+    private void fillGoodsTable(String filter, int offset) {
+        window.getTbGoodsModel().setRowCount(0);
+        try {
+            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods"
+                    + " WHERE deleted = FALSE"
+                    + " AND UPPER(name) LIKE UPPER('%" + filter + "%')"
+                    + " ORDER BY name LIMIT 100 OFFSET " + offset +";";
+            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            int pocet = 0;
             Object[] row = new Object[4];
-            row[0] = g.getCode();
-            row[1] = g.getName();
-            row[2] = g.getIncomePrice();
-            row[3] = g.getExportPrice();
-            window.getTbGoodsModel().addRow(row);
+            while(rs.next()) {
+                row[0] = rs.getString("code");
+                row[1] = rs.getString("name");
+                row[2] = rs.getDouble("incomePrice");
+                row[3] = rs.getDouble("exportPrice");
+                window.getTbGoodsModel().addRow(row);
+                pocet++;
+            }
+            
+            rs.close();
+            ps.close();
+            if (pocet == 0) {
+                JOptionPane.showMessageDialog(window, "Ste na konci zoznamu.");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("chyba!");
+        } finally {
+            database.closeConnection();
         }
     }
     

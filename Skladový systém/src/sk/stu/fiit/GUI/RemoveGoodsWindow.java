@@ -51,6 +51,11 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         btnRemoveGoods = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbGoods = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        tfFilter = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
+        btnPrevious = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Odstránenie tovaru");
@@ -76,7 +81,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel2.setText("Informácie o tovare");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel2, gridBagConstraints);
 
@@ -84,7 +89,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         btnChooseGoods.setText("Vybrať tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 100);
@@ -94,7 +99,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel3.setText("Názov tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
@@ -103,7 +108,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel4.setText("Kód tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
@@ -112,7 +117,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel5.setText("Opis tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel5, gridBagConstraints);
@@ -121,7 +126,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel6.setText("Nákupná cena:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel6, gridBagConstraints);
@@ -130,7 +135,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jLabel7.setText("Predajná cena:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 250, 25, 0);
         jPanel1.add(jLabel7, gridBagConstraints);
@@ -139,7 +144,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -149,7 +154,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -167,7 +172,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 300;
         gridBagConstraints.ipady = 200;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -178,7 +183,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         tfImportPrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
@@ -188,7 +193,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         tfExportPrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 25, 50);
@@ -198,7 +203,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         btnRemoveGoods.setText("Vymazať vybraný tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnRemoveGoods, gridBagConstraints);
@@ -236,6 +241,56 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel8.setText("Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
+        jPanel1.add(jLabel8, gridBagConstraints);
+
+        tfFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfFilter.setMinimumSize(new java.awt.Dimension(250, 28));
+        tfFilter.setPreferredSize(new java.awt.Dimension(250, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 25, 0);
+        jPanel1.add(tfFilter, gridBagConstraints);
+
+        btnFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnFilter.setText("Filtrovať");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 450, 25, 0);
+        jPanel1.add(btnFilter, gridBagConstraints);
+
+        btnPrevious.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnPrevious.setText("<<");
+        btnPrevious.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 200);
+        jPanel1.add(btnPrevious, gridBagConstraints);
+
+        btnNext.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnNext.setText(">>");
+        btnNext.setFocusTraversalPolicyProvider(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.insets = new java.awt.Insets(15, 200, 15, 0);
+        jPanel1.add(btnNext, gridBagConstraints);
+
         jScrollPane3.setViewportView(jPanel1);
 
         getContentPane().add(jScrollPane3);
@@ -245,6 +300,9 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChooseGoods;
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemoveGoods;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -253,6 +311,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -261,6 +320,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JTable tbGoods;
     private javax.swing.JTextField tfCode;
     private javax.swing.JTextField tfExportPrice;
+    private javax.swing.JTextField tfFilter;
     private javax.swing.JTextField tfImportPrice;
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
@@ -293,12 +353,28 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         this.tfName.setText(text);
     }
     
+    public String getTfFilter() {
+        return tfFilter.getText().trim();
+    }
+    
     public void btnRemoveGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveGoods.addMouseListener(mouseAdapter);
     }
     
     public void btnChooseGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseGoods.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnPreviousAddMouseListener(MouseAdapter mouseAdapter) {
+        btnPrevious.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnNextAddMouseListener(MouseAdapter mouseAdapter) {
+        btnNext.addMouseListener(mouseAdapter);
+    }
+    
+    public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
+        btnFilter.addMouseListener(mouseAdapter);
     }
 
 }

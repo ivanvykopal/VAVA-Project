@@ -24,12 +24,13 @@ import sk.stu.fiit.Model.User;
  *
  * @author Ivan Vykopal
  */
-public final class AdministratorController extends Controller {
+public final class AdministratorController implements Controller {
+    private final Database database;
     private final AdministratorWindow window;
     private final User user;
 
     private AdministratorController(Database database, AdministratorWindow window, User user) {
-        super(database);
+        this.database = database;
         this.window = window;
         this.user = user;
         
@@ -46,7 +47,7 @@ public final class AdministratorController extends Controller {
     }
 
     @Override
-    void initController() {
+    public void initController() {
         window.addGoodsListener(() -> addGoods());
         
         window.addStorageListener(() -> addStorage());

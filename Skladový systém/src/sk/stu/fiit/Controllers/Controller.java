@@ -5,18 +5,11 @@
  */
 package sk.stu.fiit.Controllers;
 
-import sk.stu.fiit.Model.Database;
-
 /**
  *
  * @author Ivan Vykopal
  */
-public abstract class Controller {
-    protected static Database database;
-
-    public Controller(Database database) {
-        this.database = database;
-    }
+public interface Controller {
     
-    abstract void initController();
+    void initController();
 }
