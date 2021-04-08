@@ -7,7 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,6 +16,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.GUI.LoginWindow;
+import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
@@ -29,12 +29,16 @@ public final class LoginController implements Controller {
     private final Database database;
     private final LoginWindow window;
 
-    public LoginController(LoginWindow window, Database database) {
+    private LoginController(Database database, LoginWindow window) {
         this.database = database;
         this.window = window;
         
         window.setVisible(true);
         initController();
+    }
+    
+    public static void createController(Database database, LoginWindow window) {
+        new LoginController(database, window);
     }
     
     @Override
@@ -81,6 +85,8 @@ public final class LoginController implements Controller {
                         window.setVisible(false);
                         break;
                     case WAREHOUSEMAN:
+                        WarehousemanController.createController(database, new WarehousemanWindow(), user);
+                        window.setVisible(false);
                         break;
                     case REFERENT:
                         break;

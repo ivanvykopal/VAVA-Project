@@ -103,7 +103,7 @@ public final class AdministratorController implements Controller {
     }
     
     private void logout() {
-        new LoginController(new LoginWindow(), database);
+        LoginController.createController(database, new LoginWindow());
         window.setVisible(false);
     }
     
