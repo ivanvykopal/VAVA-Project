@@ -5,12 +5,14 @@
  */
 package sk.stu.fiit.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ivan Vykopal
  */
-public class User {
-    private int id;
+public final class User implements Serializable {
+    private int id = 1;
     private String username = "";
     private String email = "";
     private String password = "";
@@ -20,8 +22,7 @@ public class User {
     public User() {
     }
     
-    public User(int id, String username, String email, String name, String typeString) {
-        this.id = id;
+    public User(String username, String email, String name, String typeString) {
         this.username = username;
         this.email = email;
         this.name = name;
@@ -29,7 +30,6 @@ public class User {
     }
 
     public User(int id, String username, String email, String password, String name, Type type) {
-        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -40,7 +40,7 @@ public class User {
     public boolean isAnyAttributeEmpty() {
         return username.equals("") || name.equals("") || type == null;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -116,6 +116,10 @@ public class User {
                 break;
         }
         this.type = userType;
+    }
+
+    public boolean equals(User user) {
+        return username.equals(user.getUsername());
     }
     
 }

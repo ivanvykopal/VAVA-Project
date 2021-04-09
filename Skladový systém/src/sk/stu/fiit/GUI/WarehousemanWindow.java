@@ -11,8 +11,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -86,6 +84,15 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         tbGoods = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         lbChoosedItem = new javax.swing.JLabel();
+        spGoodsExport = new javax.swing.JScrollPane();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbGoods1 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnExportGoods = new javax.swing.JButton();
+        lbChoosedItem1 = new javax.swing.JLabel();
+        tfQuantity2 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
@@ -433,14 +440,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kód tovaru", "Názov", "Množstvo", "Pozícia"
+                "ID", "Kód tovaru", "Názov", "Množstvo", "Pozícia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -453,6 +460,11 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         });
         tbGoods.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(tbGoods);
+        if (tbGoods.getColumnModel().getColumnCount() > 0) {
+            tbGoods.getColumnModel().getColumn(0).setMinWidth(0);
+            tbGoods.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tbGoods.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -486,6 +498,95 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         spGoodsMove.setViewportView(pGoodsMove);
 
         jPanel3.add(spGoodsMove, "card5");
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        tbGoods1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tbGoods1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kód tovaru", "Názov", "Množstvo", "Pozícia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbGoods1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(tbGoods1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 400;
+        gridBagConstraints.ipady = 200;
+        gridBagConstraints.insets = new java.awt.Insets(50, 50, 25, 50);
+        jPanel8.add(jScrollPane5, gridBagConstraints);
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        jLabel9.setText("Výber tovaru pre vývoz");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel8.add(jLabel9, gridBagConstraints);
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel10.setText("Množstvo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 25, 25);
+        jPanel8.add(jLabel10, gridBagConstraints);
+
+        btnExportGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnExportGoods.setText("Vyviesť tovar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel8.add(btnExportGoods, gridBagConstraints);
+
+        lbChoosedItem1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        lbChoosedItem1.setText("Vybraný tovar:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel8.add(lbChoosedItem1, gridBagConstraints);
+
+        tfQuantity2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 25);
+        jPanel8.add(tfQuantity2, gridBagConstraints);
+
+        spGoodsExport.setViewportView(jPanel8);
+
+        jPanel3.add(spGoodsExport, "card5");
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
@@ -536,6 +637,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptGoods;
     private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnExportGoods;
     private javax.swing.JButton btnGoodsExport;
     private javax.swing.JButton btnGoodsMove;
     private javax.swing.JButton btnGoodsReceipt;
@@ -545,6 +647,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JCheckBox chbStorageStatus;
     private javax.swing.JCheckBox chbStorageStatus1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -552,6 +655,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -563,10 +667,13 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lbChoosedItem;
+    private javax.swing.JLabel lbChoosedItem1;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JMenuItem miChangePassword;
@@ -578,13 +685,16 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pGoodsMove;
     private javax.swing.JPanel pGoodsReceipt;
     private javax.swing.JPanel pLogin;
+    private javax.swing.JScrollPane spGoodsExport;
     private javax.swing.JScrollPane spGoodsMove;
     private javax.swing.JTable tbFreeStorage;
     private javax.swing.JTable tbFreeStorage1;
     private javax.swing.JTable tbGoods;
+    private javax.swing.JTable tbGoods1;
     private javax.swing.JTextField tfGoodsCode;
     private javax.swing.JTextField tfQuantity;
     private javax.swing.JTextField tfQuantity1;
+    private javax.swing.JTextField tfQuantity2;
     private javax.swing.JTextField tfStorageCode;
     private javax.swing.JTextField tfStorageCode1;
     // End of variables declaration//GEN-END:variables
@@ -593,11 +703,11 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         return chbStorageStatus;
     }
 
-    public JTable getTbStorageTable() {
+    public JTable getTbFreeStorageTable() {
         return tbFreeStorage;
     }
 
-    public DefaultTableModel getTbStorageModel() {
+    public DefaultTableModel getTbFreeStorageModel() {
         return (DefaultTableModel) tbFreeStorage.getModel();
     }
 
@@ -762,6 +872,45 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     public void setLbChoosedItem(String text) {
         this.lbChoosedItem.setText(text);
     }
+
+    public void btnExportGoodsAddListener(MouseAdapter adapter) {
+        btnExportGoods.addMouseListener(adapter);
+    }
+
+    public JCheckBox getChbStorageStatus1() {
+        return chbStorageStatus1;
+    }
+
+    public void setLbChoosedItem1(String text) {
+        lbChoosedItem1.setText(text);
+    }
+
+    public JTable getTbGoods1Table() {
+        return tbGoods1;
+    }
+    
+    public DefaultTableModel getTbGoods1Model() {
+        return (DefaultTableModel) tbGoods1.getModel();
+    }
+
+    public int getTfQuantity2() {
+        try {
+            if (tfQuantity2.getText().equals("")) {
+                return 0;
+            }
+            return Integer.parseInt(tfQuantity2.getText());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    
+    public void setTfQuantity2(String text) {
+        tfQuantity2.setText(text);
+    }
+
+    public JScrollPane getSpGoodsExport() {
+        return spGoodsExport;
+    }
     
     
     
@@ -793,6 +942,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         }
         for (MouseListener ml : tbGoods.getMouseListeners()) {
             tbGoods.removeMouseListener(ml);
+        }
+        
+        //GoodsExport panel
+        for (MouseListener ml : btnExportGoods.getMouseListeners()) {
+            btnExportGoods.removeMouseListener(ml);
+        }
+        for (MouseListener ml : tbGoods1.getMouseListeners()) {
+            tbGoods1.removeMouseListener(ml);
         }
     }
 

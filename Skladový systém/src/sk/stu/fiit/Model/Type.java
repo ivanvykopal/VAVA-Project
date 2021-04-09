@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ivan Vykopal
  */
-public enum Type {
+public enum Type implements Serializable {
     ADMINISTRATOR,
     WAREHOUSEMAN,
     REFERENT

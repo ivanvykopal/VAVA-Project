@@ -6,10 +6,8 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -147,9 +145,13 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         this.lbInfoMessage.setText(text);
         this.lbInfoMessage.setForeground(color);
     }
-    
+
     public void btnChangePasswordAddMouseListener(MouseAdapter mouseAdapter) {
         btnChangePassword.addMouseListener(mouseAdapter);
+    }
+    
+    public void pfConfirmPasswordAddListener(DocumentListener listener) {
+        pfConfirmPassword.getDocument().addDocumentListener(listener);
     }
 
 }

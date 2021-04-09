@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;
 import sk.stu.fiit.Model.Database;
@@ -25,13 +25,12 @@ public final class RemoveGoodsController implements Controller {
     private final Database database;
     private final RemoveGoodsWindow window;
     private Goods goods = null;
-    private int offset = 0;
 
     private RemoveGoodsController(Database database, RemoveGoodsWindow window) {
         this.database = database;
         this.window = window;
 
-        new Thread(() -> fillGoodsTable("", offset)).start();
+        fillGoodsTable("");
         window.setVisible(true);
 
         initController();
@@ -57,26 +56,11 @@ public final class RemoveGoodsController implements Controller {
                 removeGoods();
             }
         });
-        
-        
+
         window.btnFilterAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 filter();
-            }
-        });
-        
-        window.btnNextAddMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-               next();
-            }
-        });
-        
-        window.btnPreviousAddMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                previous();
             }
         });
     }
@@ -90,34 +74,19 @@ public final class RemoveGoodsController implements Controller {
 
         String code = (String) window.getTbGoodsModel().getValueAt(index, 0);
 
-        try {
-            String query = "SELECT name, code, description, incomePrice, exportPrice FROM goods WHERE code = ?;";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, code);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                goods = new Goods();
-                goods.setCode(code);
-                goods.setDescription(rs.getString("description"));
-                goods.setId(rs.getInt("id"));
-                goods.setName(rs.getString("name"));
-                goods.setIncomePrice(rs.getDouble("incomePrice"));
-                goods.setExportPrice(rs.getDouble("exportPrice"));
-            }
-
+        goods = database.findGoods(code);
+        if (goods == null) {
+            window.setTfCode("");
+            window.setTfName("");
+            window.setTaDescription("");
+            window.setTfImportPrice("");
+            window.setTfExportPrice("");
+        } else {
             window.setTfCode(code);
             window.setTfName(goods.getName());
             window.setTaDescription(goods.getDescription());
             window.setTfImportPrice("" + goods.getIncomePrice());
             window.setTfExportPrice("" + goods.getExportPrice());
-
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            System.out.println("chyba!");
-        } finally {
-            database.closeConnection();
         }
     }
 
@@ -127,77 +96,33 @@ public final class RemoveGoodsController implements Controller {
             return;
         }
 
-        try {
-            String query = "UPDATE goods SET deleted = TRUE WHERE id = ?;";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setInt(1, goods.getId());
-            ps.executeUpdate();
-
-            JOptionPane.showMessageDialog(window, "Vybraný tovar bol nastavený ako vymazaný!");
-            ps.close();
-            window.setVisible(false);
-        } catch (SQLException ex) {
-            System.out.println("Chyba!");
-        } finally {
-            database.closeConnection();
+        goods = database.removeGoods(goods);
+        if (goods == null) {
+            JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní tovaru!");
+        } else {
+            JOptionPane.showMessageDialog(window, "Tovar bol vymazaný zo systému!");
+            window.dispose();
         }
-    }
-
-    private void next() {
-        offset += 100;
-        String filter = window.getTfFilter();
-        fillGoodsTable(filter, offset);
-    }
-
-    private void previous() {
-        if (offset == 0) {
-            JOptionPane.showMessageDialog(window, "Ste na začiatku zoznamu.");
-            return;
-        }
-        offset -= 100;
-        String filter = window.getTfFilter();
-        fillGoodsTable(filter, offset);
     }
 
     private void filter() {
-        offset = 0;
         String filter = window.getTfFilter();
-        fillGoodsTable(filter, offset);
+        fillGoodsTable(filter);
     }
-    
-    private void fillGoodsTable(String filter, int offset) {
-        window.getTbGoodsModel().setRowCount(0);
-        try {
-            String query = "SELECT id, name, code, description, incomePrice, exportPrice FROM goods"
-                    + " WHERE deleted = FALSE"
-                    + " AND UPPER(name) LIKE UPPER('%" + filter + "%')"
-                    + " ORDER BY name LIMIT 100 OFFSET " + offset +";";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            int pocet = 0;
-            Object[] row = new Object[4];
-            while(rs.next()) {
-                row[1] = rs.getString("code");
-                row[0] = rs.getString("name");
-                row[3] = rs.getDouble("incomePrice");
-                row[2] = rs.getDouble("exportPrice");
-                window.getTbGoodsModel().addRow(row);
-                pocet++;
-            }
-            
-            rs.close();
-            ps.close();
-            if (pocet == 0) {
-                JOptionPane.showMessageDialog(window, "Ste na konci zoznamu.");
-            }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("chyba!");
-        } finally {
-            database.closeConnection();
+    private void fillGoodsTable(String filter) {
+        window.getTbGoodsModel().setRowCount(0);
+        for (Goods goods : database.getGoodsTable()) {
+            if (!goods.isDeleted()) {
+                if (Pattern.matches("*" + filter + "*", goods.getName())) {
+                    Object[] row = new Object[4];
+                    row[0] = goods.getCode();
+                    row[1] = goods.getName();
+                    row[2] = goods.getIncomePrice();
+                    row[3] = goods.getExportPrice();
+                    window.getTbGoodsModel().addRow(row);
+                }
+            }
         }
     }
 

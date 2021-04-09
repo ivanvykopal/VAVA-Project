@@ -55,23 +55,12 @@ public final class AddStorageController implements Controller {
             return;
         }
         
-        try {
-            String query = "INSERT INTO storage (code, building, shelf) VALUES (?, ?, ?);";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1,storage.getCode());
-            ps.setString(2,storage.getBuilding());
-            ps.setString(3,storage.getShelf());
-            
-            ps.executeUpdate();
-
-            ps.close();
+        storage = database.addStorage(storage);
+        if (storage == null) {
+            JOptionPane.showMessageDialog(window, "Zadaný skladovací pristor sa už v systéme nachádza!");
+        } else {
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
-            window.setVisible(false);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
-        } finally {
-            database.closeConnection();
+            window.dispose();
         }
     }
     

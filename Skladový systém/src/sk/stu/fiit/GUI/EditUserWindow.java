@@ -53,8 +53,6 @@ public class EditUserWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfFilter = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
-        btnPrevious = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -246,26 +244,6 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 450, 25, 0);
         jPanel1.add(btnFilter, gridBagConstraints);
 
-        btnPrevious.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnPrevious.setText("<<");
-        btnPrevious.setFocusTraversalPolicyProvider(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 200);
-        jPanel1.add(btnPrevious, gridBagConstraints);
-
-        btnNext.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnNext.setText(">>");
-        btnNext.setFocusTraversalPolicyProvider(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.insets = new java.awt.Insets(15, 200, 15, 0);
-        jPanel1.add(btnNext, gridBagConstraints);
-
         jScrollPane3.setViewportView(jPanel1);
 
         getContentPane().add(jScrollPane3);
@@ -277,8 +255,6 @@ public class EditUserWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnChooseUser;
     private javax.swing.JButton btnEditUser;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPrevious;
     private javax.swing.JComboBox<String> cbType;
     private javax.swing.JComboBox<String> cbTypeFilter;
     private javax.swing.JLabel jLabel1;
@@ -362,14 +338,6 @@ public class EditUserWindow extends javax.swing.JFrame {
     
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseUser.addMouseListener(mouseAdapter);
-    }
-    
-    public void btnPreviousAddMouseListener(MouseAdapter mouseAdapter) {
-        btnPrevious.addMouseListener(mouseAdapter);
-    }
-    
-    public void btnNextAddMouseListener(MouseAdapter mouseAdapter) {
-        btnNext.addMouseListener(mouseAdapter);
     }
     
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {

@@ -5,32 +5,31 @@
  */
 package sk.stu.fiit.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Ivan Vykopal
  */
-public class Item {
+public class Item implements Serializable {
     private int id;
     private Goods goods = null;
+    private Storage storage = null;
     private int quantity = 0;
-    private double price = 0;
     private Date receiptDate = null;
     private Date exportDate = null;
     private Position position = null;
     private boolean consumed = false;
     
     public Item() {
-        
     }
 
-    public Item(int id, Goods goods, int quantity, double price, Date receiptDate,
+    public Item(int id, Goods goods, int quantity, Date receiptDate,
             Date exportDate, Position position, boolean consumed) {
         this.id = id;
         this.goods = goods;
         this.quantity = quantity;
-        this.price = price;
         this.receiptDate = receiptDate;
         this.exportDate = exportDate;
         this.position = position;
@@ -38,7 +37,7 @@ public class Item {
     }
     
     public boolean isAnyAttributeEmpty() {
-        return goods == null || quantity == 0 || price == 0 || receiptDate == null;
+        return goods == null || quantity == 0 || receiptDate == null;
     }
 
     public int getId() {
@@ -63,14 +62,6 @@ public class Item {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public Date getReceiptDate() {
@@ -103,6 +94,14 @@ public class Item {
 
     public void setConsumed(boolean consumed) {
         this.consumed = consumed;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
     
 }

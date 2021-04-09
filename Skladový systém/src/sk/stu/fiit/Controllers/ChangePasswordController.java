@@ -8,9 +8,9 @@ package sk.stu.fiit.Controllers;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -20,19 +20,20 @@ import sk.stu.fiit.Model.User;
  * @author Ivan Vykopal
  */
 public final class ChangePasswordController implements Controller {
+
     private final Database database;
     private final ChangePasswordWindow window;
-    private final User user;
+    private User user;
 
     private ChangePasswordController(Database database, ChangePasswordWindow window, User user) {
         this.database = database;
         this.window = window;
         this.user = user;
         window.setVisible(true);
-        
+
         initController();
     }
-    
+
     public static void createController(Database database, ChangePasswordWindow window, User user) {
         new ChangePasswordController(database, window, user);
     }
@@ -45,47 +46,58 @@ public final class ChangePasswordController implements Controller {
                 changePassword();
             }
         });
+
+        window.pfConfirmPasswordAddListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                warning();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                warning();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                warning();
+            }
+        });
     }
-    
+
     private void changePassword() {
         String oldPassword = window.getPfOldPassword();
         String newPassword = window.getPfNewPassword();
         String confirmPassword = window.getPfConfirmPassword();
-        
+
         if (oldPassword.equals("") || newPassword.equals("") || confirmPassword.equals("")) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia.");
             return;
         }
-        
+
         if (oldPassword.equals(newPassword)) {
             JOptionPane.showMessageDialog(window, "Dané heslo sa aktuálne používa.");
             return;
         }
-        
-        //Pridať do iného listenera
+
+        user.setPassword(newPassword);
+        user = database.setUser(user);
+        if (user == null) {
+            JOptionPane.showMessageDialog(window, "Chyba pri zemene hesla!");
+        } else {
+            JOptionPane.showMessageDialog(window, "Heslo bolo zmenené!");
+            window.dispose();
+        }
+    }
+
+    private void warning() {
+        String newPassword = window.getPfNewPassword();
+        String confirmPassword = window.getPfConfirmPassword();
         if (!newPassword.equals(confirmPassword)) {
             window.setLbInfoMessage("Heslá nie sú rovnaké.", Color.RED);
         } else {
             window.setLbInfoMessage("Heslá sú rovnaké.", Color.GREEN);
         }
-        
-        try {
-            String query = "UPDATE users SET password = ? WHERE id = ?;";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, newPassword);
-            ps.setInt(2, user.getId());
-            
-            ps.executeUpdate();
-            
-            ps.close();
-            JOptionPane.showMessageDialog(window, "Heslo bolo zmenené!");
-            window.setVisible(false);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!");
-        } finally {
-            database.closeConnection();
-        }
     }
-    
+
 }

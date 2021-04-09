@@ -62,25 +62,12 @@ public final class AddGoodsController implements Controller {
             return;
         }
         
-        try {
-            String query = "INSERT INTO goods (name, code, description, incomePrice, exportPrice) VALUES (?, ?, ?, ?, ?);";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, goods.getName());
-            ps.setString(2, goods.getCode());
-            ps.setString(3, goods.getDescription());
-            ps.setDouble(4, goods.getIncomePrice());
-            ps.setDouble(5, goods.getExportPrice());
-            
-            ps.executeUpdate();
-            
-            ps.close();
+        goods = database.addGoods(goods);
+        if (goods == null) {
+            JOptionPane.showMessageDialog(window, "Zadaný tovar sa už v systéme nachádza!");
+        } else {
             JOptionPane.showMessageDialog(window, "Tovar bol pridaný!");
-            window.setVisible(false);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
-        } finally {
-            database.closeConnection();
+            window.dispose();
         }
         
     }

@@ -52,8 +52,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfFilter = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
-        btnPrevious = new javax.swing.JButton();
         cbTypeFilter = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -241,26 +239,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 450, 25, 0);
         jPanel1.add(btnFilter, gridBagConstraints);
 
-        btnNext.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnNext.setText(">>");
-        btnNext.setFocusTraversalPolicyProvider(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.insets = new java.awt.Insets(15, 200, 15, 0);
-        jPanel1.add(btnNext, gridBagConstraints);
-
-        btnPrevious.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnPrevious.setText("<<");
-        btnPrevious.setFocusTraversalPolicyProvider(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 200);
-        jPanel1.add(btnPrevious, gridBagConstraints);
-
         cbTypeFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         cbTypeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -280,8 +258,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChooseUser;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemoveUser;
     private javax.swing.JComboBox<String> cbTypeFilter;
     private javax.swing.JLabel jLabel1;
@@ -340,14 +316,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseUser.addMouseListener(mouseAdapter);
-    }
-    
-    public void btnPreviousAddMouseListener(MouseAdapter mouseAdapter) {
-        btnPrevious.addMouseListener(mouseAdapter);
-    }
-    
-    public void btnNextAddMouseListener(MouseAdapter mouseAdapter) {
-        btnNext.addMouseListener(mouseAdapter);
     }
     
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {

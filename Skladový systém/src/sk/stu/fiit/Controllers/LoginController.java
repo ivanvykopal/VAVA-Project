@@ -26,21 +26,22 @@ import sk.stu.fiit.Model.User;
  * @author Ivan Vykopal
  */
 public final class LoginController implements Controller {
+
     private final Database database;
     private final LoginWindow window;
 
     private LoginController(Database database, LoginWindow window) {
         this.database = database;
         this.window = window;
-        
+
         window.setVisible(true);
         initController();
     }
-    
+
     public static void createController(Database database, LoginWindow window) {
         new LoginController(database, window);
     }
-    
+
     @Override
     public void initController() {
         window.btnLoginAddMouseListener(new MouseAdapter() {
@@ -50,7 +51,7 @@ public final class LoginController implements Controller {
             }
         });
     }
-    
+
     private void login() {
         String userName = window.getTfLoginField();
         String password;
@@ -61,59 +62,32 @@ public final class LoginController implements Controller {
             return;
         }
         
-        try {
-            String query = "SELECT id, username, password, name, type, email FROM users WHERE username = '" + userName +"'\n"
-                    + "AND password = '" + password + "';";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Type type;
-                switch (rs.getString("type")) {
-                    case "administrator": 
-                        type = Type.ADMINISTRATOR;
-                        break;
-                    case "warehouseman": 
-                        type = Type.WAREHOUSEMAN;
-                        break;
-                    default: 
-                        type = Type.REFERENT;
-                }
-                User user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),  rs.getString("password"), rs.getString("name"), type);
-                switch (type) {
-                    case ADMINISTRATOR:
-                        AdministratorController.createController(database, new AdministratorWindow(), user);
-                        window.setVisible(false);
-                        break;
-                    case WAREHOUSEMAN:
-                        WarehousemanController.createController(database, new WarehousemanWindow(), user);
-                        window.setVisible(false);
-                        break;
-                    case REFERENT:
-                        break;
-                }
-            } else {
-                JOptionPane.showMessageDialog(window, "Nesprávne prihlasovacie údaje!");
-                return; 
-            }
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
+        User user = database.findUser(userName, password);
+        if (user == null) {
+            JOptionPane.showMessageDialog(window, "Zadaný používateľ neexistuje!");
             return;
-        } finally {
-            database.closeConnection();
         }
         
-        
+        switch (user.getType()) {
+            case ADMINISTRATOR:
+                AdministratorController.createController(database, new AdministratorWindow(), user);
+                window.setVisible(false);
+                break;
+            case WAREHOUSEMAN:
+                WarehousemanController.createController(database, new WarehousemanWindow(), user);
+                window.setVisible(false);
+                break;
+            case REFERENT:
+                break;
+        }
     }
     //https://www.baeldung.com/sha-256-hashing-java
-    
+
     private byte[] getSHA(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
-    
+
     private String SHAtoString(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (int i = 0; i < hash.length; i++) {
@@ -125,5 +99,5 @@ public final class LoginController implements Controller {
         }
         return hexString.toString();
     }
-    
+
 }

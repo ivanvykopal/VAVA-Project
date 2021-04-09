@@ -7,8 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.Model.Database;
@@ -56,25 +54,13 @@ public final class AddUserController implements Controller {
             return;
         }
         
-        try {
-            String query = "INSERT INTO users (username, name, type, email) VALUES (?, ?, ?, ?);";
-            PreparedStatement ps = database.connectDatabase().prepareStatement(query);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getTypeString());
-            ps.setString(4, user.getEmail());
-            
-            ps.executeUpdate();
-            
-            ps.close();
+        user = database.addUser(user);
+        if (user == null) {
+            JOptionPane.showMessageDialog(window, "Zadaný používať sa už v systéme nachádza!");
+        } else {
             JOptionPane.showMessageDialog(window, "Používateľ bol pridaný!");
-            window.setVisible(false);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Nastala chyba pri načítaní databázy!\n Opakujte prihlásenie!");
-        } finally {
-            database.closeConnection();
-        }    
+            window.dispose();
+        }
     }
     
 }

@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ivan Vykopal
  */
-public enum Position {
+public enum Position implements Serializable {
     IN_STOCK,
     OUT_STOCK
 }

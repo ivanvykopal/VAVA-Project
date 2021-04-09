@@ -5,24 +5,25 @@
  */
 package sk.stu.fiit.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ivan Vykopal
  */
-public class Goods {
-    private int id;
+public class Goods implements Serializable {
+    private int id = 1;
     private String name = "";
     private String code = "";
-    private String description= "";
+    private String description = "";
     private double incomePrice = 0;
     private double exportPrice = 0;
+    private boolean deleted = false;
     
     public Goods() {
-        
     }
 
-    public Goods(int id, String name, String code, String description, double incomePrice, double exportPrice) {
-        this.id = id;
+    public Goods(String name, String code, String description, double incomePrice, double exportPrice) {
         this.name = name;
         this.code = code;
         this.description = description;
@@ -33,14 +34,6 @@ public class Goods {
     public boolean isAnyAttributeEmpty() {
         return name.equals("") || code.equals("") || description.equals("") || 
                 incomePrice == 0 || exportPrice == 0;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -81,6 +74,26 @@ public class Goods {
 
     public void setExportPrice(double exportPrice) {
         this.exportPrice = exportPrice;
+    }
+
+    public boolean equals(Goods goods) {
+        return code.equals(goods.code);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
     
 }

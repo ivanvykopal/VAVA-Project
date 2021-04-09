@@ -84,6 +84,7 @@ public final class WarehousemanController implements Controller {
         window.getpLogin().setVisible(false);
         window.getpGoodsReceipt().setVisible(false);
         window.getSpGoodsMove().setVisible(false);
+        window.getSpGoodsExport().setVisible(false);
     }
     
     private void clearGoodsReceipt() {
@@ -96,6 +97,10 @@ public final class WarehousemanController implements Controller {
         window.setTfQuantity1("");
         window.setTfStorageCode1("");
         window.setLbChoosedItem("");
+    }
+    
+    private void clearGoodsExport() {
+        window.setTfQuantity2("");
     }
     
 }

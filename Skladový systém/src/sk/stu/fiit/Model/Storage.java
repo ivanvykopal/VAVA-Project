@@ -5,44 +5,32 @@
  */
 package sk.stu.fiit.Model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *
  * @author Ivan Vykopal
  */
-public class Storage {
-    private int id;
+public class Storage implements Serializable {
+    private int id = 1;
     private String code = "";
     private String building = "";
     private String shelf = "";
     private boolean containsItem = false;
-    private ArrayList<Item> items;
     private boolean free = true;
     
     public Storage() {
-        
     }
 
-    public Storage(int id, String code, String building, String shelf, boolean containsItem, boolean free) {
-        this.id = id;
+    public Storage(String code, String building, String shelf, boolean containsItem, boolean free) {
         this.code = code;
         this.building = building;
         this.shelf = shelf;
-        this.containsItem = containsItem;
         this.free = free;
     }
     
     public boolean isAnyAttributeEmpty() {
         return code.equals("") || building.equals("") || shelf.equals("");
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCode() {
@@ -69,28 +57,32 @@ public class Storage {
         this.shelf = shelf;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    public boolean isContainsItem() {
-        return containsItem;
-    }
-
-    public void setContainsItem(boolean containsItem) {
-        this.containsItem = containsItem;
-    }
-
     public boolean isFree() {
         return free;
     }
 
     public void setFree(boolean free) {
         this.free = free;
+    }
+
+    public boolean equals(Storage storage) {
+        return code.equals(storage.getCode());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean getContainsItem() {
+        return containsItem;
+    }
+
+    public void setContainsItem(boolean containsItem) {
+        this.containsItem = containsItem;
     }
     
 }
