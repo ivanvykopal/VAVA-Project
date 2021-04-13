@@ -7,12 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.WarehousemanWindow;
@@ -81,12 +75,21 @@ public final class GoodsReceiptController implements Controller {
             if (window.getChbStorageStatus().isSelected()) {
                 storage.setFree(false);
                 storage = database.setStorage(storage);
+                if (storage == null) {
+                    JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
+                    return;
+                }
             }
             item.setStorage(storage);
         }
         database.addItem(item);
         JOptionPane.showMessageDialog(window, "Nový tovar bol prijatý!");
-        //pridať clear
+        
+        window.setTfGoodsCode("");
+        window.setTfQuantity("");
+        window.setTfStorageCode("");
+        window.getChbStorageStatus().setSelected(false);
+        fillStorageTable();
     }
 
     private void chooseStorage(int index) {

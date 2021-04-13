@@ -10,15 +10,11 @@ import java.awt.event.MouseEvent;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
-import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
 
 /**

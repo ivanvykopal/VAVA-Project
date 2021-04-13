@@ -511,14 +511,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kód tovaru", "Názov", "Množstvo", "Pozícia"
+                "Id", "Kód tovaru", "Názov", "Množstvo", "Pozícia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -531,6 +531,11 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         });
         tbGoods1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(tbGoods1);
+        if (tbGoods1.getColumnModel().getColumnCount() > 0) {
+            tbGoods1.getColumnModel().getColumn(0).setMinWidth(0);
+            tbGoods1.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tbGoods1.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

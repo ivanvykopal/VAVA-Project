@@ -7,9 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
@@ -23,6 +20,7 @@ import sk.stu.fiit.Model.Storage;
  */
 public final class GoodsMoveController implements Controller {
 
+    private Item item;
     private final Database database;
     private final WarehousemanWindow window;
 
@@ -68,30 +66,9 @@ public final class GoodsMoveController implements Controller {
     }
 
     private void moveGoods() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void chooseStorage(int index) {
-        if (index > 0) {
-            String code = (String) window.getTbFreeStorage1Model().getValueAt(index, 0);
-            window.setTfStorageCode1(code);
-        } else {
-            window.setTfStorageCode1("");
-        }
-    }
-
-    private void chooseItem() {
-        int index = window.getTbGoodsTable().getSelectedRow();
-        if (index == -1) {
+        if (item == null) {
             JOptionPane.showMessageDialog(window, "Nie je vybraný žiaden tovar!");
             return;
-        }
-
-        int id = (int) window.getTbGoodsModel().getValueAt(index, 0);
-        Item item = database.findItem(id);
-        if (item == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri načítaní položky skladu!");
-            return;  
         }
         
         int quantity = window.getTfQuantity1();
@@ -110,6 +87,15 @@ public final class GoodsMoveController implements Controller {
             return;
         }
         
+        if (window.getChbStorageStatus1().isSelected()) {
+            storage.setFree(false);
+            storage = database.setStorage(storage);
+            if (storage == null) {
+                JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
+                return;
+            }
+        }
+        
         newItem.setStorage(storage);
         if (quantity == item.getQuantity()) {
             item = database.removeItem(item);
@@ -118,9 +104,10 @@ public final class GoodsMoveController implements Controller {
                 return;
             }
             newItem.setQuantity(quantity);
+            addNewItem(newItem);
         } else if (quantity > item.getQuantity()){
             JOptionPane.showMessageDialog(window, "Zadané množstvo je väčšie ako množstvo vybranej položky!");
-        } else if (quantity == 0){
+        } else if (quantity == 0) {
             JOptionPane.showMessageDialog(window, "Množstvo je nulové!");
         } else {
             item.setQuantity(item.getQuantity() - quantity);
@@ -128,16 +115,30 @@ public final class GoodsMoveController implements Controller {
             item = database.setItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, "Chyba pri zmene položky skladu!");
+                return;
             }
-            newItem = database.addItem(newItem);
-            if (newItem == null) {
-                JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
-            } else {
-                JOptionPane.showMessageDialog(window, "Tovar bol premiestnený!");
-                //pridať clear
-            }
+            addNewItem(newItem);
         }
-        
+    }
+
+    private void chooseStorage(int index) {
+        if (index > 0) {
+            String code = (String) window.getTbFreeStorage1Model().getValueAt(index, 0);
+            window.setTfStorageCode1(code);
+        } else {
+            window.setTfStorageCode1("");
+        }
+    }
+
+    private void chooseItem() {
+        int index = window.getTbGoodsTable().getSelectedRow();
+        if (index == -1) {
+            item = null;
+            return;
+        }
+
+        int id = (int) window.getTbGoodsModel().getValueAt(index, 0);
+        item = database.findItem(id);
     }
 
     private void fillStorageTable() {
@@ -150,17 +151,32 @@ public final class GoodsMoveController implements Controller {
             }
         }
     }
+    
+    private void addNewItem(Item it) {
+        it = database.addItem(it);
+        if (it == null) {
+            JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
+        } else {
+            JOptionPane.showMessageDialog(window, "Tovar bol premiestnený!");
+            item = null;
+            fillGoodsTable();
+            window.setTfQuantity1("");
+            window.setTfStorageCode1("");
+            fillStorageTable();
+            window.getChbStorageStatus1().setSelected(false);
+        }
+    }
 
     private void fillGoodsTable() {
         window.getTbGoodsModel().setRowCount(0);
-        for (Item item : database.getItemTable()) {
-            if (item.getPosition() == Position.IN_STOCK) {
+        for (Item it : database.getItemTable()) {
+            if (it.getPosition() == Position.IN_STOCK) {
                 Object[] row = new Object[5];
-                row[0] = item.getId();
-                row[1] = item.getGoods().getCode();
-                row[2] = item.getGoods().getName();
-                row[3] = item.getQuantity();
-                row[4] = item.getStorage().getCode();
+                row[0] = it.getId();
+                row[1] = it.getGoods().getCode();
+                row[2] = it.getGoods().getName();
+                row[3] = it.getQuantity();
+                row[4] = it.getStorage().getCode();
                 window.getTbGoodsModel().addRow(row);
             }
         }

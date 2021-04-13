@@ -7,9 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;

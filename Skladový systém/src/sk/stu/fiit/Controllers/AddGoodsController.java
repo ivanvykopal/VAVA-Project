@@ -7,8 +7,6 @@ package sk.stu.fiit.Controllers;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.Model.Database;
