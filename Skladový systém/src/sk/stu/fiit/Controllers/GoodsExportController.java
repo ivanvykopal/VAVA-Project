@@ -33,6 +33,10 @@ public final class GoodsExportController implements Controller {
 
         initController();
     }
+    
+    public static void createController(Database database, WarehousemanWindow window) {
+        new GoodsExportController(database, window);
+    }
 
     @Override
     public void initController() {
@@ -46,7 +50,9 @@ public final class GoodsExportController implements Controller {
         window.getTbGoods1Table().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                chooseItem();
+                int index = window.getTbGoods1Table().rowAtPoint(e.getPoint());
+                window.getTbGoods1Table().setRowSelectionInterval(index, index);
+                chooseItem(index);
             }
         });
     }
@@ -108,8 +114,7 @@ public final class GoodsExportController implements Controller {
         }
     }
 
-    private void chooseItem() {
-        int index = window.getTbGoods1Table().getSelectedRow();
+    private void chooseItem(int index) {
         if (index == -1) {
             item = null;
             return;

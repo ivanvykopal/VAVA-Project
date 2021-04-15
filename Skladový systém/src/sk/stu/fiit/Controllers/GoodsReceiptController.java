@@ -93,7 +93,7 @@ public final class GoodsReceiptController implements Controller {
     }
 
     private void chooseStorage(int index) {
-        if (index > 0) {
+        if (index != -1) {
             String code = (String) window.getTbFreeStorageModel().getValueAt(index, 0);
             window.setTfStorageCode(code);
         } else {

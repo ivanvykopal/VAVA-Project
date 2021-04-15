@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -93,6 +94,15 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         btnExportGoods = new javax.swing.JButton();
         lbChoosedItem1 = new javax.swing.JLabel();
         tfQuantity2 = new javax.swing.JTextField();
+        spGoodsInfo = new javax.swing.JScrollPane();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        chbStorageOption = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        tfCodeFilter = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbStoragePositions = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
@@ -106,16 +116,20 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Príjem tovaru");
+        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel3.setLayout(new java.awt.CardLayout());
 
+        pGoodsReceipt.setMinimumSize(new java.awt.Dimension(1024, 580));
         pGoodsReceipt.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 400));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 200));
 
         tbFreeStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbFreeStorage.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -142,7 +156,6 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 200;
-        gridBagConstraints.ipady = 400;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -332,6 +345,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         pGoodsMove.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -361,7 +375,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 200;
-        gridBagConstraints.ipady = 400;
+        gridBagConstraints.ipady = 200;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -379,6 +393,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         pGoodsMove.add(jPanel6, java.awt.BorderLayout.LINE_START);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setPreferredSize(new java.awt.Dimension(956, 600));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -542,7 +557,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 400;
-        gridBagConstraints.ipady = 200;
+        gridBagConstraints.ipady = 100;
         gridBagConstraints.insets = new java.awt.Insets(50, 50, 25, 50);
         jPanel8.add(jScrollPane5, gridBagConstraints);
 
@@ -593,7 +608,92 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
         jPanel3.add(spGoodsExport, "card5");
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel11.setText("Výber možnosti vyhľadávania");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 300);
+        jPanel9.add(jLabel11, gridBagConstraints);
+
+        chbStorageOption.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        chbStorageOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vyberte", "Tovar", "Skladovací priestor" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
+        jPanel9.add(chbStorageOption, gridBagConstraints);
+
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel12.setText("Kód:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 25, 25);
+        jPanel9.add(jLabel12, gridBagConstraints);
+
+        tfCodeFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfCodeFilter.setPreferredSize(new java.awt.Dimension(250, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 25);
+        jPanel9.add(tfCodeFilter, gridBagConstraints);
+
+        btnSearch.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnSearch.setText("Vyhľadať");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 150);
+        jPanel9.add(btnSearch, gridBagConstraints);
+
+        jScrollPane6.setPreferredSize(new java.awt.Dimension(1000, 600));
+
+        tbStoragePositions.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tbStoragePositions.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kód pozície", "Budova", "Regál", "Kód tovaru", "Názov tovaru", "Množstvo", "Dátum prijatia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tbStoragePositions);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel9.add(jScrollPane6, gridBagConstraints);
+
+        spGoodsInfo.setViewportView(jPanel9);
+
+        jPanel3.add(spGoodsInfo, "card6");
+
+        getContentPane().add(jPanel3);
 
         jMenu3.setText("Správa účtu");
         jMenu3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -648,11 +748,15 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnGoodsReceipt;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMoveGoods;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnShowStorage;
+    private javax.swing.JComboBox<String> chbStorageOption;
     private javax.swing.JCheckBox chbStorageStatus;
     private javax.swing.JCheckBox chbStorageStatus1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -673,10 +777,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lbChoosedItem;
     private javax.swing.JLabel lbChoosedItem1;
     private javax.swing.JLabel lbName;
@@ -691,11 +797,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pGoodsReceipt;
     private javax.swing.JPanel pLogin;
     private javax.swing.JScrollPane spGoodsExport;
+    private javax.swing.JScrollPane spGoodsInfo;
     private javax.swing.JScrollPane spGoodsMove;
     private javax.swing.JTable tbFreeStorage;
     private javax.swing.JTable tbFreeStorage1;
     private javax.swing.JTable tbGoods;
     private javax.swing.JTable tbGoods1;
+    private javax.swing.JTable tbStoragePositions;
+    private javax.swing.JTextField tfCodeFilter;
     private javax.swing.JTextField tfGoodsCode;
     private javax.swing.JTextField tfQuantity;
     private javax.swing.JTextField tfQuantity1;
@@ -917,6 +1026,30 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         return spGoodsExport;
     }
     
+    public void btnSearchAddListener(MouseAdapter adapter) {
+        btnSearch.addMouseListener(adapter);
+    }
+
+    public JComboBox<String> getChbStorageOption() {
+        return chbStorageOption;
+    }
+
+    public JScrollPane getSpGoodsInfo() {
+        return spGoodsInfo;
+    }
+
+    public DefaultTableModel getTbStoragePositionsModel() {
+        return (DefaultTableModel) tbStoragePositions.getModel();
+    }
+
+    public String getTfCodeFilter() {
+        return tfCodeFilter.getText().trim();
+    }
+    
+    public void setTfCodeFilter(String text) {
+        tfCodeFilter.setText(text);
+    }
+    
     
     
     
@@ -955,6 +1088,11 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         }
         for (MouseListener ml : tbGoods1.getMouseListeners()) {
             tbGoods1.removeMouseListener(ml);
+        }
+        
+        //GoodsInfo panel
+        for (MouseListener ml : btnSearch.getMouseListeners()) {
+            btnSearch.removeMouseListener(ml);
         }
     }
 

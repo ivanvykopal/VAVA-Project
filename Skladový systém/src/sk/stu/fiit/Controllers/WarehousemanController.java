@@ -56,7 +56,7 @@ public final class WarehousemanController implements Controller {
     }
 
     private void exportGoods() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GoodsExportController.createController(database, window);
     }
 
     private void moveGoods() {

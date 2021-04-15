@@ -60,7 +60,9 @@ public final class GoodsMoveController implements Controller {
         window.getTbGoodsTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                chooseItem();
+                int index = window.getTbGoodsTable().rowAtPoint(e.getPoint());
+                window.getTbGoodsTable().setRowSelectionInterval(index, index);
+                chooseItem(index);
             }
         });
     }
@@ -122,7 +124,7 @@ public final class GoodsMoveController implements Controller {
     }
 
     private void chooseStorage(int index) {
-        if (index > 0) {
+        if (index != -1) {
             String code = (String) window.getTbFreeStorage1Model().getValueAt(index, 0);
             window.setTfStorageCode1(code);
         } else {
@@ -130,8 +132,7 @@ public final class GoodsMoveController implements Controller {
         }
     }
 
-    private void chooseItem() {
-        int index = window.getTbGoodsTable().getSelectedRow();
+    private void chooseItem(int index) {
         if (index == -1) {
             item = null;
             return;
