@@ -1055,7 +1055,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     
 
     public void removeListeners() {
-        //Login panel
+        //Login panel ??
         for (MouseListener ml : btnLogout.getMouseListeners()) {
             btnLogout.removeMouseListener(ml);
         }

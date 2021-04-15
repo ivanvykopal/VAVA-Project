@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
+import sk.stu.fiit.Model.Position;
 
 /**
  *
@@ -51,14 +52,14 @@ public final class GoodsInfoController implements Controller {
                 return;
             case 1:
                 for (Item item : database.getItemTable()) {
-                    if (Pattern.matches("*" + filter + "*", item.getGoods().getCode())) {
+                    if (Pattern.matches("*" + filter + "*", item.getGoods().getCode()) && item.getPosition() == Position.IN_STOCK) {
                         addRow(item);
                     }
                 }
                 break;
             case 2:
                 for (Item item : database.getItemTable()) {
-                    if (Pattern.matches("*" + filter + "*", item.getStorage().getCode())) {
+                    if (Pattern.matches("*" + filter + "*", item.getStorage().getCode()) && item.getPosition() == Position.IN_STOCK) {
                         addRow(item);
                     }
                 }
