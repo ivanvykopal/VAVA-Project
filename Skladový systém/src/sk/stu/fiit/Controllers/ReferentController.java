@@ -66,7 +66,7 @@ public final class ReferentController implements Controller {
     }
 
     private void viewProfits() {
-
+        GoodsProfitsControlller.createController(database, window);
     }
 
 }

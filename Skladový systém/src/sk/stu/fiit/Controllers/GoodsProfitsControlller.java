@@ -22,40 +22,40 @@ import sk.stu.fiit.Model.Item;
  *
  * @author Ivan Vykopal
  */
-public final class GoodsCostsController implements Controller {
+public final class GoodsProfitsControlller implements Controller {
 
     private final Database database;
     private final ReferentWindow window;
 
-    private GoodsCostsController(Database database, ReferentWindow window) {
+    private GoodsProfitsControlller(Database database, ReferentWindow window) {
         this.database = database;
         this.window = window;
-        
-        window.getpGoodsCosts().setVisible(true);
-        
+
+        window.getpGoodsProfits().setVisible(true);
+
         initController();
     }
     
     public static void createController(Database database, ReferentWindow window) {
-        new GoodsCostsController(database, window);
+        new GoodsProfitsControlller(database, window);
     }
 
     @Override
     public void initController() {
-        window.btnViewCostsAddListener(new MouseAdapter() {
+        window.btnViewProfitsAddListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                viewCosts();
+                viewProfits();
             }
         });
     }
     
-    private void viewCosts() {
+    private void viewProfits() {
         Date from;
         Date to;
         try {
-            from = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfCostsFrom());
-            to = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfCostsTo());
+            from = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfProfitsFrom());
+            to = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfProfitsTo());
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(window, "Chybný formát dátumu!");
             return;
@@ -64,7 +64,7 @@ public final class GoodsCostsController implements Controller {
         HashMap<String, TableItem> table = new HashMap<>();
         
         for (Item item : database.getItemTable()) {
-            if (matchDates(item.getReceiptDate(), from, to)) {
+            if (item.getExportDate() != null && matchDates(item.getExportDate(), from, to)) {
                 TableItem i = table.get(item.getGoods().getCode());
                 if (i == null) {
                     i = new TableItem(item.getGoods().getName(), item.getQuantity(), item.getGoods().getIncomePrice(), item.getGoods().getExportPrice());
@@ -76,7 +76,7 @@ public final class GoodsCostsController implements Controller {
             }
         }
         
-        window.getTbGoodsCosts().setRowCount(0);
+        window.getTbGoodsProfits().setRowCount(0);
         BigDecimal price = new BigDecimal(0);
         for(String key : table.keySet()) {
             TableItem item = table.get(key);
@@ -86,11 +86,12 @@ public final class GoodsCostsController implements Controller {
             row[2] = item.quantity;
             row[3] = item.incomePrice;
             row[4] = item.exportPrice;
-            price.add(new BigDecimal(item.quantity * item.incomePrice));
-            window.getTbGoodsCosts().addRow(row);
+            price.add(new BigDecimal(item.quantity * (item.exportPrice - item.incomePrice)));
+            window.getTbGoodsProfits().addRow(row);
         }
         
-        window.setLbCosts(price.setScale(2, RoundingMode.HALF_UP) + " €");
+        window.setLbProfits(price.setScale(2, RoundingMode.HALF_UP) + " €");
+        
     }
     
     private boolean matchDates(Date date, Date from, Date to) {

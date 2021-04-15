@@ -65,6 +65,16 @@ public class ReferentWindow extends javax.swing.JFrame {
         ftfCostsTo = new javax.swing.JFormattedTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbGoodsCosts = new javax.swing.JTable();
+        pGoodsProfits = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnViewProfits = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        lbProfits = new javax.swing.JLabel();
+        ftfProfitsFrom = new javax.swing.JFormattedTextField();
+        ftfProfitsTo = new javax.swing.JFormattedTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbGoodsProfits = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
@@ -320,6 +330,105 @@ public class ReferentWindow extends javax.swing.JFrame {
 
         jPanel1.add(pGoodsCosts, "card4");
 
+        pGoodsProfits.setBackground(new java.awt.Color(255, 255, 255));
+        pGoodsProfits.setLayout(new java.awt.GridBagLayout());
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel5.setText("Dátum od:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 300);
+        pGoodsProfits.add(jLabel5, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel6.setText("Dátum do:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 300);
+        pGoodsProfits.add(jLabel6, gridBagConstraints);
+
+        btnViewProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnViewProfits.setText("Zobraziť zisky");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        pGoodsProfits.add(btnViewProfits, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel7.setText("Prehľad celkových ziskov za zvolené obdobie");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        pGoodsProfits.add(jLabel7, gridBagConstraints);
+
+        lbProfits.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        lbProfits.setText("Celkové zisky za zvolené obdobie:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        pGoodsProfits.add(lbProfits, gridBagConstraints);
+
+        ftfProfitsFrom.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        ftfProfitsFrom.setMinimumSize(new java.awt.Dimension(250, 28));
+        ftfProfitsFrom.setPreferredSize(new java.awt.Dimension(250, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
+        pGoodsProfits.add(ftfProfitsFrom, gridBagConstraints);
+
+        ftfProfitsTo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        ftfProfitsTo.setMinimumSize(new java.awt.Dimension(250, 28));
+        ftfProfitsTo.setPreferredSize(new java.awt.Dimension(250, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
+        pGoodsProfits.add(ftfProfitsTo, gridBagConstraints);
+
+        jScrollPane4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jScrollPane4.setMinimumSize(new java.awt.Dimension(800, 500));
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(1000, 500));
+
+        tbGoodsProfits.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kód tovaru", "Názov tovaru", "Množstvo", "Príjmová cena", "Vývozná cena"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tbGoodsProfits);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        pGoodsProfits.add(jScrollPane4, gridBagConstraints);
+
+        jPanel1.add(pGoodsProfits, "card4");
+
         getContentPane().add(jPanel1);
 
         jMenu3.setText("Správa účtu");
@@ -365,12 +474,18 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnProfits;
     private javax.swing.JButton btnViewCosts;
+    private javax.swing.JButton btnViewProfits;
     private javax.swing.JFormattedTextField ftfCostsFrom;
     private javax.swing.JFormattedTextField ftfCostsTo;
+    private javax.swing.JFormattedTextField ftfProfitsFrom;
+    private javax.swing.JFormattedTextField ftfProfitsTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -379,8 +494,10 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lbCosts;
     private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbProfits;
     private javax.swing.JLabel lbTotalPrice;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JMenuItem miChangePassword;
@@ -390,8 +507,10 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem miProfits;
     private javax.swing.JPanel pGoodsCosts;
     private javax.swing.JPanel pGoodsOverview;
+    private javax.swing.JPanel pGoodsProfits;
     private javax.swing.JPanel pLogin;
     private javax.swing.JTable tbGoodsCosts;
+    private javax.swing.JTable tbGoodsProfits;
     private javax.swing.JTable tbOverviewGoods;
     // End of variables declaration//GEN-END:variables
 
@@ -493,6 +612,30 @@ public class ReferentWindow extends javax.swing.JFrame {
         return pGoodsOverview;
     }
 
+    public void btnViewProfitsAddListener(MouseAdapter adapter) {
+        btnViewProfits.addMouseListener(adapter);
+    }
+
+    public String getFtfProfitsFrom() {
+        return ftfProfitsFrom.getText().trim();
+    }
+
+    public String getFtfProfitsTo() {
+        return ftfProfitsTo.getText().trim();
+    }
+
+    public void setLbProfits(String text) {
+        lbProfits.setText("Celkové zisky za zvolené obdobie: " + text);
+    }
+
+    public JPanel getpGoodsProfits() {
+        return pGoodsProfits;
+    }
+
+    public DefaultTableModel getTbGoodsProfits() {
+        return (DefaultTableModel) tbGoodsProfits.getModel();
+    }
+
     
     
     
@@ -508,6 +651,11 @@ public class ReferentWindow extends javax.swing.JFrame {
         //GoodsCosts panel
         for (MouseListener ml : btnViewCosts.getMouseListeners()) {
             btnViewCosts.removeMouseListener(ml);
+        }
+        
+        //GoodsProfits panel
+        for (MouseListener ml : btnViewProfits.getMouseListeners()) {
+            btnViewProfits.removeMouseListener(ml);
         }
     }
     
