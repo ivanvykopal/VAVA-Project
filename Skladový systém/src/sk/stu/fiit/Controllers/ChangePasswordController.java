@@ -13,6 +13,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 
 /**
@@ -86,6 +87,7 @@ public final class ChangePasswordController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri zemene hesla!");
         } else {
             JOptionPane.showMessageDialog(window, "Heslo bolo zmenené!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }

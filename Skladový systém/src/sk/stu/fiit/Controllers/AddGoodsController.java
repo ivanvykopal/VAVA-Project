@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
+import sk.stu.fiit.Model.SerializationClass;
 
 /**
  *
@@ -65,6 +66,7 @@ public final class AddGoodsController implements Controller {
             JOptionPane.showMessageDialog(window, "Zadaný tovar sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol pridaný!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
         

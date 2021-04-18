@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit.Controllers;
 
+import sk.stu.fiit.EmailValidator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 
 /**
@@ -49,6 +51,11 @@ public final class AddUserController implements Controller {
         user.setEmail(window.getTfEmail());
         user.setType((String) window.getCbType().getSelectedItem());
         
+        if (!EmailValidator.checkEmail(user.getEmail())) {
+            JOptionPane.showMessageDialog(window, "Zlý formát pre email!");
+            return;
+        }
+        
         if (user.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
             return;
@@ -59,6 +66,7 @@ public final class AddUserController implements Controller {
             JOptionPane.showMessageDialog(window, "Zadaný používať sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Používateľ bol pridaný!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }

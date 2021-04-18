@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
+import sk.stu.fiit.Model.SerializationClass;
 
 /**
  *
@@ -98,6 +99,7 @@ public final class RemoveGoodsController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní tovaru!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol vymazaný zo systému!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }
@@ -109,14 +111,15 @@ public final class RemoveGoodsController implements Controller {
 
     private void fillGoodsTable(String filter) {
         window.getTbGoodsModel().setRowCount(0);
-        for (Goods goods : database.getGoodsTable()) {
-            if (!goods.isDeleted()) {
-                if (Pattern.matches("*" + filter + "*", goods.getName())) {
+        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
+        for (Goods g : database.getGoodsTable()) {
+            if (!g.isDeleted()) {
+                if (pattern.matcher(g.getName()).find()) {
                     Object[] row = new Object[4];
-                    row[0] = goods.getCode();
-                    row[1] = goods.getName();
-                    row[2] = goods.getIncomePrice();
-                    row[3] = goods.getExportPrice();
+                    row[0] = g.getCode();
+                    row[1] = g.getName();
+                    row[2] = g.getIncomePrice();
+                    row[3] = g.getExportPrice();
                     window.getTbGoodsModel().addRow(row);
                 }
             }

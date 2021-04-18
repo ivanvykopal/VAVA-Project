@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.RemoveStorageWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
@@ -99,6 +100,7 @@ public final class RemoveStorageController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyb pri mazaní skladovacieho priestoru!");
         } else {
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol vymazaný!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }
@@ -110,8 +112,9 @@ public final class RemoveStorageController implements Controller {
 
     private void fillStorageTable(String filter) {
         window.getTbStoragesModel().setRowCount(0);
+        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
         for (Storage s : database.getStorageTable()) {
-            if (Pattern.matches("*" + filter + "*", s.getBuilding())) {
+            if (pattern.matcher(s.getBuilding()).find()) {
                 Object[] row = new Object[4];
                 row[0] = s.getCode();
                 row[1] = s.getBuilding();

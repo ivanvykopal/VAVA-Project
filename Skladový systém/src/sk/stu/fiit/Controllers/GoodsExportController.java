@@ -13,6 +13,7 @@ import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
+import sk.stu.fiit.Model.SerializationClass;
 
 /**
  *
@@ -108,6 +109,7 @@ public final class GoodsExportController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol vyvezený!");
+            SerializationClass.serialize(database);
             item = null;
             fillTable();
             window.setTfQuantity2("");

@@ -11,8 +11,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
+import org.apache.log4j.Logger;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AdministratorWindow;
 import sk.stu.fiit.GUI.LoginWindow;
+import sk.stu.fiit.GUI.ReferentWindow;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
@@ -23,12 +26,16 @@ import sk.stu.fiit.Model.User;
  */
 public final class LoginController implements Controller {
 
+    private static final Logger LOG = Logger.getLogger(LoginController.class);
+
     private final Database database;
     private final LoginWindow window;
 
     private LoginController(Database database, LoginWindow window) {
         this.database = database;
         this.window = window;
+        
+        CustomLogger.getLogger(LoginController.class);
 
         window.setVisible(true);
         initController();
@@ -74,11 +81,13 @@ public final class LoginController implements Controller {
                 window.setVisible(false);
                 break;
             case REFERENT:
+                ReferentController.createController(database, new ReferentWindow(), user);
+                window.setVisible(false);
                 break;
         }
     }
-    //https://www.baeldung.com/sha-256-hashing-java
 
+    //https://www.baeldung.com/sha-256-hashing-java
     private byte[] getSHA(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         return md.digest(input.getBytes(StandardCharsets.UTF_8));

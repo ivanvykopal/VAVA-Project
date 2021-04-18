@@ -13,6 +13,7 @@ import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
@@ -79,10 +80,16 @@ public final class GoodsReceiptController implements Controller {
                     JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
                     return;
                 }
+                SerializationClass.serialize(database);
             }
             item.setStorage(storage);
         }
-        database.addItem(item);
+        item = database.addItem(item);
+        if (item == null) {
+            JOptionPane.showMessageDialog(window, "Problém pri pridávaní položky do skladu!");
+            return;
+        }
+        SerializationClass.serialize(database);
         JOptionPane.showMessageDialog(window, "Nový tovar bol prijatý!");
         
         window.setTfGoodsCode("");

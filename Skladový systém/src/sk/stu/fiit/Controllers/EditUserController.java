@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.EditUserWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
 
@@ -118,6 +119,7 @@ public final class EditUserController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri zmene údajov používateľa!");
         } else {
             JOptionPane.showMessageDialog(window, "Používateľ bol upravený!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }
@@ -177,8 +179,9 @@ public final class EditUserController implements Controller {
             return;
         }
 
+        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
         for (User u : users) {
-            if (Pattern.matches("*" + filter + "*", u.getName())) {
+            if (pattern.matcher(u.getName()).find()) {
                 Object[] row = new Object[4];
                 row[0] = u.getUsername();
                 row[1] = u.getName();

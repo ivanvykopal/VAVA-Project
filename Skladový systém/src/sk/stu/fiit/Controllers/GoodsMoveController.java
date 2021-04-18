@@ -12,6 +12,7 @@ import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
@@ -96,6 +97,7 @@ public final class GoodsMoveController implements Controller {
                 JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
                 return;
             }
+            SerializationClass.serialize(database);
         }
         
         newItem.setStorage(storage);
@@ -159,6 +161,7 @@ public final class GoodsMoveController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol premiestnený!");
+            SerializationClass.serialize(database);
             item = null;
             fillGoodsTable();
             window.setTfQuantity1("");

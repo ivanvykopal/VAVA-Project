@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.RemoveUserWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 
 /**
@@ -117,6 +118,7 @@ public final class RemoveUserController implements Controller {
             JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní používateľa!");
         } else {
             JOptionPane.showMessageDialog(window, "Používateľ bol vymazaný!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }
@@ -171,8 +173,9 @@ public final class RemoveUserController implements Controller {
             return;
         }
 
+        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
         for (User u : users) {
-            if (Pattern.matches("*" + filter + "*", u.getName())) {
+            if (pattern.matcher(u.getName()).find()) {
                 Object[] row = new Object[4];
                 row[0] = u.getUsername();
                 row[1] = u.getName();

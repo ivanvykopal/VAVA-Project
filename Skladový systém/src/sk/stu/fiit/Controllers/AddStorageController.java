@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
@@ -58,6 +59,7 @@ public final class AddStorageController implements Controller {
             JOptionPane.showMessageDialog(window, "Zadaný skladovací pristor sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
+            SerializationClass.serialize(database);
             window.dispose();
         }
     }

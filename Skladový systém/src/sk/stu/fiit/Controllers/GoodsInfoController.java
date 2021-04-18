@@ -46,20 +46,21 @@ public final class GoodsInfoController implements Controller {
         String filter = window.getTfCodeFilter();
         int typeIndex = window.getChbStorageOption().getSelectedIndex();
 
+        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
         switch (typeIndex) {
             case 0:
                 JOptionPane.showMessageDialog(window, "Nie je zvolená žiadna možnosť!");
                 return;
             case 1:
                 for (Item item : database.getItemTable()) {
-                    if (Pattern.matches("*" + filter + "*", item.getGoods().getCode()) && item.getPosition() == Position.IN_STOCK) {
+                    if (pattern.matcher(item.getGoods().getCode()).find() && item.getPosition() == Position.IN_STOCK) {
                         addRow(item);
                     }
                 }
                 break;
             case 2:
                 for (Item item : database.getItemTable()) {
-                    if (Pattern.matches("*" + filter + "*", item.getStorage().getCode()) && item.getPosition() == Position.IN_STOCK) {
+                    if (pattern.matcher(item.getStorage().getCode()).find() && item.getPosition() == Position.IN_STOCK) {
                         addRow(item);
                     }
                 }
@@ -75,7 +76,7 @@ public final class GoodsInfoController implements Controller {
         row[3] = item.getGoods().getCode();
         row[4] = item.getGoods().getName();
         row[5] = item.getQuantity();
-        row[6] = new SimpleDateFormat("dd.MM.YYYY").format(item.getReceiptDate());
+        row[6] = new SimpleDateFormat("dd.MM.yyyy").format(item.getReceiptDate());
         window.getTbStoragePositionsModel().addRow(row);
     }
 

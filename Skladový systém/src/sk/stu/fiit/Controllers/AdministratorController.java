@@ -113,7 +113,6 @@ public final class AdministratorController implements Controller {
     
     private void removeStorage() {
         RemoveStorageController.createController(database, new RemoveStorageWindow());
-        
     }
     
     private void removeUser() {
