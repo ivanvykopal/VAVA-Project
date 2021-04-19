@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
@@ -72,12 +73,14 @@ public final class ChangePasswordController implements Controller {
         String confirmPassword = window.getPfConfirmPassword();
 
         if (oldPassword.equals("") || newPassword.equals("") || confirmPassword.equals("")) {
-            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia.");
+            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(ChangePasswordController.class).warn("Neboli vyplnené všetky polia!");
             return;
         }
 
         if (oldPassword.equals(newPassword)) {
-            JOptionPane.showMessageDialog(window, "Dané heslo sa aktuálne používa.");
+            JOptionPane.showMessageDialog(window, "Dané heslo sa aktuálne používa!");
+            CustomLogger.getLogger(ChangePasswordController.class).warn("Bolo zadané aktuálne heslo!");
             return;
         }
 
@@ -85,8 +88,10 @@ public final class ChangePasswordController implements Controller {
         user = database.setUser(user);
         if (user == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri zemene hesla!");
+            CustomLogger.getLogger(ChangePasswordController.class).warn("Chyba pri zmene hesla!");
         } else {
             JOptionPane.showMessageDialog(window, "Heslo bolo zmenené!");
+            CustomLogger.getLogger(ChangePasswordController.class).info(user.getUsername()+ ": " + "Heslo bolo zmenené!");
             SerializationClass.serialize(database);
             window.dispose();
         }

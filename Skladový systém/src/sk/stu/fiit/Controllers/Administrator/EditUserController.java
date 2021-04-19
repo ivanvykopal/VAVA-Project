@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
@@ -12,23 +12,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.GUI.RemoveUserWindow;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
+import sk.stu.fiit.GUI.EditUserWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
+import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
 
 /**
  *
  * @author Ivan Vykopal
  */
-public final class RemoveUserController implements Controller {
+public final class EditUserController implements Controller {
 
     private final Database database;
-    private final RemoveUserWindow window;
+    private final EditUserWindow window;
     private User user = null;
     private final HashMap<String, ArrayList<User>> usersTable = new HashMap<>();
 
-    private RemoveUserController(Database database, RemoveUserWindow window) {
+    private EditUserController(Database database, EditUserWindow window) {
         this.database = database;
         this.window = window;
 
@@ -39,8 +42,8 @@ public final class RemoveUserController implements Controller {
         initController();
     }
 
-    public static void createController(Database database, RemoveUserWindow window) {
-        new RemoveUserController(database, window);
+    public static void createController(Database database, EditUserWindow window) {
+        new EditUserController(database, window);
     }
 
     @Override
@@ -52,10 +55,10 @@ public final class RemoveUserController implements Controller {
             }
         });
 
-        window.btnRemoveUserAddMouseListener(new MouseAdapter() {
+        window.btnEditUserAddMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                removeUser();
+                editUser();
             }
         });
 
@@ -77,7 +80,8 @@ public final class RemoveUserController implements Controller {
     private void chooseUser() {
         int index = window.getTbUsersTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(EditUserController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
@@ -87,40 +91,49 @@ public final class RemoveUserController implements Controller {
         if (user == null) {
             window.setTfEmail("");
             window.setTfName("");
-            window.setTfType("");
+            window.setCbType(Type.ADMINISTRATOR);
             window.setTfUsername("");
         } else {
             window.setTfEmail(user.getEmail());
             window.setTfName(user.getName());
-            switch (user.getType()) {
-                case ADMINISTRATOR:
-                    window.setTfType("Administrátor");
-                    break;
-                case WAREHOUSEMAN:
-                    window.setTfType("Skladník");
-                    break;
-                default:
-                    window.setTfType("Referent");
-                    break;
-            }
+            window.setCbType(user.getType());
             window.setTfUsername(user.getUsername());
         }
     }
 
-    private void removeUser() {
+    private void editUser() {
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(EditUserController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
-        user = database.removeUser(user);
+        user.setEmail(window.getTfEmail());
+        user.setName(window.getTfName());
+        user.setType((String) window.getCbType().getSelectedItem());
+        user.setUsername(window.getTfUsername());
+
+        if (user.isAnyAttributeEmpty()) {
+            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(EditUserController.class).warn("Neboli vyplnené všetky polia!");
+            return;
+        }
+        
+        user = database.setUser(user);
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní používateľa!");
+            JOptionPane.showMessageDialog(window, "Chyba pri zmene údajov používateľa!");
+            CustomLogger.getLogger(EditUserController.class).warn("Chyba pri zmene údajov používateľa!");
         } else {
-            JOptionPane.showMessageDialog(window, "Používateľ bol vymazaný!");
+            JOptionPane.showMessageDialog(window, "Používateľ bol upravený!");
+            CustomLogger.getLogger(EditUserController.class).info(user.getUsername() + ": " + "Používateľ bol upravený!");
             SerializationClass.serialize(database);
             window.dispose();
         }
+    }
+
+    private void filter() {
+        String filter = window.getTfFilter();
+        fillUsersTable(filter, (String) window.getCbTypeFilter().getSelectedItem());
     }
 
     private void fillHashTable() {
@@ -184,12 +197,6 @@ public final class RemoveUserController implements Controller {
                 window.getTbUsersModel().addRow(row);
             }
         }
-
-    }
-
-    private void filter() {
-        String filter = window.getTfFilter();
-        fillUsersTable(filter, (String) window.getCbTypeFilter().getSelectedItem());
     }
 
 }

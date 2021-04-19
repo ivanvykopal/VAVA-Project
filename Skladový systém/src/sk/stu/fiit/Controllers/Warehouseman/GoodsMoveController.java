@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Warehouseman;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
@@ -70,13 +72,14 @@ public final class GoodsMoveController implements Controller {
 
     private void moveGoods() {
         if (item == null) {
-            JOptionPane.showMessageDialog(window, "Nie je vybraný žiaden tovar!");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
         
         int quantity = window.getTfQuantity1();
         if (quantity == -1) {
-            JOptionPane.showMessageDialog(window, "Zlý formát množstva!");
+            JOptionPane.showMessageDialog(window, "Chybný formát množstva!");
             return;
         }
         
@@ -87,6 +90,7 @@ public final class GoodsMoveController implements Controller {
         Storage storage = database.findStorage(window.getTfStorageCode1());
         if (storage == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri načítaní skladovacieho priestoru!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri načítaní skladovacieho priestoru!");
             return;
         }
         
@@ -95,6 +99,7 @@ public final class GoodsMoveController implements Controller {
             storage = database.setStorage(storage);
             if (storage == null) {
                 JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
+                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri úprave skladovacieho priestoru!");
                 return;
             }
             SerializationClass.serialize(database);
@@ -104,21 +109,25 @@ public final class GoodsMoveController implements Controller {
         if (quantity == item.getQuantity()) {
             item = database.removeItem(item);
             if (item == null) {
-                JOptionPane.showMessageDialog(window, "Chyba pri mazaní poloky skladu!");
+                JOptionPane.showMessageDialog(window, "Chyba pri mazaní položky skladu!");
+                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri mazaní položky skladu!");
                 return;
             }
             newItem.setQuantity(quantity);
             addNewItem(newItem);
         } else if (quantity > item.getQuantity()){
             JOptionPane.showMessageDialog(window, "Zadané množstvo je väčšie ako množstvo vybranej položky!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn("Zadané množstvo je väčšie ako množstvo vybranej položky!");
         } else if (quantity == 0) {
             JOptionPane.showMessageDialog(window, "Množstvo je nulové!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn("Množstvo je nulové!");
         } else {
             item.setQuantity(item.getQuantity() - quantity);
             newItem.setQuantity(quantity);
             item = database.setItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, "Chyba pri zmene položky skladu!");
+                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri zmene položky skladu!");
                 return;
             }
             addNewItem(newItem);
@@ -159,8 +168,10 @@ public final class GoodsMoveController implements Controller {
         it = database.addItem(it);
         if (it == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri pridanávaní novej položky skladu!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol premiestnený!");
+            CustomLogger.getLogger(GoodsMoveController.class).warn(it.getGoods().getCode() + ": " + "Tovar bol premiestnený!");
             SerializationClass.serialize(database);
             item = null;
             fillGoodsTable();

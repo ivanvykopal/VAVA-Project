@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AddStorageWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
@@ -51,14 +53,17 @@ public final class AddStorageController implements Controller {
         
         if (storage.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(AddStorageController.class).warn("Neboli vyplnené všetky polia!");
             return;
         }
         
         storage = database.addStorage(storage);
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Zadaný skladovací pristor sa už v systéme nachádza!");
+            JOptionPane.showMessageDialog(window, "Pridávaný skladovací priEstor sa už v systéme nachádza!");
+            CustomLogger.getLogger(AddStorageController.class).warn("Pridávaný skladovací priEstor sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
+            CustomLogger.getLogger(AddStorageController.class).info(storage.getCode() + ": " + "Skladovací priestor bol pridaný!");
             SerializationClass.serialize(database);
             window.dispose();
         }

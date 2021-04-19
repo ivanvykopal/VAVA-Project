@@ -31,7 +31,7 @@ public class About extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 500));
+        setTitle("O autorovi");
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(500, 500));
 

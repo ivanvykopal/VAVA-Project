@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
+import sk.stu.fiit.Controllers.ChangePasswordController;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.Controllers.LoginController;
 import sk.stu.fiit.GUI.About;
 import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.GUI.AddStorageWindow;
@@ -62,7 +65,7 @@ public final class AdministratorController implements Controller {
         
         window.editUserListener(() -> editUser());
         
-        window.exitListener(e -> exit());
+        window.exitListener(e -> System.exit(0));
         
         window.logoutListener(() -> logout());
         
@@ -96,10 +99,6 @@ public final class AdministratorController implements Controller {
     
     private void editUser() {
         EditUserController.createController(database, new EditUserWindow());
-    }
-    
-    private void exit() {
-        System.exit(0);
     }
     
     private void logout() {

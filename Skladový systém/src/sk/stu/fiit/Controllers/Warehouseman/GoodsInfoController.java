@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Warehouseman;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
@@ -29,6 +30,10 @@ public final class GoodsInfoController implements Controller {
         this.window = window;
 
         initController();
+    }
+    
+    public static void createController(Database database, WarehousemanWindow window) {
+        new GoodsInfoController(database, window);
     }
 
     @Override

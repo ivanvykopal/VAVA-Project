@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit;
 
+import java.io.File;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -14,18 +15,12 @@ import org.apache.log4j.xml.DOMConfigurator;
  * @author Acer
  */
 public class CustomLogger {
-    //private static Logger logger;
     
     private CustomLogger() {}
     
     public static Logger getLogger(final Class<?> clazz) {
         Logger logger = Logger.getLogger(clazz);
-        DOMConfigurator.configure("log4j.xml");
-        System.out.println(logger.isWarnEnabled());
-        System.out.println(logger.isDebugEnabled());
-        System.out.println(logger.isFatalEnabled());
-        System.out.println(logger.isInfoEnabled());
-        logger.fatal("Ahoj!");
+        DOMConfigurator.configure(new File("src/sk/stu/fiit/log4j.xml").getAbsolutePath());
         return logger;
     }
 }

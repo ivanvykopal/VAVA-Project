@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import sk.stu.fiit.EmailValidator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
@@ -53,19 +55,23 @@ public final class AddUserController implements Controller {
         
         if (!EmailValidator.checkEmail(user.getEmail())) {
             JOptionPane.showMessageDialog(window, "Zlý formát pre email!");
+            CustomLogger.getLogger(AddUserController.class).warn("Zlý formát pre email!");
             return;
         }
         
         if (user.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(AddUserController.class).warn("Neboli vyplnené všetky polia!");
             return;
         }
         
         user = database.addUser(user);
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Zadaný používať sa už v systéme nachádza!");
+            JOptionPane.showMessageDialog(window, "Pridávaný používateľ sa už v systéme nachádza!");
+            CustomLogger.getLogger(AddUserController.class).warn("Pridávaný používateľ sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Používateľ bol pridaný!");
+            CustomLogger.getLogger(AddUserController.class).info(user.getUsername() + ": " + "Používateľ bol pridaný!");
             SerializationClass.serialize(database);
             window.dispose();
         }

@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
@@ -66,7 +68,8 @@ public final class RemoveGoodsController implements Controller {
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(RemoveGoodsController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
@@ -90,15 +93,18 @@ public final class RemoveGoodsController implements Controller {
 
     private void removeGoods() {
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(RemoveGoodsController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
         goods = database.removeGoods(goods);
         if (goods == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní tovaru!");
+            CustomLogger.getLogger(RemoveGoodsController.class).warn("Chyba pri odstraňovaní tovaru!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol vymazaný zo systému!");
+            CustomLogger.getLogger(RemoveGoodsController.class).info(goods.getCode() + ": " + "Tovar bol vymazaný zo systému!");
             SerializationClass.serialize(database);
             window.dispose();
         }

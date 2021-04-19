@@ -5,14 +5,11 @@
  */
 package sk.stu.fiit.GUI;
 
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Controllers.IMethod;
 
@@ -76,17 +73,22 @@ public class ReferentWindow extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tbGoodsProfits = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        miLoginPage = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         miChangePassword = new javax.swing.JMenuItem();
         miLogout = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        miExit = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         miGoodsOverview = new javax.swing.JMenuItem();
         miCosts = new javax.swing.JMenuItem();
         miProfits = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        miAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setLayout(new java.awt.CardLayout());
 
@@ -297,12 +299,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         jScrollPane3.setMinimumSize(new java.awt.Dimension(800, 500));
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 500));
 
+        tbGoodsCosts.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tbGoodsCosts.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
         tbGoodsCosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Kód tovaru", "Názov tovaru", "Množstvo", "Príjmová cena"
+                "Kód tovaru", "Názov tovaru", "Množstvo", "Nákupná cena"
             }
         ) {
             Class[] types = new Class [] {
@@ -396,12 +400,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         jScrollPane4.setMinimumSize(new java.awt.Dimension(800, 500));
         jScrollPane4.setPreferredSize(new java.awt.Dimension(1000, 500));
 
+        tbGoodsProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tbGoodsProfits.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
         tbGoodsProfits.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Kód tovaru", "Názov tovaru", "Množstvo", "Príjmová cena", "Vývozná cena"
+                "Kód tovaru", "Názov tovaru", "Množstvo", "Nákupná cena", "Predajná cena"
             }
         ) {
             Class[] types = new Class [] {
@@ -431,18 +437,28 @@ public class ReferentWindow extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
-        jMenu3.setText("Správa účtu");
-        jMenu3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miLoginPage.setText("Správa účtu");
+        miLoginPage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jMenuItem1.setText("Zobrazenie domovskej obrazovky");
+        miLoginPage.add(jMenuItem1);
+        miLoginPage.add(jSeparator2);
 
         miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miChangePassword.setText("Zmena hesla");
-        jMenu3.add(miChangePassword);
+        miLoginPage.add(miChangePassword);
 
         miLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miLogout.setText("Odhlásiť sa");
-        jMenu3.add(miLogout);
+        miLoginPage.add(miLogout);
+        miLoginPage.add(jSeparator1);
 
-        jMenuBar1.add(jMenu3);
+        miExit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miExit.setText("Koniec");
+        miLoginPage.add(miExit);
+
+        jMenuBar1.add(miLoginPage);
 
         jMenu1.setText("Zobrazenie");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -460,6 +476,15 @@ public class ReferentWindow extends javax.swing.JFrame {
         jMenu1.add(miProfits);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Pomocník");
+        jMenu2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+
+        miAbout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miAbout.setText("O autorovi");
+        jMenu2.add(miAbout);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -487,22 +512,28 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lbCosts;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbProfits;
     private javax.swing.JLabel lbTotalPrice;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JMenuItem miAbout;
     private javax.swing.JMenuItem miChangePassword;
     private javax.swing.JMenuItem miCosts;
+    private javax.swing.JMenuItem miExit;
     private javax.swing.JMenuItem miGoodsOverview;
+    private javax.swing.JMenu miLoginPage;
     private javax.swing.JMenuItem miLogout;
     private javax.swing.JMenuItem miProfits;
     private javax.swing.JPanel pGoodsCosts;
@@ -564,6 +595,18 @@ public class ReferentWindow extends javax.swing.JFrame {
         miLogout.addActionListener(e -> iMethod.method());
     }
 
+    public void miExitAddListener(ActionListener listener) {
+        miExit.addActionListener(listener);
+    }
+    
+    public void miLoginPageAddListener(ActionListener listener) {
+        miLoginPage.addActionListener(listener);
+    }
+    
+    public void miAboutAddListener(ActionListener listener) {
+        miAbout.addActionListener(listener);
+    }
+
     public JPanel getpLogin() {
         return pLogin;
     }
@@ -619,9 +662,17 @@ public class ReferentWindow extends javax.swing.JFrame {
     public String getFtfProfitsFrom() {
         return ftfProfitsFrom.getText().trim();
     }
+    
+    public void setFtfProfitsFrom(String text) {
+        ftfProfitsFrom.setText(text);
+    }
 
     public String getFtfProfitsTo() {
         return ftfProfitsTo.getText().trim();
+    }
+    
+    public void setFtfProfitsTo(String text) {
+        ftfProfitsTo.setText(text);
     }
 
     public void setLbProfits(String text) {
@@ -636,11 +687,8 @@ public class ReferentWindow extends javax.swing.JFrame {
         return (DefaultTableModel) tbGoodsProfits.getModel();
     }
 
-    
-    
-    
     public void removeListeners() {
-        //Login panel ??
+        //Login panel 
         for (MouseListener ml : btnLogout.getMouseListeners()) {
             btnLogout.removeMouseListener(ml);
         }

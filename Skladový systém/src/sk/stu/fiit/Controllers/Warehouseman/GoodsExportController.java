@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Warehouseman;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
@@ -34,7 +36,7 @@ public final class GoodsExportController implements Controller {
 
         initController();
     }
-    
+
     public static void createController(Database database, WarehousemanWindow window) {
         new GoodsExportController(database, window);
     }
@@ -58,17 +60,17 @@ public final class GoodsExportController implements Controller {
         });
     }
 
-    
     //TODO: pridať checkbox pre nastavenie, že sklad. priestor je voľný
     private void exportGoods() {
         if (item == null) {
-            JOptionPane.showMessageDialog(window, "Nie je vybraný žiaden tovar!");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(GoodsExportController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
         int quantity = window.getTfQuantity2();
         if (quantity == -1) {
-            JOptionPane.showMessageDialog(window, "Zlý formát množstva!");
+            JOptionPane.showMessageDialog(window, "Chybný formát množstva!");
             return;
         }
 
@@ -82,6 +84,7 @@ public final class GoodsExportController implements Controller {
             item = database.removeItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, "Chyba pri mazaní položky skladu!");
+                CustomLogger.getLogger(GoodsExportController.class).warn("Chyba pri mazaní položky skladu!");
                 return;
             }
             item = null;
@@ -89,14 +92,17 @@ public final class GoodsExportController implements Controller {
             addNewItem(newItem);
         } else if (quantity > item.getQuantity()) {
             JOptionPane.showMessageDialog(window, "Zadané množstvo je väčšie ako množstvo vybranej položky!");
+            CustomLogger.getLogger(GoodsExportController.class).warn("Zadané množstvo je väčšie ako množstvo vybranej položky!");
         } else if (quantity == 0) {
             JOptionPane.showMessageDialog(window, "Množstvo je nulové!");
+            CustomLogger.getLogger(GoodsExportController.class).warn("Množstvo je nulové!");
         } else {
             item.setQuantity(item.getQuantity() - quantity);
             newItem.setQuantity(quantity);
             item = database.setItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, "Chyba pri zmene položky skladu!");
+                CustomLogger.getLogger(GoodsExportController.class).warn("Chyba pri zmene položky skladu!");
                 return;
             }
             addNewItem(newItem);
@@ -107,8 +113,10 @@ public final class GoodsExportController implements Controller {
         it = database.addItem(it);
         if (it == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
+            CustomLogger.getLogger(GoodsExportController.class).warn("Chyba pri pridanávaní novej položky skladu!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol vyvezený!");
+            CustomLogger.getLogger(GoodsExportController.class).info(it.getGoods().getCode() +": " + "Tovar bol vyvezený!");
             SerializationClass.serialize(database);
             item = null;
             fillTable();

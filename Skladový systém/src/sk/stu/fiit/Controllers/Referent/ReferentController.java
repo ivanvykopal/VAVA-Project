@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Referent;
 
+import sk.stu.fiit.Controllers.ChangePasswordController;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.Controllers.LoginController;
+import sk.stu.fiit.GUI.About;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.GUI.ReferentWindow;
@@ -46,10 +50,23 @@ public final class ReferentController implements Controller {
         window.goodsOverviewListener(() -> viewGoodsOverview());
 
         window.profitsListener(() -> viewProfits());
+        
+        window.miExitAddListener(e -> System.exit(0));
+        
+        window.miLoginPageAddListener(e -> viewLoginPage());
+        
+        window.miAboutAddListener(e -> new About().setVisible(true));
     }
 
     private void changePassword() {
         ChangePasswordController.createController(database, new ChangePasswordWindow(), user);
+    }
+    
+    private void viewLoginPage() {
+        hideAll();
+        clearAll();
+        window.removeListeners();
+        window.getpLogin().setVisible(true);
     }
 
     private void logout() {
@@ -58,15 +75,50 @@ public final class ReferentController implements Controller {
     }
 
     private void viewCosts() {
+        hideAll();
+        clearAll();
+        window.removeListeners();
         GoodsCostsController.createController(database, window);
     }
 
     private void viewGoodsOverview() {
+        hideAll();
+        clearAll();
+        window.removeListeners();
         GoodsOverviewController.createController(database, window);
     }
 
     private void viewProfits() {
+        hideAll();
+        clearAll();
+        window.removeListeners();
         GoodsProfitsControlller.createController(database, window);
+    }
+    
+    private void hideAll() {
+        window.getpGoodsCosts().setVisible(false);
+        window.getpGoodsOverview().setVisible(false);
+        window.getpGoodsProfits().setVisible(false);
+        window.getpLogin().setVisible(false);
+    }
+    
+    private void clearAll() {
+        clearProfits();
+        clearCosts();
+    }
+    
+    private void clearProfits() {
+        window.setFtfProfitsFrom("");
+        window.setFtfProfitsTo("");
+        window.getTbGoodsProfits().setRowCount(0);
+        window.setLbProfits("");
+    }
+    
+    private void clearCosts() {
+        window.setFtfCostsFrom("");
+        window.setFtfCostsTo("");
+        window.getTbGoodsCosts().setRowCount(0);
+        window.setLbCosts("");
     }
 
 }

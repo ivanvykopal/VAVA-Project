@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Referent;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,14 +17,10 @@ import sk.stu.fiit.Model.Position;
  *
  * @author Ivan Vykopal
  */
-public final class GoodsOverviewController implements Controller {
-
-    private final Database database;
-    private final ReferentWindow window;
+public final class GoodsOverviewController extends GoodsController {
 
     private GoodsOverviewController(Database database, ReferentWindow window) {
-        this.database = database;
-        this.window = window;
+        super(database, window);
         
         window.getpGoodsOverview().setVisible(true);
 
@@ -72,22 +68,6 @@ public final class GoodsOverviewController implements Controller {
 
         window.setLbTotalPrice("Celková cena skladovaného tovaru: " + price.setScale(2, RoundingMode.HALF_UP) + " €");
 
-    }
-
-    //Prepravka
-    private static class TableItem {
-
-        String name;
-        int quantity;
-        double incomePrice;
-        double exportPrice;
-
-        public TableItem(String name, int quantity, double incomePrice, double exportPrice) {
-            this.name = name;
-            this.quantity = quantity;
-            this.incomePrice = incomePrice;
-            this.exportPrice = exportPrice;
-        }
     }
 
 }

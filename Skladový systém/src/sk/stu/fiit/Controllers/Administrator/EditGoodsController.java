@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.EditGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
@@ -65,7 +67,8 @@ public final class EditGoodsController implements Controller {
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(EditGoodsController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
@@ -89,7 +92,8 @@ public final class EditGoodsController implements Controller {
 
     private void editGoods() {
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(EditGoodsController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
@@ -106,14 +110,17 @@ public final class EditGoodsController implements Controller {
 
         if (goods.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(EditGoodsController.class).warn("Neboli vyplnené všetky polia!");
             return;
         }
 
         goods = database.setGoods(goods);
         if (goods == null) {
             JOptionPane.showMessageDialog(window, "Chyba pri zmene údajov tovaru!");
+            CustomLogger.getLogger(EditGoodsController.class).warn("Chyba pri zmene údajov tovaru!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol upravený!");
+            CustomLogger.getLogger(EditGoodsController.class).info(goods.getCode() + ": " + "Tovar bol upravený!");
             SerializationClass.serialize(database);
             window.dispose();
         }

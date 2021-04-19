@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.RemoveStorageWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
@@ -65,7 +67,8 @@ public final class RemoveStorageController implements Controller {
     private void chooseStorage() {
         int index = window.getTbStoragesTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(RemoveStorageController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
 
@@ -91,15 +94,18 @@ public final class RemoveStorageController implements Controller {
 
     private void removeStorage() {
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam.");
+            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
+            CustomLogger.getLogger(RemoveStorageController.class).warn("Nebol vybraný žiaden záznam!");
             return;
         }
         
         storage = database.removeStorage(storage);
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Chyb pri mazaní skladovacieho priestoru!");
+            JOptionPane.showMessageDialog(window, "Chyba pri mazaní skladovacieho priestoru!");
+            CustomLogger.getLogger(RemoveStorageController.class).warn("Chyba pri mazaní skladovacieho priestoru!");
         } else {
             JOptionPane.showMessageDialog(window, "Skladovací priestor bol vymazaný!");
+            CustomLogger.getLogger(RemoveStorageController.class).info(storage.getCode() + ": " + "Skladovací priestor bol vymazaný!");
             SerializationClass.serialize(database);
             window.dispose();
         }

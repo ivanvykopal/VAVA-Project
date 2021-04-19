@@ -50,6 +50,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnChangePassword = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
@@ -78,7 +79,6 @@ public class AdministratorWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prihlásený: Administrátor");
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -172,7 +172,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         lbName.setText("Meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
@@ -182,7 +182,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         btnLogout.setText("Odhlásiť sa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -193,7 +193,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         btnChangePassword.setText("Zmeniť heslo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -204,11 +204,21 @@ public class AdministratorWindow extends javax.swing.JFrame {
         lbUsername.setText("Prihlasovacie meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel2.add(lbUsername, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel6.setText("Administrátor");
+        jLabel6.setPreferredSize(new java.awt.Dimension(210, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel2.add(jLabel6, gridBagConstraints);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -297,6 +307,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveGoods;
     private javax.swing.JButton btnRemoveStorage;
     private javax.swing.JButton btnRemoveUser;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

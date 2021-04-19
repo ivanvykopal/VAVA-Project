@@ -6,6 +6,7 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -39,6 +40,8 @@ public class LoginWindow extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        cbLanguage = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Skladový systém");
@@ -116,6 +119,27 @@ public class LoginWindow extends javax.swing.JFrame{
         gridBagConstraints.ipadx = 75;
         jPanel8.add(btnLogin, gridBagConstraints);
 
+        cbLanguage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        cbLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SK", "EN" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 25, 100);
+        jPanel8.add(cbLanguage, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel5.setText("Jazyk:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 25, 200);
+        jPanel8.add(jLabel5, gridBagConstraints);
+
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -126,10 +150,12 @@ public class LoginWindow extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JComboBox<String> cbLanguage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField pfPasswordField;
@@ -149,4 +175,8 @@ public class LoginWindow extends javax.swing.JFrame{
         return tfLoginField.getText();
     }
 
+    public JComboBox<String> getCbLanguage() {
+        return cbLanguage;
+    }
+    
 }

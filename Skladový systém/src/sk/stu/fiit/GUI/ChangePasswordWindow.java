@@ -41,8 +41,10 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         pfConfirmPassword = new javax.swing.JPasswordField();
         lbInfoMessage = new javax.swing.JLabel();
         btnChangePassword = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Zmena hesla");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -50,54 +52,58 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel1.setText("Pôvodné heslo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 50, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel2.setText("Nové heslo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setText("Potvrdenie hesla:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         pfOldPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 50);
+        gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 50);
         jPanel1.add(pfOldPassword, gridBagConstraints);
 
         pfNewPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 50);
         jPanel1.add(pfNewPassword, gridBagConstraints);
 
         pfConfirmPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 50);
         jPanel1.add(pfConfirmPassword, gridBagConstraints);
 
         lbInfoMessage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(lbInfoMessage, gridBagConstraints);
@@ -106,11 +112,21 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         btnChangePassword.setText("Zmeniť heslo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
         jPanel1.add(btnChangePassword, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel6.setText("Zmena hesla");
+        jLabel6.setPreferredSize(new java.awt.Dimension(200, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -122,6 +138,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbInfoMessage;
     private javax.swing.JPasswordField pfConfirmPassword;

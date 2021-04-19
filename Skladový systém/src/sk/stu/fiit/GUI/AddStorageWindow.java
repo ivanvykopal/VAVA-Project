@@ -6,7 +6,6 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
-import javax.swing.JTextField;
 
 /**
  *
@@ -39,6 +38,7 @@ public class AddStorageWindow extends javax.swing.JFrame {
         tfBuilding = new javax.swing.JTextField();
         tfShelf = new javax.swing.JTextField();
         btnAddStorage = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pridanie skladovacieho priestoru");
@@ -50,60 +50,74 @@ public class AddStorageWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel1.setText("Kód skladovacieho priestoru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(105, 200, 50, 0);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 200, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel2.setText("Budova skladu:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 200, 50, 0);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setText("Regál:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 200, 50, 0);
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 50, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(100, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 200);
         jPanel1.add(tfCode, gridBagConstraints);
 
         tfBuilding.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfBuilding, gridBagConstraints);
 
         tfShelf.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 50, 200);
         jPanel1.add(tfShelf, gridBagConstraints);
 
         btnAddStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnAddStorage.setText("Pridať skladovací priestor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 100, 0);
         jPanel1.add(btnAddStorage, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel6.setText("Pridanie skladovacieho priestoru");
+        jLabel6.setPreferredSize(new java.awt.Dimension(500, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -114,6 +128,7 @@ public class AddStorageWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfBuilding;
     private javax.swing.JTextField tfCode;

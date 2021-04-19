@@ -41,6 +41,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         btnAddUser = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pridanie používateľa");
@@ -52,59 +53,62 @@ public class AddUserWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel1.setText("Prihlasovacie meno:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(105, 200, 50, 0);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 200, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel2.setText("Meno používateľa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 200, 50, 0);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.ipadx = 250;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(100, 100, 50, 200);
-        jPanel1.add(tfUsername, gridBagConstraints);
-
-        tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 200);
+        jPanel1.add(tfUsername, gridBagConstraints);
+
+        tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfName, gridBagConstraints);
 
         cbType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 50, 200);
         jPanel1.add(cbType, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setText("Typ:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 200, 50, 0);
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 50, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         btnAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnAddUser.setText("Pridať používateľa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 100, 0);
@@ -114,19 +118,29 @@ public class AddUserWindow extends javax.swing.JFrame {
         jLabel4.setText("Pracovný e-mail:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 200, 50, 0);
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfEmail, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel6.setText("Pridanie používateľa");
+        jLabel6.setPreferredSize(new java.awt.Dimension(325, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -140,6 +154,7 @@ public class AddUserWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfName;

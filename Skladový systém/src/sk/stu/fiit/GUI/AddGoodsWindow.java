@@ -6,6 +6,7 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import sk.stu.fiit.CustomLogger;
 
 /**
  *
@@ -43,9 +44,10 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfExportPrice = new javax.swing.JTextField();
         btnAddGoods = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pridávanie tovaru");
+        setTitle("Pridanie tovaru");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -56,42 +58,45 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         jLabel1.setText("Názov tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 200, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         tfName.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 200);
         jPanel1.add(tfName, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel2.setText("Kód tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         tfCode.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfCode, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("Opis tovaru:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 250, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 250, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         taDescription.setColumns(20);
@@ -104,58 +109,68 @@ public class AddGoodsWindow extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.ipady = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel4.setText("Nákupná cena:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         tfIncomePrice.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfIncomePrice, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel5.setText("Predajná cena:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 50, 0);
         jPanel1.add(jLabel5, gridBagConstraints);
 
         tfExportPrice.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 200);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 50, 200);
         jPanel1.add(tfExportPrice, gridBagConstraints);
 
         btnAddGoods.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btnAddGoods.setText("Pridať tovar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 150;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 100, 0);
         jPanel1.add(btnAddGoods, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel6.setText("Pridanie tovaru");
+        jLabel6.setPreferredSize(new java.awt.Dimension(250, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -169,6 +184,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taDescription;
@@ -197,6 +213,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
             }
             return Double.parseDouble(tfExportPrice.getText());
         } catch (NumberFormatException ex) {
+            CustomLogger.getLogger(AddGoodsWindow.class).warn("Chyba formátu ceny!", ex);
             return -1;
         }
     }
@@ -208,6 +225,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
             }
             return Double.parseDouble(tfIncomePrice.getText());
         } catch (NumberFormatException ex) {
+            CustomLogger.getLogger(AddGoodsWindow.class).warn("Chyba formátu ceny!", ex);
             return -1;
         }
     }
@@ -215,7 +233,5 @@ public class AddGoodsWindow extends javax.swing.JFrame {
     public String getTfName() {
         return tfName.getText().trim();
     }
-
-    
 
 }

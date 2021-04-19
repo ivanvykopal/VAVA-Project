@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.Controllers;
+package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AddGoodsWindow;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
@@ -58,18 +60,20 @@ public final class AddGoodsController implements Controller {
         
         if (goods.isAnyAttributeEmpty()) {
             JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
+            CustomLogger.getLogger(AddGoodsController.class).warn("Neboli vyplnené všetky polia!");
             return;
         }
         
         goods = database.addGoods(goods);
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Zadaný tovar sa už v systéme nachádza!");
+            JOptionPane.showMessageDialog(window, "Pridávaný tovar sa už v systéme nachádza!");
+            CustomLogger.getLogger(AddGoodsController.class).warn("Pridávaný tovar sa už v systéme nachádza!");
         } else {
             JOptionPane.showMessageDialog(window, "Tovar bol pridaný!");
+            CustomLogger.getLogger(AddGoodsController.class).info(goods.getCode() + ": " + "Tovar bol pridaný!");
             SerializationClass.serialize(database);
             window.dispose();
         }
-        
     }
     
 }

@@ -7,6 +7,7 @@ package sk.stu.fiit.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -106,7 +107,21 @@ public final class Database implements Serializable {
         return null;
     }
     
+    private int checkAdministrators() {
+        int count = 0;
+        for (User user : userTable) {
+            if (user.getType() == Type.ADMINISTRATOR) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
     public User removeUser(User user) {
+        if (user.getType() == Type.ADMINISTRATOR && checkAdministrators() == 1) {
+            JOptionPane.showMessageDialog(null, "Nie je možné odstrániť posledného administrátora!");
+            return null;
+        }
         for (User u : userTable) {
             if (u.equals(user)) {
                 userTable.remove(u);
