@@ -13,9 +13,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ReferentWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 
@@ -24,6 +26,8 @@ import sk.stu.fiit.Model.Item;
  * @author Ivan Vykopal
  */
 public final class GoodsProfitsControlller extends GoodsController {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private GoodsProfitsControlller(Database database, ReferentWindow window) {
         super(database, window);
@@ -51,11 +55,11 @@ public final class GoodsProfitsControlller extends GoodsController {
         Date from;
         Date to;
         try {
-            from = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfProfitsFrom());
-            to = new SimpleDateFormat("dd.MM.yyyy").parse(window.getFtfProfitsTo());
+            from = new SimpleDateFormat(bundle.getString("DATE_FORMAT")).parse(window.getFtfProfitsFrom());
+            to = new SimpleDateFormat(bundle.getString("DATE_FORMAT")).parse(window.getFtfProfitsTo());
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(window, "Chybný formát dátumu!");
-            CustomLogger.getLogger(GoodsProfitsControlller.class).warn("Chybný formát dátumu!", ex);
+            JOptionPane.showMessageDialog(window, bundle.getString("DATE_ERROR"));
+            CustomLogger.getLogger(GoodsProfitsControlller.class).warn(bundle.getString("DATE_ERROR"), ex);
             return;
         }
         
@@ -88,7 +92,7 @@ public final class GoodsProfitsControlller extends GoodsController {
             window.getTbGoodsProfits().addRow(row);
         }
         
-        window.setLbProfits(price.setScale(2, RoundingMode.HALF_UP) + " €");
+        window.setLbProfits(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
         
     }
     

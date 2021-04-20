@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  * @author Ivan Vykopal
  */
 public class InternationalizationClass {
-    private static ResourceBundle bundle = ResourceBundle.getBundle("bundles/Bundle_SK", new Locale("sk", "SK"));;
+    private static ResourceBundle bundle;
     
     private InternationalizationClass() {}
     

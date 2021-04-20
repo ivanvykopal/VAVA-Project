@@ -9,15 +9,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Controllers.IMethod;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class ReferentWindow extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form ReferentWindow
@@ -88,6 +92,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         miAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(bundle.getString("REFERENT_TITLE"));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setLayout(new java.awt.CardLayout());
@@ -98,7 +103,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         btnGoodsOverview.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnGoodsOverview.setText("Prehľad tovarov");
+        btnGoodsOverview.setText(bundle.getString("GOODS_OVERVIEW"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -108,7 +113,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel4.add(btnGoodsOverview, gridBagConstraints);
 
         btnCosts.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnCosts.setText("Zobrazenie nákladov");
+        btnCosts.setText(bundle.getString("COSTS_OVERVIEW"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -118,7 +123,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel4.add(btnCosts, gridBagConstraints);
 
         btnProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnProfits.setText("Zobrazenie ziskov");
+        btnProfits.setText(bundle.getString("PROFITS_OVERVIEW"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -133,7 +138,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         lbName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        lbName.setText("Meno:");
+        lbName.setText(bundle.getString("NAME_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -143,7 +148,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel5.add(lbName, gridBagConstraints);
 
         btnLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnLogout.setText("Odhlásiť sa");
+        btnLogout.setText(bundle.getString("LOGOUT_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -154,7 +159,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel5.add(btnLogout, gridBagConstraints);
 
         btnChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnChangePassword.setText("Zmeniť heslo");
+        btnChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -165,7 +170,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jPanel5.add(btnChangePassword, gridBagConstraints);
 
         lbUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        lbUsername.setText("Prihlasovacie meno:");
+        lbUsername.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -182,7 +187,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsOverview.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel1.setText("Prehľad tovarov");
+        jLabel1.setText(bundle.getString("GOODS_OVERVIEW"));
         jLabel1.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
@@ -197,7 +202,7 @@ public class ReferentWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kód tovaru", "Názov tovaru", "Množstvo", "Nákupná cena", "Predajná cena"
+                bundle.getString("GOODS_CODE"), bundle.getString("GOODS_NAME"), bundle.getString("QUANTITY"), bundle.getString("GOODS_INCOME"), bundle.getString("GOODS_EXPORT")
             }
         ) {
             Class[] types = new Class [] {
@@ -224,7 +229,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsOverview.add(jScrollPane1, gridBagConstraints);
 
         lbTotalPrice.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        lbTotalPrice.setText("Celková cena skladovaného tovaru:");
+        lbTotalPrice.setText(bundle.getString("TOTAL_PRICE_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -237,7 +242,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel2.setText("Dátum od:");
+        jLabel2.setText(bundle.getString("DATE_FROM") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -245,7 +250,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel3.setText("Dátum do:");
+        jLabel3.setText(bundle.getString("DATE_TO") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -253,7 +258,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.add(jLabel3, gridBagConstraints);
 
         btnViewCosts.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnViewCosts.setText("Zobraziť náklady");
+        btnViewCosts.setText(bundle.getString("VIEW_COSTS_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -262,7 +267,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.add(btnViewCosts, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel4.setText("Prehľad celkových nákladov za zvolené obdobie");
+        jLabel4.setText(bundle.getString("COSTS_OVERVIEW_TITLE"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -270,13 +275,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.add(jLabel4, gridBagConstraints);
 
         lbCosts.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        lbCosts.setText("Celkové náklady za zvolené obdobie:");
+        lbCosts.setText(bundle.getString("COSTS_OVERVIEW_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsCosts.add(lbCosts, gridBagConstraints);
 
+        ftfCostsFrom.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(bundle.getString("DATE_FORMAT")))));
         ftfCostsFrom.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         ftfCostsFrom.setMinimumSize(new java.awt.Dimension(250, 28));
         ftfCostsFrom.setPreferredSize(new java.awt.Dimension(250, 28));
@@ -286,6 +292,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
         pGoodsCosts.add(ftfCostsFrom, gridBagConstraints);
 
+        ftfCostsTo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(bundle.getString("DATE_FORMAT")))));
         ftfCostsTo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         ftfCostsTo.setMinimumSize(new java.awt.Dimension(250, 28));
         ftfCostsTo.setPreferredSize(new java.awt.Dimension(250, 28));
@@ -306,7 +313,7 @@ public class ReferentWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kód tovaru", "Názov tovaru", "Množstvo", "Nákupná cena"
+                bundle.getString("GOODS_CODE"), bundle.getString("GOODS_NAME"), bundle.getString("QUANTITY"), bundle.getString("GOODS_INCOME")
             }
         ) {
             Class[] types = new Class [] {
@@ -338,7 +345,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel5.setText("Dátum od:");
+        jLabel5.setText(bundle.getString("DATE_FROM") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -346,7 +353,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.add(jLabel5, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel6.setText("Dátum do:");
+        jLabel6.setText(bundle.getString("DATE_TO") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -354,7 +361,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.add(jLabel6, gridBagConstraints);
 
         btnViewProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnViewProfits.setText("Zobraziť zisky");
+        btnViewProfits.setText(bundle.getString("VIEW_PROFITS_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -363,7 +370,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.add(btnViewProfits, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel7.setText("Prehľad celkových ziskov za zvolené obdobie");
+        jLabel7.setText(bundle.getString("PROFITS_OVERVIEW_TITLE"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -371,13 +378,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.add(jLabel7, gridBagConstraints);
 
         lbProfits.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        lbProfits.setText("Celkové zisky za zvolené obdobie:");
+        lbProfits.setText(bundle.getString("PROFITS_OVERVIEW_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsProfits.add(lbProfits, gridBagConstraints);
 
+        ftfProfitsFrom.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(bundle.getString("DATE_FORMAT")))));
         ftfProfitsFrom.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         ftfProfitsFrom.setMinimumSize(new java.awt.Dimension(250, 28));
         ftfProfitsFrom.setPreferredSize(new java.awt.Dimension(250, 28));
@@ -387,6 +395,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
         pGoodsProfits.add(ftfProfitsFrom, gridBagConstraints);
 
+        ftfProfitsTo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(bundle.getString("DATE_FORMAT")))));
         ftfProfitsTo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         ftfProfitsTo.setMinimumSize(new java.awt.Dimension(250, 28));
         ftfProfitsTo.setPreferredSize(new java.awt.Dimension(250, 28));
@@ -407,7 +416,7 @@ public class ReferentWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kód tovaru", "Názov tovaru", "Množstvo", "Nákupná cena", "Predajná cena"
+                bundle.getString("GOODS_CODE"), bundle.getString("GOODS_NAME"), bundle.getString("QUANTITY"), bundle.getString("GOODS_INCOME"), bundle.getString("GOODS_EXPORT")
             }
         ) {
             Class[] types = new Class [] {
@@ -437,51 +446,51 @@ public class ReferentWindow extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
-        miLoginPage.setText("Správa účtu");
+        miLoginPage.setText(bundle.getString("ACCOUNT_MENU"));
         miLoginPage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem1.setText("Zobrazenie domovskej obrazovky");
+        jMenuItem1.setText(bundle.getString("VIEW_HOMEPAGE_MENU"));
         miLoginPage.add(jMenuItem1);
         miLoginPage.add(jSeparator2);
 
         miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miChangePassword.setText("Zmena hesla");
+        miChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         miLoginPage.add(miChangePassword);
 
         miLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miLogout.setText("Odhlásiť sa");
+        miLogout.setText(bundle.getString("LOGOUT_BTN"));
         miLoginPage.add(miLogout);
         miLoginPage.add(jSeparator1);
 
         miExit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miExit.setText("Koniec");
+        miExit.setText(bundle.getString("EXIT_MENU"));
         miLoginPage.add(miExit);
 
         jMenuBar1.add(miLoginPage);
 
-        jMenu1.setText("Zobrazenie");
+        jMenu1.setText(bundle.getString("VIEW_MENU"));
         jMenu1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         miGoodsOverview.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miGoodsOverview.setText("Prehľad tovarov");
+        miGoodsOverview.setText(bundle.getString("GOODS_OVERVIEW"));
         jMenu1.add(miGoodsOverview);
 
         miCosts.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miCosts.setText("Zobraziť náklady");
+        miCosts.setText(bundle.getString("VIEW_COSTS_BTN"));
         jMenu1.add(miCosts);
 
         miProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miProfits.setText("Zobraziť zisky");
+        miProfits.setText(bundle.getString("VIEW_PROFITS_BTN"));
         jMenu1.add(miProfits);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Pomocník");
+        jMenu2.setText(bundle.getString("ABOUT_MENU"));
         jMenu2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         miAbout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miAbout.setText("O autorovi");
+        miAbout.setText(bundle.getString("ABOUT"));
         jMenu2.add(miAbout);
 
         jMenuBar1.add(jMenu2);
@@ -616,7 +625,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     }
 
     public void setLbTotalPrice(String text) {
-        this.lbTotalPrice.setText("Celková cena skladovaného tovaru: " + text);
+        this.lbTotalPrice.setText(bundle.getString("TOTAL_PRICE_LB") + ": " + text);
     }
 
     public void btnViewCostsAddListener(MouseAdapter adapter) {
@@ -640,7 +649,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     }
 
     public void setLbCosts(String text) {
-        lbCosts.setText("Celkové náklady za zvolené obdobie: " + text);
+        lbCosts.setText(bundle.getString("COSTS_OVERVIEW_LB") + ": " + text);
     }
 
     public DefaultTableModel getTbGoodsCosts() {
@@ -676,7 +685,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     }
 
     public void setLbProfits(String text) {
-        lbProfits.setText("Celkové zisky za zvolené obdobie: " + text);
+        lbProfits.setText(bundle.getString("PROFITS_OVERVIEW_LB") + ": " + text);
     }
 
     public JPanel getpGoodsProfits() {
@@ -687,6 +696,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         return (DefaultTableModel) tbGoodsProfits.getModel();
     }
 
+    public void setLbName(String text) {
+        this.lbName.setText(text);
+    }
+
+    public void setLbUsername(String text) {
+        this.lbUsername.setText(text);
+    }
+    
     public void removeListeners() {
         //Login panel 
         for (MouseListener ml : btnLogout.getMouseListeners()) {

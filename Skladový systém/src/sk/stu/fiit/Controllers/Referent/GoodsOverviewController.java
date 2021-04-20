@@ -8,7 +8,9 @@ package sk.stu.fiit.Controllers.Referent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import sk.stu.fiit.GUI.ReferentWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
@@ -18,6 +20,8 @@ import sk.stu.fiit.Model.Position;
  * @author Ivan Vykopal
  */
 public final class GoodsOverviewController extends GoodsController {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private GoodsOverviewController(Database database, ReferentWindow window) {
         super(database, window);
@@ -66,7 +70,7 @@ public final class GoodsOverviewController extends GoodsController {
             window.getTbOverviewGoodsModel().addRow(row);
         }
 
-        window.setLbTotalPrice("Celková cena skladovaného tovaru: " + price.setScale(2, RoundingMode.HALF_UP) + " €");
+        window.setLbTotalPrice(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
 
     }
 

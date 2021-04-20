@@ -43,10 +43,11 @@ public class Main {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                LoginController.createController(Database.createDatabase(), new LoginWindow());
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            InternationalizationClass.setBundle("bundles/Bundle_SK", "sk", "SK");
+            LoginWindow window = new LoginWindow();
+            window.getCbLanguage().setSelectedIndex(0);
+            LoginController.createController(Database.createDatabase(), new LoginWindow());
         });
     }
     

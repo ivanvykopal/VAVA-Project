@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.Controllers.Warehouseman;
 
+import java.util.ResourceBundle;
 import sk.stu.fiit.Controllers.ChangePasswordController;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.Controllers.LoginController;
@@ -12,6 +13,7 @@ import sk.stu.fiit.GUI.About;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.GUI.WarehousemanWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
@@ -20,22 +22,24 @@ import sk.stu.fiit.Model.User;
  * @author Ivan Vykopal
  */
 public final class WarehousemanController implements Controller {
+
     private final Database database;
     private final WarehousemanWindow window;
     private final User user;
-    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
+
     private WarehousemanController(Database database, WarehousemanWindow window, User user) {
         this.database = database;
         this.window = window;
         this.user = user;
-        
-        window.setLbName("Meno: " + user.getName());
-        window.setLbUsername("Prihlasovacie meno: " + user.getUsername());
-        
+
+        window.setLbName(bundle.getString("NAME_LB") + ": " + user.getName());
+        window.setLbUsername(bundle.getString("USER_USERNAME") + ": " + user.getUsername());
+
         initController();
-        
+
     }
-    
+
     public static void createController(Database database, WarehousemanWindow window, User user) {
         new WarehousemanController(database, window, user);
     }
@@ -43,28 +47,28 @@ public final class WarehousemanController implements Controller {
     @Override
     public void initController() {
         window.changePasswordListener(() -> changePassword());
-        
+
         window.goodsExportListener(() -> exportGoods());
-        
+
         window.goodsMoveListener(() -> moveGoods());
-        
+
         window.goodsReceiptListener(() -> accpetGoods());
-        
+
         window.showStorageListener(() -> showStorage());
-        
+
         window.logoutListener(() -> logout());
-        
+
         window.miAboutAddListener(e -> new About().setVisible(true));
-        
+
         window.miExitAddListener(e -> System.exit(0));
-        
+
         window.miLoginPageAddListener(e -> viewLoginPage());
     }
 
     private void changePassword() {
         ChangePasswordController.createController(database, new ChangePasswordWindow(), user);
     }
-    
+
     private void viewLoginPage() {
         hideAll();
         clearAll();
@@ -104,7 +108,7 @@ public final class WarehousemanController implements Controller {
         LoginController.createController(database, new LoginWindow());
         window.setVisible(false);
     }
-    
+
     private void hideAll() {
         window.getpLogin().setVisible(false);
         window.getpGoodsReceipt().setVisible(false);
@@ -112,37 +116,37 @@ public final class WarehousemanController implements Controller {
         window.getSpGoodsExport().setVisible(false);
         window.getSpGoodsInfo().setVisible(false);
     }
-    
+
     private void clearAll() {
         clearGoodsExport();
         clearGoodsMove();
         clearGoodsReceipt();
         clearGoodsInfo();
     }
-    
+
     private void clearGoodsReceipt() {
         window.setTfGoodsCode("");
         window.setTfQuantity("");
         window.setTfStorageCode("");
         window.getChbStorageStatus().setSelected(false);
     }
-    
+
     private void clearGoodsMove() {
         window.setTfQuantity1("");
         window.setTfStorageCode1("");
         window.setLbChoosedItem("");
         window.getChbStorageStatus1().setSelected(false);
     }
-    
+
     private void clearGoodsExport() {
         window.setTfQuantity2("");
         window.setLbChoosedItem1("");
     }
-    
+
     private void clearGoodsInfo() {
         window.getTbStoragePositionsModel().setRowCount(0);
         window.setTfCodeFilter("");
         window.getChbStorageOption().setSelectedIndex(0);
     }
-    
+
 }

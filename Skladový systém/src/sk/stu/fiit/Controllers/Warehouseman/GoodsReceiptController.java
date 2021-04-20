@@ -8,10 +8,12 @@ package sk.stu.fiit.Controllers.Warehouseman;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
@@ -26,6 +28,7 @@ public final class GoodsReceiptController implements Controller {
 
     private final Database database;
     private final WarehousemanWindow window;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private GoodsReceiptController(Database database, WarehousemanWindow window) {
         this.database = database;
@@ -72,16 +75,16 @@ public final class GoodsReceiptController implements Controller {
 
         Storage storage = database.findStorage(storageCode);
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri načítaní skladovacieho priestoru!");
-            CustomLogger.getLogger(GoodsReceiptController.class).warn("Chyba pri načítaní skladovacieho priestoru!");
+            JOptionPane.showMessageDialog(window, bundle.getString("LOAD_STORAGE_ERROR"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("LOAD_STORAGE_ERROR"));
             return;
         } else {
             if (window.getChbStorageStatus().isSelected()) {
                 storage.setFree(false);
                 storage = database.setStorage(storage);
                 if (storage == null) {
-                    JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
-                    CustomLogger.getLogger(GoodsReceiptController.class).warn("Chyba pri úprave skladovacieho priestoru!");
+                    JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
+                    CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
                     return;
                 }
                 SerializationClass.serialize(database);
@@ -90,13 +93,13 @@ public final class GoodsReceiptController implements Controller {
         }
         item = database.addItem(item);
         if (item == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri pridávaní položky do skladu!");
-            CustomLogger.getLogger(GoodsReceiptController.class).warn("Chyba pri pridávaní položky do skladu!");
+            JOptionPane.showMessageDialog(window, bundle.getString("ADD_ITEM_ERROR"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("ADD_ITEM_ERROR"));
             return;
         }
         SerializationClass.serialize(database);
-        JOptionPane.showMessageDialog(window, "Nový tovar bol prijatý!");
-        CustomLogger.getLogger(GoodsReceiptController.class).info(item.getGoods().getCode() + ": " + "Nový tovar bol prijatý!");
+        JOptionPane.showMessageDialog(window, bundle.getString("RECEIPT_GOODS_INFO"));
+        CustomLogger.getLogger(GoodsReceiptController.class).info(item.getGoods().getCode() + ": " + bundle.getString("RECEIPT_GOODS_INFO"));
         
         window.setTfGoodsCode("");
         window.setTfQuantity("");

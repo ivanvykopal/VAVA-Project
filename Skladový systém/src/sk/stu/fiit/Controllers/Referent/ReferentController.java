@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.Controllers.Referent;
 
+import java.util.ResourceBundle;
 import sk.stu.fiit.Controllers.ChangePasswordController;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.Controllers.LoginController;
@@ -12,6 +13,7 @@ import sk.stu.fiit.GUI.About;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.GUI.ReferentWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
@@ -24,11 +26,15 @@ public final class ReferentController implements Controller {
     private final Database database;
     private final ReferentWindow window;
     private final User user;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private ReferentController(Database database, ReferentWindow window, User user) {
         this.database = database;
         this.window = window;
         this.user = user;
+        
+        window.setLbName(bundle.getString("NAME_LB") + ": " + user.getName());
+        window.setLbUsername(bundle.getString("USER_USERNAME") + ": " + user.getUsername());
         
         window.getpLogin().setVisible(true);
 

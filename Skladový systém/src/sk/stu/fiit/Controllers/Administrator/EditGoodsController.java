@@ -7,11 +7,13 @@ package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.EditGoodsWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
 import sk.stu.fiit.Model.SerializationClass;
@@ -25,6 +27,7 @@ public final class EditGoodsController implements Controller {
     private final Database database;
     private final EditGoodsWindow window;
     private Goods goods = null;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private EditGoodsController(Database database, EditGoodsWindow window) {
         this.database = database;
@@ -67,8 +70,8 @@ public final class EditGoodsController implements Controller {
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(EditGoodsController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(EditGoodsController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
@@ -92,8 +95,8 @@ public final class EditGoodsController implements Controller {
 
     private void editGoods() {
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(EditGoodsController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(EditGoodsController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
@@ -104,23 +107,23 @@ public final class EditGoodsController implements Controller {
         goods.setName(window.getTfName());
 
         if (Boolean.logicalOr(goods.getIncomePrice() == -1, goods.getExportPrice() == -1)) {
-            JOptionPane.showMessageDialog(window, "Pri cenách sa využíva '.' namiesto ','!");
+            JOptionPane.showMessageDialog(window, bundle.getString("PRICE_ERROR2"));
             return;
         }
 
         if (goods.isAnyAttributeEmpty()) {
-            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
-            CustomLogger.getLogger(EditGoodsController.class).warn("Neboli vyplnené všetky polia!");
+            JOptionPane.showMessageDialog(window, bundle.getString("EMPTY_ATT_ERROR1"));
+            CustomLogger.getLogger(EditGoodsController.class).warn(bundle.getString("EMPTY_ATT_ERROR2"));
             return;
         }
 
         goods = database.setGoods(goods);
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri zmene údajov tovaru!");
-            CustomLogger.getLogger(EditGoodsController.class).warn("Chyba pri zmene údajov tovaru!");
+            JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_GOODS_ERROR"));
+            CustomLogger.getLogger(EditGoodsController.class).warn(bundle.getString("CHANGE_GOODS_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Tovar bol upravený!");
-            CustomLogger.getLogger(EditGoodsController.class).info(goods.getCode() + ": " + "Tovar bol upravený!");
+            JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_GOODS_INFO"));
+            CustomLogger.getLogger(EditGoodsController.class).info(goods.getCode() + ": " + bundle.getString("CHANGE_GOODS_INFO"));
             SerializationClass.serialize(database);
             window.dispose();
         }

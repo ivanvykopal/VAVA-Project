@@ -7,11 +7,13 @@ package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.RemoveGoodsWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Goods;
 import sk.stu.fiit.Model.SerializationClass;
@@ -25,6 +27,7 @@ public final class RemoveGoodsController implements Controller {
     private final Database database;
     private final RemoveGoodsWindow window;
     private Goods goods = null;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private RemoveGoodsController(Database database, RemoveGoodsWindow window) {
         this.database = database;
@@ -68,8 +71,8 @@ public final class RemoveGoodsController implements Controller {
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(RemoveGoodsController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(RemoveGoodsController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
@@ -93,18 +96,18 @@ public final class RemoveGoodsController implements Controller {
 
     private void removeGoods() {
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(RemoveGoodsController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(RemoveGoodsController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
         goods = database.removeGoods(goods);
         if (goods == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní tovaru!");
-            CustomLogger.getLogger(RemoveGoodsController.class).warn("Chyba pri odstraňovaní tovaru!");
+            JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_GOODS_ERROR"));
+            CustomLogger.getLogger(RemoveGoodsController.class).warn(bundle.getString("REMOVE_GOODS_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Tovar bol vymazaný zo systému!");
-            CustomLogger.getLogger(RemoveGoodsController.class).info(goods.getCode() + ": " + "Tovar bol vymazaný zo systému!");
+            JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_GOODS_INFO"));
+            CustomLogger.getLogger(RemoveGoodsController.class).info(goods.getCode() + ": " + bundle.getString("REMOVE_GOODS_INFO"));
             SerializationClass.serialize(database);
             window.dispose();
         }

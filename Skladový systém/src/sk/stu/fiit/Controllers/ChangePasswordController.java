@@ -8,11 +8,13 @@ package sk.stu.fiit.Controllers;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ChangePasswordWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
@@ -22,11 +24,12 @@ import sk.stu.fiit.Model.User;
  * @author Ivan Vykopal
  */
 public final class ChangePasswordController implements Controller {
-
+    
     private final Database database;
     private final ChangePasswordWindow window;
     private User user;
-
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
+    
     private ChangePasswordController(Database database, ChangePasswordWindow window, User user) {
         this.database = database;
         this.window = window;
@@ -73,25 +76,25 @@ public final class ChangePasswordController implements Controller {
         String confirmPassword = window.getPfConfirmPassword();
 
         if (oldPassword.equals("") || newPassword.equals("") || confirmPassword.equals("")) {
-            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
-            CustomLogger.getLogger(ChangePasswordController.class).warn("Neboli vyplnené všetky polia!");
+            JOptionPane.showMessageDialog(window, bundle.getString("EMPTY_ATT_ERROR1"));
+            CustomLogger.getLogger(ChangePasswordController.class).warn(bundle.getString("EMPTY_ATT_ERROR2"));
             return;
         }
 
         if (oldPassword.equals(newPassword)) {
-            JOptionPane.showMessageDialog(window, "Dané heslo sa aktuálne používa!");
-            CustomLogger.getLogger(ChangePasswordController.class).warn("Bolo zadané aktuálne heslo!");
+            JOptionPane.showMessageDialog(window, bundle.getString("PASSWORD_ERROR1"));
+            CustomLogger.getLogger(ChangePasswordController.class).warn(bundle.getString("PASSWORD_ERROR2"));
             return;
         }
 
         user.setPassword(newPassword);
         user = database.setUser(user);
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri zemene hesla!");
-            CustomLogger.getLogger(ChangePasswordController.class).warn("Chyba pri zmene hesla!");
+            JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_PASS_ERROR"));
+            CustomLogger.getLogger(ChangePasswordController.class).warn(bundle.getString("CHANGE_PASS_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Heslo bolo zmenené!");
-            CustomLogger.getLogger(ChangePasswordController.class).info(user.getUsername()+ ": " + "Heslo bolo zmenené!");
+            JOptionPane.showMessageDialog(window, bundle.getString("CHANGED_PASS_INFO"));
+            CustomLogger.getLogger(ChangePasswordController.class).info(user.getUsername()+ ": " + bundle.getString("CHANGED_PASS_INFO"));
             SerializationClass.serialize(database);
             window.dispose();
         }
@@ -101,9 +104,9 @@ public final class ChangePasswordController implements Controller {
         String newPassword = window.getPfNewPassword();
         String confirmPassword = window.getPfConfirmPassword();
         if (!newPassword.equals(confirmPassword)) {
-            window.setLbInfoMessage("Heslá nie sú rovnaké.", Color.RED);
+            window.setLbInfoMessage(bundle.getString("PASS_NOT_EQUAL"), Color.RED);
         } else {
-            window.setLbInfoMessage("Heslá sú rovnaké.", Color.GREEN);
+            window.setLbInfoMessage(bundle.getString("PASS_EQUAL"), Color.GREEN);
         }
     }
 

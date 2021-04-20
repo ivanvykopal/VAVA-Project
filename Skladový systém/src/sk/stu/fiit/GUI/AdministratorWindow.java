@@ -8,13 +8,17 @@ package sk.stu.fiit.GUI;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import sk.stu.fiit.Controllers.IMethod;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class AdministratorWindow extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form AdministratorWindow
@@ -78,13 +82,13 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Prihlásený: Administrátor");
+        setTitle(bundle.getString("ADMINISTRATOR_TITLE"));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         btnAddGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnAddGoods.setText("Pridať tovar");
+        btnAddGoods.setText(bundle.getString("ADD_GOODS_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -94,7 +98,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnAddGoods, gridBagConstraints);
 
         btnAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnAddUser.setText("Pridať používateľa");
+        btnAddUser.setText(bundle.getString("ADD_USER_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -104,7 +108,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnAddUser, gridBagConstraints);
 
         btnAddStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnAddStorage.setText("Pridať skladovací priestor");
+        btnAddStorage.setText(bundle.getString("ADD_STORAGE_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -114,7 +118,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnAddStorage, gridBagConstraints);
 
         btnEditGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnEditGoods.setText("Upraviť tovar");
+        btnEditGoods.setText(bundle.getString("EDIT_GOODS_BTN1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -124,7 +128,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnEditGoods, gridBagConstraints);
 
         btnEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnEditUser.setText("Upraviť používateľa");
+        btnEditUser.setText(bundle.getString("EDIT_USER_BTN1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -134,7 +138,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnEditUser, gridBagConstraints);
 
         btnRemoveGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnRemoveGoods.setText("Odstrániť tovar");
+        btnRemoveGoods.setText(bundle.getString("REMOVE_GOODS_BTN1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -144,7 +148,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnRemoveGoods, gridBagConstraints);
 
         btnRemoveUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnRemoveUser.setText("Odstrániť používateľa");
+        btnRemoveUser.setText(bundle.getString("REMOVE_USER_BTN1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -154,7 +158,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel1.add(btnRemoveUser, gridBagConstraints);
 
         btnRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnRemoveStorage.setText("Odstrániť skladovací priestor");
+        btnRemoveStorage.setText(bundle.getString("REMOVE_STORAGE_BTN1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridwidth = 6;
@@ -169,7 +173,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         lbName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        lbName.setText("Meno:");
+        lbName.setText(bundle.getString("NAME_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -179,7 +183,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel2.add(lbName, gridBagConstraints);
 
         btnLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnLogout.setText("Odhlásiť sa");
+        btnLogout.setText(bundle.getString("LOGOUT_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -190,7 +194,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel2.add(btnLogout, gridBagConstraints);
 
         btnChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnChangePassword.setText("Zmeniť heslo");
+        btnChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -201,7 +205,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel2.add(btnChangePassword, gridBagConstraints);
 
         lbUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        lbUsername.setText("Prihlasovacie meno:");
+        lbUsername.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -211,7 +215,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
         jPanel2.add(lbUsername, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel6.setText("Administrátor");
+        jLabel6.setText(bundle.getString("ADMINISTRATOR"));
         jLabel6.setPreferredSize(new java.awt.Dimension(210, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -224,69 +228,69 @@ public class AdministratorWindow extends javax.swing.JFrame {
 
         jMenuBar1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        jMenu1.setText("Súbor");
+        jMenu1.setText(bundle.getString("FILE_MENU"));
         jMenu1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miChangePassword.setText("Zmeniť heslo");
+        miChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         jMenu1.add(miChangePassword);
 
         miLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miLogout.setText("Odhlásiť sa");
+        miLogout.setText(bundle.getString("LOGOUT_BTN"));
         jMenu1.add(miLogout);
         jMenu1.add(jSeparator3);
 
         miExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miExit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miExit.setText("Koniec");
+        miExit.setText(bundle.getString("EXIT_MENU"));
         jMenu1.add(miExit);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Upraviť");
+        jMenu2.setText(bundle.getString("EDIT_MENU"));
         jMenu2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         miAddGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miAddGoods.setText("Pridať tovar");
+        miAddGoods.setText(bundle.getString("ADD_GOODS_BTN"));
         jMenu2.add(miAddGoods);
 
         miAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miAddUser.setText("Pridať používateľa");
+        miAddUser.setText(bundle.getString("ADD_USER_BTN"));
         jMenu2.add(miAddUser);
 
         miAddStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miAddStorage.setText("Pridať skladovací priestor");
+        miAddStorage.setText(bundle.getString("ADD_STORAGE_BTN"));
         jMenu2.add(miAddStorage);
         jMenu2.add(jSeparator1);
 
         miEditGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miEditGoods.setText("Upraviť tovar");
+        miEditGoods.setText(bundle.getString("EDIT_GOODS_BTN1"));
         jMenu2.add(miEditGoods);
 
         miEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miEditUser.setText("Upraviť používateľa");
+        miEditUser.setText(bundle.getString("EDIT_USER_BTN1"));
         jMenu2.add(miEditUser);
         jMenu2.add(jSeparator2);
 
         miRemoveGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miRemoveGoods.setText("Odstrániť tovar");
+        miRemoveGoods.setText(bundle.getString("REMOVE_GOODS_BTN1"));
         jMenu2.add(miRemoveGoods);
 
         miRemoveUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miRemoveUser.setText("Odstrániť používateľa");
+        miRemoveUser.setText(bundle.getString("REMOVE_USER_BTN1"));
         jMenu2.add(miRemoveUser);
 
         miRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miRemoveStorage.setText("Odstrániť skladovací priestor");
+        miRemoveStorage.setText(bundle.getString("REMOVE_STORAGE_BTN1"));
         jMenu2.add(miRemoveStorage);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("Pomocník");
+        jMenu5.setText(bundle.getString("ABOUT_MENU"));
         jMenu5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         miAbout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        miAbout.setText("O autorovi");
+        miAbout.setText(bundle.getString("ABOUT"));
         jMenu5.add(miAbout);
 
         jMenuBar1.add(jMenu5);

@@ -6,15 +6,19 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import java.util.ResourceBundle;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class EditUserWindow extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form EditUserWindow
@@ -56,8 +60,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editácia používateľa");
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setTitle(bundle.getString("EDIT_USER_TITLE"));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -68,15 +71,15 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel1.setText("Výber používateľa zo systému");
+        jLabel1.setText(bundle.getString("CHOOSE_USER_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 25, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel2.setText("Úprava informácií");
+        jLabel2.setText(bundle.getString("EDIT_INFO_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -84,17 +87,17 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel2, gridBagConstraints);
 
         btnChooseUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnChooseUser.setText("Vybrať používateľa");
+        btnChooseUser.setText(bundle.getString("CHOOSE_USER_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 100);
         jPanel1.add(btnChooseUser, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel3.setText("Prihlasovacie meno:");
+        jLabel3.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -103,7 +106,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel4.setText("Meno používateľa:");
+        jLabel4.setText(bundle.getString("USER_NAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -112,7 +115,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel6.setText("Pracovný e-mail:");
+        jLabel6.setText(bundle.getString("USER_EMAIL") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -121,7 +124,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel6, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel7.setText("Typ:");
+        jLabel7.setText(bundle.getString("USER_TYPE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -157,16 +160,16 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(tfEmail, gridBagConstraints);
 
         btnEditUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnEditUser.setText("Upraviť vybraného používateľa");
+        btnEditUser.setText(bundle.getString("EDIT_USER_BTN2"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.ipadx = 50;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnEditUser, gridBagConstraints);
 
         cbType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { bundle.getString("ADMINISTRATOR"), bundle.getString("REFERENT"), bundle.getString("WAREHOUSEMAN") }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -182,7 +185,7 @@ public class EditUserWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Použivateľské meno", "Meno používateľa", "E-mail", "Typ"
+                bundle.getString("USER_USERNAME"), bundle.getString("USER_NAME"), bundle.getString("EMAIL"), bundle.getString("USER_TYPE")
             }
         ) {
             Class[] types = new Class [] {
@@ -211,7 +214,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         cbTypeFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        cbTypeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        cbTypeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { bundle.getString("ADMINISTRATOR"), bundle.getString("REFERENT"), bundle.getString("WAREHOUSEMAN") }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -220,7 +223,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(cbTypeFilter, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel5.setText("Filter:");
+        jLabel5.setText(bundle.getString("FILTER_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -240,7 +243,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(tfFilter, gridBagConstraints);
 
         btnFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnFilter.setText("Filtrovať");
+        btnFilter.setText(bundle.getString("FILTER_BTNL"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -250,7 +253,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(btnFilter, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel9.setText("Editácia používateľa");
+        jLabel9.setText(bundle.getString("EDIT_USER_TITLE"));
         jLabel9.setPreferredSize(new java.awt.Dimension(300, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

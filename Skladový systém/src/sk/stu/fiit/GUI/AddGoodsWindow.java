@@ -6,13 +6,17 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import java.util.ResourceBundle;
 import sk.stu.fiit.CustomLogger;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
  * @author Ivan Vykopal
  */
 public class AddGoodsWindow extends javax.swing.JFrame {
+
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form AddGoodsWindow
@@ -47,15 +51,15 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pridanie tovaru");
+        setTitle(bundle.getString("ADD_GOODS_TITLE"));
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel1.setText("Názov tovaru:");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel1.setText(bundle.getString("GOODS_NAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -63,7 +67,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 200, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        tfName.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -72,8 +76,8 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 200);
         jPanel1.add(tfName, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Kód tovaru:");
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel2.setText(bundle.getString("GOODS_CODE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -81,7 +85,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        tfCode.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -90,8 +94,8 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfCode, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel3.setText("Opis tovaru:");
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel3.setText(bundle.getString("GOODS_DESCRIPTION") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -100,7 +104,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         taDescription.setColumns(20);
-        taDescription.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        taDescription.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         taDescription.setLineWrap(true);
         taDescription.setRows(5);
         taDescription.setWrapStyleWord(true);
@@ -116,8 +120,8 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel4.setText("Nákupná cena:");
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel4.setText(bundle.getString("GOODS_INCOME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -125,7 +129,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
-        tfIncomePrice.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        tfIncomePrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -134,8 +138,8 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(tfIncomePrice, gridBagConstraints);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel5.setText("Predajná cena:");
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel5.setText(bundle.getString("GOODS_EXPORT") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -143,7 +147,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 50, 0);
         jPanel1.add(jLabel5, gridBagConstraints);
 
-        tfExportPrice.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        tfExportPrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -152,8 +156,8 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 50, 200);
         jPanel1.add(tfExportPrice, gridBagConstraints);
 
-        btnAddGoods.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        btnAddGoods.setText("Pridať tovar");
+        btnAddGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnAddGoods.setText(bundle.getString("ADD_GOODS_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -163,7 +167,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         jPanel1.add(btnAddGoods, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel6.setText("Pridanie tovaru");
+        jLabel6.setText(bundle.getString("ADD_GOODS_TITLE"));
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -213,7 +217,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
             }
             return Double.parseDouble(tfExportPrice.getText());
         } catch (NumberFormatException ex) {
-            CustomLogger.getLogger(AddGoodsWindow.class).warn("Chyba formátu ceny!", ex);
+            CustomLogger.getLogger(AddGoodsWindow.class).warn(bundle.getString("PRICE_ERROR1"), ex);
             return -1;
         }
     }
@@ -225,7 +229,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
             }
             return Double.parseDouble(tfIncomePrice.getText());
         } catch (NumberFormatException ex) {
-            CustomLogger.getLogger(AddGoodsWindow.class).warn("Chyba formátu ceny!", ex);
+            CustomLogger.getLogger(AddGoodsWindow.class).warn(bundle.getString("PRICE_ERROR1"), ex);
             return -1;
         }
     }

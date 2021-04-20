@@ -7,10 +7,12 @@ package sk.stu.fiit.Controllers.Warehouseman;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
@@ -26,6 +28,7 @@ public final class GoodsMoveController implements Controller {
     private Item item;
     private final Database database;
     private final WarehousemanWindow window;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private GoodsMoveController(Database database, WarehousemanWindow window) {
         this.database = database;
@@ -72,14 +75,14 @@ public final class GoodsMoveController implements Controller {
 
     private void moveGoods() {
         if (item == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
         
         int quantity = window.getTfQuantity1();
         if (quantity == -1) {
-            JOptionPane.showMessageDialog(window, "Chybný formát množstva!");
+            JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR1"));
             return;
         }
         
@@ -89,8 +92,8 @@ public final class GoodsMoveController implements Controller {
         newItem.setPosition(Position.IN_STOCK);
         Storage storage = database.findStorage(window.getTfStorageCode1());
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri načítaní skladovacieho priestoru!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri načítaní skladovacieho priestoru!");
+            JOptionPane.showMessageDialog(window, bundle.getString("LOAD_STORAGE_ERROR"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("LOAD_STORAGE_ERROR"));
             return;
         }
         
@@ -98,8 +101,8 @@ public final class GoodsMoveController implements Controller {
             storage.setFree(false);
             storage = database.setStorage(storage);
             if (storage == null) {
-                JOptionPane.showMessageDialog(window, "Chyba pri úprave skladovacieho priestoru!");
-                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri úprave skladovacieho priestoru!");
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
                 return;
             }
             SerializationClass.serialize(database);
@@ -109,25 +112,25 @@ public final class GoodsMoveController implements Controller {
         if (quantity == item.getQuantity()) {
             item = database.removeItem(item);
             if (item == null) {
-                JOptionPane.showMessageDialog(window, "Chyba pri mazaní položky skladu!");
-                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri mazaní položky skladu!");
+                JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_ITEM_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("REMOVE_ITEM_ERROR"));
                 return;
             }
             newItem.setQuantity(quantity);
             addNewItem(newItem);
         } else if (quantity > item.getQuantity()){
-            JOptionPane.showMessageDialog(window, "Zadané množstvo je väčšie ako množstvo vybranej položky!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn("Zadané množstvo je väčšie ako množstvo vybranej položky!");
+            JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR2"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("QUANTITY_ERROR2"));
         } else if (quantity == 0) {
-            JOptionPane.showMessageDialog(window, "Množstvo je nulové!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn("Množstvo je nulové!");
+            JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR3"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("QUANTITY_ERROR3"));
         } else {
             item.setQuantity(item.getQuantity() - quantity);
             newItem.setQuantity(quantity);
             item = database.setItem(item);
             if (item == null) {
-                JOptionPane.showMessageDialog(window, "Chyba pri zmene položky skladu!");
-                CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri zmene položky skladu!");
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
             addNewItem(newItem);
@@ -167,11 +170,11 @@ public final class GoodsMoveController implements Controller {
     private void addNewItem(Item it) {
         it = database.addItem(it);
         if (it == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri pridanávaní novej položky skladu!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn("Chyba pri pridanávaní novej položky skladu!");
+            JOptionPane.showMessageDialog(window, bundle.getString("ADD_ITEM_ERROR"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("ADD_ITEM_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Tovar bol premiestnený!");
-            CustomLogger.getLogger(GoodsMoveController.class).warn(it.getGoods().getCode() + ": " + "Tovar bol premiestnený!");
+            JOptionPane.showMessageDialog(window, bundle.getString("MOVE_GOODS_INFO"));
+            CustomLogger.getLogger(GoodsMoveController.class).warn(it.getGoods().getCode() + ": " + bundle.getString("MOVE_GOODS_INFO"));
             SerializationClass.serialize(database);
             item = null;
             fillGoodsTable();

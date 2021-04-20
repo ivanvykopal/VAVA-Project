@@ -6,13 +6,17 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import java.util.ResourceBundle;
 import javax.swing.JComboBox;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
  * @author Acer
  */
 public class AddUserWindow extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form AddUserWindow
@@ -44,14 +48,14 @@ public class AddUserWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pridanie používateľa");
+        setTitle(bundle.getString("ADD_USER_TITLE"));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel1.setText("Prihlasovacie meno:");
+        jLabel1.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -60,7 +64,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel2.setText("Meno používateľa:");
+        jLabel2.setText(bundle.getString("USER_NAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -86,7 +90,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(tfName, gridBagConstraints);
 
         cbType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrátor", "Referent", "Skladník" }));
+        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { bundle.getString("ADMINISTRATOR"), bundle.getString("REFERENT"), bundle.getString("WAREHOUSEMAN") }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -96,7 +100,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(cbType, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel3.setText("Typ:");
+        jLabel3.setText(bundle.getString("USER_TYPE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -105,7 +109,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         btnAddUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnAddUser.setText("Pridať používateľa");
+        btnAddUser.setText(bundle.getString("ADD_USER_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -115,7 +119,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(btnAddUser, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel4.setText("Pracovný e-mail:");
+        jLabel4.setText(bundle.getString("USER_EMAIL") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -133,7 +137,7 @@ public class AddUserWindow extends javax.swing.JFrame {
         jPanel1.add(tfEmail, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel6.setText("Pridanie používateľa");
+        jLabel6.setText(bundle.getString("ADD_USER_TITLE"));
         jLabel6.setPreferredSize(new java.awt.Dimension(325, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

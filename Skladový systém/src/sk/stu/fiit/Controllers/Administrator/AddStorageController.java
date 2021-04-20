@@ -7,10 +7,12 @@ package sk.stu.fiit.Controllers.Administrator;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AddStorageWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
@@ -20,17 +22,19 @@ import sk.stu.fiit.Model.Storage;
  * @author Ivan Vykopal
  */
 public final class AddStorageController implements Controller {
+
     private final Database database;
     private final AddStorageWindow window;
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private AddStorageController(Database database, AddStorageWindow window) {
         this.database = database;
         this.window = window;
         window.setVisible(true);
-        
+
         initController();
     }
-    
+
     public static void createController(Database database, AddStorageWindow window) {
         new AddStorageController(database, window);
     }
@@ -44,29 +48,29 @@ public final class AddStorageController implements Controller {
             }
         });
     }
-    
+
     private void addStorage() {
         Storage storage = new Storage();
         storage.setBuilding(window.getTfBuilding());
         storage.setCode(window.getTfCode());
         storage.setShelf(window.getTfShelf());
-        
+
         if (storage.isAnyAttributeEmpty()) {
-            JOptionPane.showMessageDialog(window, "Je potrebné vyplniť všetky polia!");
-            CustomLogger.getLogger(AddStorageController.class).warn("Neboli vyplnené všetky polia!");
+            JOptionPane.showMessageDialog(window, bundle.getString("EMPTY_ATT_ERROR1"));
+            CustomLogger.getLogger(AddStorageController.class).warn(bundle.getString("EMPTY_ATT_ERROR2"));
             return;
         }
-        
+
         storage = database.addStorage(storage);
         if (storage == null) {
-            JOptionPane.showMessageDialog(window, "Pridávaný skladovací priEstor sa už v systéme nachádza!");
-            CustomLogger.getLogger(AddStorageController.class).warn("Pridávaný skladovací priEstor sa už v systéme nachádza!");
+            JOptionPane.showMessageDialog(window, bundle.getString("STORAGE_ERROR"));
+            CustomLogger.getLogger(AddStorageController.class).warn(bundle.getString("STORAGE_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Skladovací priestor bol pridaný!");
-            CustomLogger.getLogger(AddStorageController.class).info(storage.getCode() + ": " + "Skladovací priestor bol pridaný!");
+            JOptionPane.showMessageDialog(window, bundle.getString("STORAGE_INFO"));
+            CustomLogger.getLogger(AddStorageController.class).info(storage.getCode() + ": " + bundle.getString("STORAGE_INFO"));
             SerializationClass.serialize(database);
             window.dispose();
         }
     }
-    
+
 }

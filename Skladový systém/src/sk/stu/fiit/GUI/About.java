@@ -5,11 +5,16 @@
  */
 package sk.stu.fiit.GUI;
 
+import java.util.ResourceBundle;
+import sk.stu.fiit.InternationalizationClass;
+
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class About extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form About
@@ -31,15 +36,16 @@ public class About extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("O autorovi");
+        setTitle(bundle.getString("ABOUT"));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Autor: Ivan Vykopal\n\nTento systém vznikol ako projekt pre predmet Vývoj aplikácií s viacvrstvvou architektúrou.");
+        jTextArea1.setText(bundle.getString("ABOUT_TEXT"));
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 

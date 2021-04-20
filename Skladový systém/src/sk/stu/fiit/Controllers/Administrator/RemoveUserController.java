@@ -10,11 +10,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.RemoveUserWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
@@ -29,13 +31,14 @@ public final class RemoveUserController implements Controller {
     private final RemoveUserWindow window;
     private User user = null;
     private final HashMap<String, ArrayList<User>> usersTable = new HashMap<>();
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     private RemoveUserController(Database database, RemoveUserWindow window) {
         this.database = database;
         this.window = window;
 
         fillHashTable();
-        fillUsersTable("", "Administrátor");
+        fillUsersTable("", bundle.getString("ADMINISTRATOR"));
         window.setVisible(true);
 
         initController();
@@ -79,8 +82,8 @@ public final class RemoveUserController implements Controller {
     private void chooseUser() {
         int index = window.getTbUsersTable().getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(RemoveUserController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(RemoveUserController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
@@ -97,13 +100,13 @@ public final class RemoveUserController implements Controller {
             window.setTfName(user.getName());
             switch (user.getType()) {
                 case ADMINISTRATOR:
-                    window.setTfType("Administrátor");
+                    window.setTfType(bundle.getString("ADMINISTRATOR"));
                     break;
                 case WAREHOUSEMAN:
-                    window.setTfType("Skladník");
+                    window.setTfType(bundle.getString("WAREHOUSEMAN"));
                     break;
                 default:
-                    window.setTfType("Referent");
+                    window.setTfType(bundle.getString("REFERENT"));
                     break;
             }
             window.setTfUsername(user.getUsername());
@@ -112,18 +115,18 @@ public final class RemoveUserController implements Controller {
 
     private void removeUser() {
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Nebol vybraný žiaden záznam!");
-            CustomLogger.getLogger(RemoveUserController.class).warn("Nebol vybraný žiaden záznam!");
+            JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
+            CustomLogger.getLogger(RemoveUserController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
         }
 
         user = database.removeUser(user);
         if (user == null) {
-            JOptionPane.showMessageDialog(window, "Chyba pri odstraňovaní používateľa!");
-            CustomLogger.getLogger(RemoveUserController.class).warn("Chyba pri odstraňovaní používateľa!");
+            JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_USER_ERROR"));
+            CustomLogger.getLogger(RemoveUserController.class).warn(bundle.getString("REMOVE_USER_ERROR"));
         } else {
-            JOptionPane.showMessageDialog(window, "Používateľ bol vymazaný!");
-            CustomLogger.getLogger(RemoveUserController.class).info(user.getUsername() + ": " + "Používateľ bol vymazaný!");
+            JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_USER_INFO"));
+            CustomLogger.getLogger(RemoveUserController.class).info(user.getUsername() + ": " + bundle.getString("REMOVE_USER_INFO"));
             SerializationClass.serialize(database);
             window.dispose();
         }
@@ -164,16 +167,12 @@ public final class RemoveUserController implements Controller {
     private void fillUsersTable(String filter, String type) {
         window.getTbUsersModel().setRowCount(0);
         ArrayList<User> users = new ArrayList<>();
-        switch (type) {
-            case "Administrátor":
-                users = usersTable.get("administrator");
-                break;
-            case "Skladník":
-                users = usersTable.get("warehouseman");
-                break;
-            case "Referent":
-                users = usersTable.get("referent");
-                break;
+        if (type.equals(bundle.getString("ADMINISTRATOR"))) {
+            users = usersTable.get("administrator");
+        } else if (type.equals(bundle.getString("REFERENT"))) {
+            users = usersTable.get("referent");
+        } else if (type.equals(bundle.getString("WAREHOUSEMAN"))) {
+            users = usersTable.get("warehouseman");
         }
         if (users == null) {
             return;
@@ -190,7 +189,6 @@ public final class RemoveUserController implements Controller {
                 window.getTbUsersModel().addRow(row);
             }
         }
-
     }
 
     private void filter() {

@@ -6,13 +6,17 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import java.util.ResourceBundle;
 import javax.swing.JComboBox;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class LoginWindow extends javax.swing.JFrame{
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form LoginWindow
@@ -44,7 +48,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Skladový systém");
+        setTitle(bundle.getString("WAREHOUSE_SYSTEM"));
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -56,7 +60,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel1.setText("Prihlasovacie meno:");
+        jLabel1.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -74,7 +78,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jPanel8.add(tfLoginField, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel2.setText("Prihlasovacie heslo:");
+        jLabel2.setText(bundle.getString("USER_PASSWORD") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -92,7 +96,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jPanel8.add(pfPasswordField, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        jLabel3.setText("Prihlásenie do systému");
+        jLabel3.setText(bundle.getString("LOGIN_TITLE"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -111,7 +115,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jPanel8.add(jLabel4, gridBagConstraints);
 
         btnLogin.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        btnLogin.setText("Prihlásiť sa");
+        btnLogin.setText(bundle.getString("LOGIN_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
@@ -131,7 +135,7 @@ public class LoginWindow extends javax.swing.JFrame{
         jPanel8.add(cbLanguage, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel5.setText("Jazyk:");
+        jLabel5.setText(bundle.getString("LANGUAGE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

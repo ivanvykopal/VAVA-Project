@@ -6,14 +6,18 @@
 package sk.stu.fiit.GUI;
 
 import java.awt.event.MouseAdapter;
+import java.util.ResourceBundle;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import sk.stu.fiit.InternationalizationClass;
 
 /**
  *
  * @author Ivan Vykopal
  */
 public class RemoveStorageWindow extends javax.swing.JFrame {
+    
+    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Creates new form RemoveStorageWindow
@@ -54,7 +58,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Odstránenie skladovacieho priestoru");
+        setTitle(bundle.getString("REMOVE_STORAGE_TITLE"));
         setPreferredSize(new java.awt.Dimension(1400, 1000));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -64,15 +68,15 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel1.setText("Výber skladovacieho priestoru zo systému");
+        jLabel1.setText(bundle.getString("CHOOSE_STORAGE_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 25, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel2.setText("Informácie o skladovacom priestore");
+        jLabel2.setText(bundle.getString("STORAGE_INFO_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -80,7 +84,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel2, gridBagConstraints);
 
         btnChooseStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnChooseStorage.setText("Vybrať skladovací priestor");
+        btnChooseStorage.setText(bundle.getString("CHOOSE_STORAGE_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -90,7 +94,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(btnChooseStorage, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel3.setText("Kód skladovacieho priestoru:");
+        jLabel3.setText(bundle.getString("STORAGE_CODE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -99,7 +103,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel4.setText("Budova skladu:");
+        jLabel4.setText(bundle.getString("STORAGE_BUILDING") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -108,7 +112,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel6.setText("Regál:");
+        jLabel6.setText(bundle.getString("STORAGE_SHELF") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -117,7 +121,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel6, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel7.setText("Obsahuje položku:");
+        jLabel7.setText(bundle.getString("STORAGE_CONTAINS") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -156,11 +160,11 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(tfShelf, gridBagConstraints);
 
         btnRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnRemoveStorage.setText("Vymazať vybraný skladovací priestor");
+        btnRemoveStorage.setText(bundle.getString("REMOVE_STORAGE_BTN2"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.ipadx = 50;
         gridBagConstraints.insets = new java.awt.Insets(25, 0, 25, 0);
         jPanel1.add(btnRemoveStorage, gridBagConstraints);
 
@@ -175,12 +179,13 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(tfContainItem, gridBagConstraints);
 
         tbStorages.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tbStorages.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
         tbStorages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Kód", "Budova", "Regál", "Obsahuje položku"
+                bundle.getString("CODE"), bundle.getString("BUILDING"), bundle.getString("STORAGE_SHELF"), bundle.getString("STORAGE_CONTAINS")
             }
         ) {
             Class[] types = new Class [] {
@@ -209,7 +214,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(jScrollPane3, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel8.setText("Filter:");
+        jLabel8.setText(bundle.getString("FILTER_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -229,7 +234,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(tfFilter, gridBagConstraints);
 
         btnFilter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnFilter.setText("Filtrovať");
+        btnFilter.setText(bundle.getString("FILTER_BTNL"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -239,7 +244,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         jPanel1.add(btnFilter, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
-        jLabel9.setText("Odstránenie skladovacieho priestoru");
+        jLabel9.setText(bundle.getString("REMOVE_STORAGE_TITLE"));
         jLabel9.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
