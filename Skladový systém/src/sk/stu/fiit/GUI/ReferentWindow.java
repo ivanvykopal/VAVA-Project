@@ -16,11 +16,14 @@ import sk.stu.fiit.Controllers.IMethod;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre prihláseného referenta.
  *
  * @author Ivan Vykopal
  */
 public class ReferentWindow extends javax.swing.JFrame {
     
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -500,7 +503,6 @@ public class ReferentWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnCosts;
@@ -554,6 +556,12 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JTable tbOverviewGoods;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void changePasswordListener(IMethod iMethod) {
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
@@ -564,6 +572,12 @@ public class ReferentWindow extends javax.swing.JFrame {
         miChangePassword.addActionListener(e -> iMethod.method());
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void costsListener(IMethod iMethod) {
         btnCosts.addMouseListener(new MouseAdapter() {
             @Override
@@ -574,6 +588,12 @@ public class ReferentWindow extends javax.swing.JFrame {
         miCosts.addActionListener(e -> iMethod.method());
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void profitsListener(IMethod iMethod) {
         btnProfits.addMouseListener(new MouseAdapter() {
             @Override
@@ -584,6 +604,12 @@ public class ReferentWindow extends javax.swing.JFrame {
         miProfits.addActionListener(e -> iMethod.method());
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void goodsOverviewListener(IMethod iMethod) {
         btnGoodsOverview.addMouseListener(new MouseAdapter() {
             @Override
@@ -594,6 +620,12 @@ public class ReferentWindow extends javax.swing.JFrame {
         miGoodsOverview.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void logoutListener(IMethod iMethod) {
         btnLogout.addMouseListener(new MouseAdapter() {
             @Override
@@ -604,106 +636,234 @@ public class ReferentWindow extends javax.swing.JFrame {
         miLogout.addActionListener(e -> iMethod.method());
     }
 
-    public void miExitAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void exitListener(ActionListener listener) {
         miExit.addActionListener(listener);
     }
     
-    public void miLoginPageAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void loginListener(ActionListener listener) {
         miLoginPage.addActionListener(listener);
     }
     
-    public void miAboutAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void aboutListener(ActionListener listener) {
         miAbout.addActionListener(listener);
     }
 
+    /**
+     * Metóda pre zíksanie panelu domovskej stránky.
+     * 
+     * @return panel s domovskou stránkou
+     */
     public JPanel getpLogin() {
         return pLogin;
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky informácií o tovaroch.
+     * 
+     * @return model tabuľky informácií o tovaroch
+     */
     public DefaultTableModel getTbOverviewGoodsModel() {
         return (DefaultTableModel) tbOverviewGoods.getModel();
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text dodatočný text pre label
+     */
     public void setLbTotalPrice(String text) {
         this.lbTotalPrice.setText(bundle.getString("TOTAL_PRICE_LB") + ": " + text);
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnViewCostsAddListener(MouseAdapter adapter) {
         btnViewCosts.addMouseListener(adapter);
     }
 
+    /**
+     * Metóda pre získanie dátumu, od ktorého zisťujeme náklady.
+     * 
+     * @return dátum
+     */
     public String getFtfCostsFrom() {
         return ftfCostsFrom.getText().trim();
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setFtfCostsFrom(String text) {
         ftfCostsFrom.setText(text);
     }
     
+    /**
+     * Metóda pre získanie dátumu, do ktorého zisťujeme náklady.
+     * 
+     * @return dátum
+     */
     public String getFtfCostsTo() {
         return ftfCostsTo.getText().trim();
     }
     
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setFtfCostsTo(String text) {
         ftfCostsTo.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text dodatočný text pre label
+     */
     public void setLbCosts(String text) {
         lbCosts.setText(bundle.getString("COSTS_OVERVIEW_LB") + ": " + text);
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky informácií o nákladoch za tovary.
+     * 
+     * @return model tabuľky informácií o nákladoch za tovary
+     */
     public DefaultTableModel getTbGoodsCosts() {
         return (DefaultTableModel) tbGoodsCosts.getModel();
     }
 
+    /**
+     * Metóda pre získanie panelu okna pre informácie o nákladoch.
+     * 
+     * @return panel s informáciami o nákladoch
+     */
     public JPanel getpGoodsCosts() {
         return pGoodsCosts;
     }
 
+    /**
+     * Metóda pre získanie panelu okna pre informácie o tovaroch.
+     * 
+     * @return panel s informáciami o tovaroch
+     */
     public JPanel getpGoodsOverview() {
         return pGoodsOverview;
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnViewProfitsAddListener(MouseAdapter adapter) {
         btnViewProfits.addMouseListener(adapter);
     }
 
+    /**
+     * Metóda pre získanie dátumu, od ktorého zisťujeme zisky.
+     * 
+     * @return dátum
+     */
     public String getFtfProfitsFrom() {
         return ftfProfitsFrom.getText().trim();
     }
     
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setFtfProfitsFrom(String text) {
         ftfProfitsFrom.setText(text);
     }
 
+    /**
+     * Metóda pre získanie dátumu, do ktorého zisťujeme zisky.
+     * 
+     * @return dátum
+     */
     public String getFtfProfitsTo() {
         return ftfProfitsTo.getText().trim();
     }
     
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setFtfProfitsTo(String text) {
         ftfProfitsTo.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text dodatočný text pre label
+     */
     public void setLbProfits(String text) {
         lbProfits.setText(bundle.getString("PROFITS_OVERVIEW_LB") + ": " + text);
     }
 
+     /**
+     * Metóda pre získanie panelu okna pre informácie o ziskoch.
+     * 
+     * @return panel s informáciami o ziskoch
+     */
     public JPanel getpGoodsProfits() {
         return pGoodsProfits;
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky informácií o ziskoch za tovary.
+     * 
+     * @return model tabuľky informácií o ziskoch za tovary
+     */
     public DefaultTableModel getTbGoodsProfits() {
         return (DefaultTableModel) tbGoodsProfits.getModel();
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbName(String text) {
         this.lbName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbUsername(String text) {
         this.lbUsername.setText(text);
     }
-    
+ 
+    /**
+     * Metóda pre odstránenie Mouselistenerov z tlačidiel z jednotlivých panelov.
+     */
     public void removeListeners() {
         //Login panel 
         for (MouseListener ml : btnLogout.getMouseListeners()) {

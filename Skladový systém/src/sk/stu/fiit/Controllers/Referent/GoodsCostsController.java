@@ -22,13 +22,27 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 
 /**
+ * Trieda reprezentujúca controller pre zobrazovanie informácie o nákladoch za
+ * zvolené obdobie.
+ * 
+ * @see GoodsController
  *
  * @author Ivan Vykopal
  */
 public final class GoodsCostsController extends GoodsController {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsCostsController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     private GoodsCostsController(Database database, ReferentWindow window) {
         super(database, window);
         
@@ -37,10 +51,20 @@ public final class GoodsCostsController extends GoodsController {
         initController();
     }
     
+    /**
+     * Metóda pre vytvorenie {@code GoodsCostsController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     public static void createController(Database database, ReferentWindow window) {
         new GoodsCostsController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo. 
+     */
     @Override
     public void initController() {
         window.btnViewCostsAddListener(new MouseAdapter() {
@@ -51,6 +75,16 @@ public final class GoodsCostsController extends GoodsController {
         });
     }
     
+    /**
+     * Metóda pre zobrazenie nákladov firmy za zvolené obdobie.
+     * 
+     * <p>
+     * V rámci tejto metódy sa zistia všetky položky, ktoré boli prijaté za
+     * obdobie zadané používateľom. Na základe získaných položiek sa vypočítajú
+     * náklady. Položky prijaté za dané obdobie sa zobrazia v tabuľke a výsledná
+     * cena pod tabuľkou.
+     * </p>
+     */
     private void viewCosts() {
         Date from;
         Date to;
@@ -65,7 +99,7 @@ public final class GoodsCostsController extends GoodsController {
         
         HashMap<String, TableItem> table = new HashMap<>();
         
-        for (Item item : database.getItemTable()) {
+        for (Item item : database.getItemTableAll()) {
             if (matchDates(item.getReceiptDate(), from, to)) {
                 TableItem i = table.get(item.getGoods().getCode());
                 if (i == null) {
@@ -95,8 +129,4 @@ public final class GoodsCostsController extends GoodsController {
         window.setLbCosts(price.setScale(2, RoundingMode.HALF_UP) + " "+ bundle.getString("CURRENCY"));
     }
     
-    private boolean matchDates(Date date, Date from, Date to) {
-        return date.equals(from) || date.equals(to) || (date.after(from) && date.before(to));
-    }
-
 }

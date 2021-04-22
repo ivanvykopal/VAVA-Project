@@ -12,11 +12,13 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre odstránenie skladovacieho priestoru.
  *
  * @author Ivan Vykopal
  */
 public class RemoveStorageWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -282,42 +284,92 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfShelf;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie tabuľky skladovacích priestorov.
+     * 
+     * @return tabuľka skladovacích priestorov
+     */
     public JTable getTbStoragesTable() {
         return tbStorages;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky skladovacích priestorov.
+     * 
+     * @return model tabuľka skladovacích priestorov
+     */
     public DefaultTableModel getTbStoragesModel() {
         return (DefaultTableModel) tbStorages.getModel();
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfBuilding(String text) {
         this.tfBuilding.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfCode(String text) {
         this.tfCode.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfContainItem(String text) {
         this.tfContainItem.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfShelf(String text) {
         this.tfShelf.setText(text);
     }
     
+    /**
+     * Metóda pre získanie hodnoty filtra.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfFilter() {
         return tfFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnRemoveStorageAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveStorage.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChooseStorageAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseStorage.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
         btnFilter.addMouseListener(mouseAdapter);
     }

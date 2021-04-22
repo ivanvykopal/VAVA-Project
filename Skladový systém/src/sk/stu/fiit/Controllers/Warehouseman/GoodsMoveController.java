@@ -20,16 +20,41 @@ import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
+ * Trieda reprezentujúca controller pre presun tovarov v sklade.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class GoodsMoveController implements Controller {
 
+    /** Atribút item predstavuje položku, ktorú používateľ vybral z tabuľky. **/
     private Item item;
+    
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného skladníka. **/
     private final WarehousemanWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsMoveController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V tomto konštruktore sa zároveň napĺňa tabuľka s aktuálnymi položkami
+     * zo skladu a tabuľka s voľnými skladovacími priestorami.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     private GoodsMoveController(Database database, WarehousemanWindow window) {
         this.database = database;
         this.window = window;
@@ -41,10 +66,21 @@ public final class GoodsMoveController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code GoodsMoveController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     public static void createController(Database database, WarehousemanWindow window) {
         new GoodsMoveController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre tlačidlo a pre tabuľky na výber položky
+     * zo skladu a voľnú skladovaciu pozíciu.
+     */
     @Override
     public void initController() {
         window.btnMoveGoodsAddListener(new MouseAdapter() {
@@ -73,6 +109,24 @@ public final class GoodsMoveController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre presun tovaru v sklade.
+     * 
+     * <p>
+     * V rámci tejto metódy sa zistí zvolené množstvo. V prípade správnej hodnoty
+     * množstva sa buď vytvorí nová položka, ktorej bude pridelená nová pozícia
+     * alebo sa danej položky pridelí nová pozícia. Závisí to od zadaného množstva.
+     * </p>
+     * <p>
+     * V prípade množstva rovnému množstvu položky sa danej položke zmení pozícia
+     * v sklade.
+     * </p>
+     * <p>
+     * V prípade množstva menšieho ako je množstvo vybranej položky, vtedy sa
+     * vtvorí nová položka s požadovaným množstvom a z pôvodnej položky skladu,
+     * sa zadané množstvo odstráni.
+     * </p>
+     */
     private void moveGoods() {
         if (item == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
@@ -109,15 +163,20 @@ public final class GoodsMoveController implements Controller {
         }
         
         newItem.setStorage(storage);
+        Storage oldStorage = item.getStorage();
         if (quantity == item.getQuantity()) {
-            item = database.removeItem(item);
+            newItem.setId(item.getId());
+            newItem.setQuantity(quantity);
+            item = database.setItem(newItem);
             if (item == null) {
-                JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_ITEM_ERROR"));
-                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("REMOVE_ITEM_ERROR"));
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
-            newItem.setQuantity(quantity);
-            addNewItem(newItem);
+            oldStorage.setFree(true);
+            oldStorage.setItemCount(storage.getItemCount() - 1);
+            database.setStorage(oldStorage);
+            item = null;
         } else if (quantity > item.getQuantity()){
             JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR2"));
             CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("QUANTITY_ERROR2"));
@@ -133,10 +192,17 @@ public final class GoodsMoveController implements Controller {
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
+            oldStorage.setFree(true);
+            database.setStorage(oldStorage);
             addNewItem(newItem);
         }
     }
 
+    /**
+     * Metóda pre výber skladovacej pozície z tabuľky voľných pozícií.
+     * 
+     * @param index riadok, ktorý bol používateľom zvolený z tabuľky
+     */
     private void chooseStorage(int index) {
         if (index != -1) {
             String code = (String) window.getTbFreeStorage1Model().getValueAt(index, 0);
@@ -146,6 +212,11 @@ public final class GoodsMoveController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre výber položky skladu z tabuľky položiek.
+     * 
+     * @param index riadok, ktorý bol používateľom zvolený z tabuľky
+     */
     private void chooseItem(int index) {
         if (index == -1) {
             item = null;
@@ -156,6 +227,9 @@ public final class GoodsMoveController implements Controller {
         item = database.findItem(id);
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s voľnými pozíciami v sklade.
+     */
     private void fillStorageTable() {
         window.getTbFreeStorageModel().setRowCount(0);
         for (Storage storage : database.getStorageTable()) {
@@ -167,6 +241,11 @@ public final class GoodsMoveController implements Controller {
         }
     }
     
+    /**
+     * Metóda pre vytvorenie novej položky skladu.
+     * 
+     * @param it položka skladu
+     */
     private void addNewItem(Item it) {
         it = database.addItem(it);
         if (it == null) {
@@ -185,18 +264,19 @@ public final class GoodsMoveController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s položkami skladu.
+     */
     private void fillGoodsTable() {
         window.getTbGoodsModel().setRowCount(0);
-        for (Item it : database.getItemTable()) {
-            if (it.getPosition() == Position.IN_STOCK) {
-                Object[] row = new Object[5];
-                row[0] = it.getId();
-                row[1] = it.getGoods().getCode();
-                row[2] = it.getGoods().getName();
-                row[3] = it.getQuantity();
-                row[4] = it.getStorage().getCode();
-                window.getTbGoodsModel().addRow(row);
-            }
+        for (Item it : database.getItemTableIn()) {
+            Object[] row = new Object[5];
+            row[0] = it.getId();
+            row[1] = it.getGoods().getCode();
+            row[2] = it.getGoods().getName();
+            row[3] = it.getQuantity();
+            row[4] = it.getStorage().getCode();
+            window.getTbGoodsModel().addRow(row);
         }
     }
 

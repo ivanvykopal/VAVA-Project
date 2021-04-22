@@ -18,15 +18,32 @@ import sk.stu.fiit.Model.Goods;
 import sk.stu.fiit.Model.SerializationClass;
 
 /**
+ * Trieda reprezentujúca controller pre pridávanie tovarov do systému.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class AddGoodsController implements Controller {
-
+    
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre pridávanie tovarov. **/
     private final AddGoodsWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code AddGoodsController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie tovarov
+     */
     private AddGoodsController(Database database, AddGoodsWindow window) {
         this.database = database;
         this.window = window;
@@ -35,10 +52,20 @@ public final class AddGoodsController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code AddGoodsController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie tovarov
+     */
     public static void createController(Database database, AddGoodsWindow window) {
         new AddGoodsController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo. 
+     */
     @Override
     public void initController() {
         window.btnAddGoodsAddMouseListener(new MouseAdapter() {
@@ -49,6 +76,15 @@ public final class AddGoodsController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre pridanie nového tovaru do systému.
+     * 
+     * <p> 
+     * V rámci tejto triedy sa kontroluje to, či sú vyplnené všetky polia, správnosť
+     * zadaných cien. Pri správne zadaných údajoch je následne daný tovar pridaný
+     * do systému v prípade, ak sa v ňom ešte nenachádza.
+     * </p>
+     */
     private void addGoods() {
         Goods goods = new Goods();
         goods.setName(window.getTfName());

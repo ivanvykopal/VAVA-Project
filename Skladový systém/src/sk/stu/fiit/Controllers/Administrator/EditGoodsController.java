@@ -19,16 +19,39 @@ import sk.stu.fiit.Model.Goods;
 import sk.stu.fiit.Model.SerializationClass;
 
 /**
+ * Trieda reprezentujúca controller pre úpravu tovarov v systéme.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class EditGoodsController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre úpravu tovarov. **/
     private final EditGoodsWindow window;
+    
+    /** Atribút goods predstavuje tovar, ktorý si používateľ zvolil. **/
     private Goods goods = null;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code EditGoodsController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V metóde sa zároveň aj plní tabuľka s existujúcimi tovarmi.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre úpravu tovarov
+     */
     private EditGoodsController(Database database, EditGoodsWindow window) {
         this.database = database;
         this.window = window;
@@ -39,10 +62,20 @@ public final class EditGoodsController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code EditGoodsController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre úpravu tovarov
+     */
     public static void createController(Database database, EditGoodsWindow window) {
         new EditGoodsController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre jednotlivé tlačidlá. 
+     */
     @Override
     public void initController() {
         window.btnChooseGoodsAddMouseListener(new MouseAdapter() {
@@ -67,6 +100,10 @@ public final class EditGoodsController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre výber tovaru z tabuľky existujúcich tovarov. Táto metóda zároveň
+     * napĺňa údaje do textových polí pre následnú úpravu informácií.
+     */
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
@@ -93,6 +130,15 @@ public final class EditGoodsController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre uloženie upravených informácií o tovare.
+     * 
+     * <p>
+     * V rámci metódy sa kontroluje správnosť cien a to, či sú všetky polia 
+     * vyplnené.
+     * Pri správne zadaných údajoch sa aktualizujú informácie tovaru.
+     * </p>
+     */
     private void editGoods() {
         if (goods == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
@@ -129,11 +175,20 @@ public final class EditGoodsController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre filtrovanie položiek v tabuľke na základe údajov zadaných v 
+     * textovom poli.
+     */
     private void filter() {
         String filter = window.getTfFilter();
         fillGoodsTable(filter);
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s existujúcimi tovarmi na základe filtra.
+     * 
+     * @param filter reťazec podľa, ktorého filtrujeme položky tabuľky 
+     */
     private void fillGoodsTable(String filter) {
         window.getTbGoodsModel().setRowCount(0);
         Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);

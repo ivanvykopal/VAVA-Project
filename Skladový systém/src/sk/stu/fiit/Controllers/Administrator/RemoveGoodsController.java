@@ -19,16 +19,39 @@ import sk.stu.fiit.Model.Goods;
 import sk.stu.fiit.Model.SerializationClass;
 
 /**
+ * Trieda reprezentujúca controller pre odstraňovanie tovarov zo systému.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class RemoveGoodsController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre odstraňovanie tovarov. **/
     private final RemoveGoodsWindow window;
+    
+    /** Atribút goods predstavuje tovar, ktorý si používateľ zvolil. **/
     private Goods goods = null;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code RemoveGoodsController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V metóde sa zároveň aj plní tabuľka s existujúcimi tovarmi.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre odstraňovanie tovarov
+     */
     private RemoveGoodsController(Database database, RemoveGoodsWindow window) {
         this.database = database;
         this.window = window;
@@ -40,10 +63,20 @@ public final class RemoveGoodsController implements Controller {
 
     }
 
+    /**
+     * Metóda pre vytvorenie {@code RemoveGoodsController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre odstraňovanie tovarov
+     */
     public static void createController(Database database, RemoveGoodsWindow window) {
         new RemoveGoodsController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre jednotlivé tlačidlá. 
+     */
     @Override
     public void initController() {
         window.btnChooseGoodsAddMouseListener(new MouseAdapter() {
@@ -68,6 +101,10 @@ public final class RemoveGoodsController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre výber tovaru z tabuľky existujúcich tovarov. Táto metóda zároveň
+     * napĺňa údaje do textových polí pre zobrazenie informácií o tovare.
+     */
     private void chooseGoods() {
         int index = window.getTbGoodsTable().getSelectedRow();
         if (index == -1) {
@@ -94,6 +131,10 @@ public final class RemoveGoodsController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre odstránenie tovaru zo systému. Tovar sa zo systému skutočne
+     * nevymazáva, ale nastavuje sa mu príznak, že je vymazaný.
+     */
     private void removeGoods() {
         if (goods == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
@@ -113,11 +154,20 @@ public final class RemoveGoodsController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre filtrovanie položiek v tabuľke na základe údajov zadaných v 
+     * textovom poli.
+     */
     private void filter() {
         String filter = window.getTfFilter();
         fillGoodsTable(filter);
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s existujúcimi tovarmi na základe filtra.
+     * 
+     * @param filter reťazec podľa, ktorého filtrujeme položky tabuľky 
+     */
     private void fillGoodsTable(String filter) {
         window.getTbGoodsModel().setRowCount(0);
         Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);

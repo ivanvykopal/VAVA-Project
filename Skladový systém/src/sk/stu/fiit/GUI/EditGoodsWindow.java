@@ -13,11 +13,13 @@ import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre úpravu tovaru.
  *
  * @author Ivan Vykopal
  */
 public class EditGoodsWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -317,14 +319,30 @@ public class EditGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie opisu tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTaDescription() {
         return taDescription.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie kódu tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfCode() {
         return tfCode.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie predajnej ceny tovaru.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby a
+     * korektná predajná cena.
+     */
     public double getTfExportPrice() {
         try {
             if (tfExportPrice.getText().equals("")) {
@@ -337,6 +355,12 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie nákupnej ceny tovaru.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby a
+     * korektná nákupná cena.
+     */
     public double getTfImportPrice() {
         try {
             if (tfImportPrice.getText().equals("")) {
@@ -349,50 +373,110 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie názvu tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfName() {
         return tfName.getText().trim();
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfCode(String text) {
         this.tfCode.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfExportPrice(String text) {
         this.tfExportPrice.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfImportPrice(String text) {
         this.tfImportPrice.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfName(String text) {
         this.tfName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTaDescription(String text) {
         this.taDescription.setText(text);
     }
     
+    /**
+     * Metóda pre získanie hodnoty filtra.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfFilter() {
         return tfFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnEditGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnEditGoods.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChooseGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseGoods.addMouseListener(mouseAdapter);
     }
 
+    /**
+     * Metóda pre získanie tabuľky tovarov.
+     * 
+     * @return tabuľka tovarov
+     */
     public JTable getTbGoodsTable() {
         return tbGoods;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky tovarov.
+     * 
+     * @return model tabuľky tovarov
+     */
     public DefaultTableModel getTbGoodsModel() {
         return (DefaultTableModel) tbGoods.getModel();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
         btnFilter.addMouseListener(mouseAdapter);
     }

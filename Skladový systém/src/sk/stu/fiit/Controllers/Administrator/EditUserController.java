@@ -23,17 +23,46 @@ import sk.stu.fiit.Model.Type;
 import sk.stu.fiit.Model.User;
 
 /**
+ * Trieda reprezentujúca controller pre úpravu používateľov v systéme.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class EditUserController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre úpravu používateľov. **/
     private final EditUserWindow window;
+    
+    /** Atribút user predstavuje používateľa, ktorého si používateľ zvolil. **/
     private User user = null;
+    
+    /** 
+     * Atribút usersTable predstavuje tabuľku používateľov rozdelených na základe
+     * typu používateľa.
+     **/
     private final HashMap<String, ArrayList<User>> usersTable = new HashMap<>();
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code EditGoodsController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V metóde sa zároveň plní hash tabuľka usersTable používateľmi zo systému.
+     * Zároveň sa plní aj tabuľka nachádzajúca sa na obrazovke.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre úpravu používateľov
+     */
     private EditUserController(Database database, EditUserWindow window) {
         this.database = database;
         this.window = window;
@@ -45,10 +74,21 @@ public final class EditUserController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code EditUserController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre úpravu používateľov
+     */
     public static void createController(Database database, EditUserWindow window) {
         new EditUserController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre jednotlivé tlačidlá a pridanie listeneru
+     * pre výber typu používateľa.
+     */
     @Override
     public void initController() {
         window.btnChooseUserAddMouseListener(new MouseAdapter() {
@@ -80,6 +120,10 @@ public final class EditUserController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre výber používateľa z tabuľky používateľov. Táto metóda zároveň
+     * napĺňa údaje do textových polí pre následnú úpravu informácií.
+     */
     private void chooseUser() {
         int index = window.getTbUsersTable().getSelectedRow();
         if (index == -1) {
@@ -104,6 +148,14 @@ public final class EditUserController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre uloženie upravených informácií o používateľovi.
+     * 
+     * <p>
+     * V rámci metódy sa kontroluje  to, či sú všetky polia vyplnené.
+     * Pri správne zadaných údajoch sa aktualizujú informácie používateľa.
+     * </p>
+     */
     private void editUser() {
         if (user == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
@@ -134,11 +186,18 @@ public final class EditUserController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre filtrovanie položiek v tabuľke na základe údajov zadaných v 
+     * textovom poli.
+     */
     private void filter() {
         String filter = window.getTfFilter();
         fillUsersTable(filter, (String) window.getCbTypeFilter().getSelectedItem());
     }
 
+    /**
+     * Metóda pre naplnenie hash tabuľky s používateľmi na základe typu používateľa.
+     */
     private void fillHashTable() {
         ArrayList<User> record;
         for (User u : database.getUserTable()) {
@@ -171,6 +230,14 @@ public final class EditUserController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s existujúcimi používateľmi na základe filtra
+     * a typu.
+     * 
+     * @param filter reťazec podľa, ktorého filtrujeme položky tabuľky 
+     * 
+     * @param type typ používateľa, na základe ktorého vyhľadávame používateľov
+     */
     private void fillUsersTable(String filter, String type) {
         window.getTbUsersModel().setRowCount(0);
         ArrayList<User> users = new ArrayList<>();

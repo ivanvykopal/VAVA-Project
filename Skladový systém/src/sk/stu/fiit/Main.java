@@ -10,6 +10,7 @@ import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.Model.Database;
 
 /**
+ * Hlavná trieda určená pre spúštanie programu.
  *
  * @author Ivan Vykopal
  */

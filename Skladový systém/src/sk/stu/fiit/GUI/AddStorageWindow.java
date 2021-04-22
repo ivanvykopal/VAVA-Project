@@ -10,11 +10,13 @@ import java.util.ResourceBundle;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre pridanie skladovacieho priestoru do systému.
  *
  * @author Ivan Vykopal
  */
 public class AddStorageWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -139,18 +141,38 @@ public class AddStorageWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfShelf;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie budovy skladovacieho priestoru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfBuilding() {
         return tfBuilding.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie kódu skladovacieho priestoru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfCode() {
         return tfCode.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie regálu skladovacieho priestoru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfShelf() {
         return tfShelf.getText().trim();
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnAddStorageAddMouseListener(MouseAdapter mouseAdapter) {
         btnAddStorage.addMouseListener(mouseAdapter);
     }

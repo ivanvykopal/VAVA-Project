@@ -22,13 +22,27 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 
 /**
+ * Trieda reprezentujúca controller pre zobrazovanie informácie o ziskoch za
+ * zvolené obdobie.
+ * 
+ * @see GoodsController
  *
  * @author Ivan Vykopal
  */
 public final class GoodsProfitsControlller extends GoodsController {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsProfitsControlller}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     private GoodsProfitsControlller(Database database, ReferentWindow window) {
         super(database, window);
 
@@ -37,10 +51,20 @@ public final class GoodsProfitsControlller extends GoodsController {
         initController();
     }
     
+    /**
+     * Metóda pre vytvorenie {@code GoodsProfitsControlller}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     public static void createController(Database database, ReferentWindow window) {
         new GoodsProfitsControlller(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo. 
+     */
     @Override
     public void initController() {
         window.btnViewProfitsAddListener(new MouseAdapter() {
@@ -51,6 +75,16 @@ public final class GoodsProfitsControlller extends GoodsController {
         });
     }
     
+    /**
+     * Metóda pre zobrazenie ziskov firmy za zvolené obdobie.
+     * 
+     * <p>
+     * V rámci tejto metódy sa zistia všetky položky, ktoré boli vyvezené za
+     * obdobie zadané používateľom. Na základe získaných položiek sa vypočítajú
+     * zisky. Položky vyvezené za dané obdobie sa zobrazia v tabuľke a výsledná
+     * cena pod tabuľkou.
+     * </p>
+     */
     private void viewProfits() {
         Date from;
         Date to;
@@ -65,8 +99,8 @@ public final class GoodsProfitsControlller extends GoodsController {
         
         HashMap<String, TableItem> table = new HashMap<>();
         
-        for (Item item : database.getItemTable()) {
-            if (item.getExportDate() != null && matchDates(item.getExportDate(), from, to)) {
+        for (Item item : database.getItemTableOut()) {
+            if (matchDates(item.getExportDate(), from, to)) {
                 TableItem i = table.get(item.getGoods().getCode());
                 if (i == null) {
                     i = new TableItem(item.getGoods().getName(), item.getQuantity(), item.getGoods().getIncomePrice(), item.getGoods().getExportPrice());
@@ -93,11 +127,6 @@ public final class GoodsProfitsControlller extends GoodsController {
         }
         
         window.setLbProfits(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
-        
-    }
-    
-    private boolean matchDates(Date date, Date from, Date to) {
-        return date.equals(from) || date.equals(to) || (date.after(from) && date.before(to));
     }
     
 }

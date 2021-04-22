@@ -26,15 +26,32 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
 /**
+ * Trieda reprezentujúca controller pre prihlásenie používateľov do systému.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class LoginController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihlásenie používateľov. **/
     private final LoginWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code LoginController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihlásenie používateľov
+     */
     private LoginController(Database database, LoginWindow window) {
         this.database = database;
         this.window = window;
@@ -43,10 +60,21 @@ public final class LoginController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code LoginController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihlásenie používateľov
+     */
     public static void createController(Database database, LoginWindow window) {
         new LoginController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo a pridanie listenera pre zmenu
+     * udájov nachádzajúcich sa v rolovacom poli. 
+     */
     @Override
     public void initController() {
         window.btnLoginAddMouseListener(new MouseAdapter() {
@@ -63,6 +91,10 @@ public final class LoginController implements Controller {
         });
     }
     
+    /**
+     * Metóda určená pre zmenu jazykovej verzie. Podpora pre dve jazykové verzie:
+     * SK a EN verzia.
+     */
     private void changeLanguage() {
         int language = window.getCbLanguage().getSelectedIndex();
         LoginWindow newWindow;
@@ -84,6 +116,15 @@ public final class LoginController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre prihlásenie používateľa.
+     * 
+     * <p> 
+     * V rámci tejto triedy sa kontroluje existencia používateľa v systéme a 
+     * korektnosť zadaných údajov. Pri správne zadaných prihlasovacích údajoch
+     * sa spustí požadovaná obrazovka pre prihláseného používateľa.
+     * </p>
+     */
     private void login() {
         String userName = window.getTfLoginField();
         String password;
@@ -121,12 +162,29 @@ public final class LoginController implements Controller {
         }
     }
 
+    /**
+     * Metóda určená pre konverziu zadaného hesla na pole znakov pomocou SHA-256.
+     * 
+     * @param input heslo
+     * 
+     * @return pole znakov konvertovaného hesla
+     * 
+     * @throws NoSuchAlgorithmException výnimka pri nenájdení algoritmu pre
+     * kryptografiu
+     */
     //https://www.baeldung.com/sha-256-hashing-java
     private byte[] getSHA(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * Metóda pre skonvertovanie poľa znakov na reťazec.
+     * 
+     * @param hash pole znakov konvertovaného hesla
+     * 
+     * @return reťazcová reprezentácia zahashovaného hesla
+     */
     private String SHAtoString(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (int i = 0; i < hash.length; i++) {

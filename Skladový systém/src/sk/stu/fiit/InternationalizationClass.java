@@ -9,18 +9,37 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
+ * Trieda určená pre Internacionalizáciu.
  *
  * @author Ivan Vykopal
  */
 public class InternationalizationClass {
+    /** Atribút bundle predsatvuje súbor, v ktorom sa nachádzajú texty, pre zvolený jazyk. **/
     private static ResourceBundle bundle;
     
+    /**
+     * Privátny konštruktor triedy {@code InternationalizationClass}.
+     */
     private InternationalizationClass() {}
     
+    /**
+     * Metóda pre nastavenie súboru, z ktorého sa budú načítavať texty pre grafické rozhranie
+     * 
+     * @param path cesta k súboru s jazykovou verziou
+     * 
+     * @param lang jazyk
+     * 
+     * @param country krajina
+     */
     public static void setBundle(String path, String lang, String country) {
         bundle = ResourceBundle.getBundle(path, new Locale(lang, country));
     }
     
+    /**
+     * Metóda pre získanie aktuálnej jazykovej verzie.
+     * 
+     * @return súbor s aktuálnou jazykovou verziou 
+     */
     public static ResourceBundle getBundle() {
         return bundle;
     }

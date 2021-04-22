@@ -21,15 +21,37 @@ import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
+ * Trieda reprezentujúca controller pre príjem tovarov do skladu.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class GoodsReceiptController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného skladníka. **/
     private final WarehousemanWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsReceiptController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V tomto konštruktore sa zároveň napĺňa tabuľka s voľnými skladovacími
+     * priestorami.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     private GoodsReceiptController(Database database, WarehousemanWindow window) {
         this.database = database;
         this.window = window;
@@ -40,10 +62,21 @@ public final class GoodsReceiptController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code GoodsReceiptController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     public static void createController(Database database, WarehousemanWindow window) {
         new GoodsReceiptController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre tlačidlo a pre výber voľnej skladovacej
+     * pozície.
+     */
     @Override
     public void initController() {
         window.btnAcceptGoodsAddListener(new MouseAdapter() {
@@ -63,6 +96,14 @@ public final class GoodsReceiptController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre vykonanie príjmu tovaru. Na základe kódu tovaru sa vyhľadá daný
+     * tovar v databáze a vytvorí sa nová položka skladu s daným tovarom, 
+     * vybraným skladovacím priestorom a zadaným množstvom.
+     * 
+     * Zároveň skladník má možnosť označiť danú pozíciu za obsadenú v prípade,
+     * ak sa do danej pozície, žiadna iná položka nezmestí.
+     */
     private void acceptGoods() {
         String goodsCode = window.getTfGoodsCode();
         int quantity = window.getTfQuantity();
@@ -79,7 +120,7 @@ public final class GoodsReceiptController implements Controller {
             CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("LOAD_STORAGE_ERROR"));
             return;
         } else {
-            if (window.getChbStorageStatus().isSelected()) {
+            if (window.getCbStorageStatus().isSelected()) {
                 storage.setFree(false);
                 storage = database.setStorage(storage);
                 if (storage == null) {
@@ -104,10 +145,15 @@ public final class GoodsReceiptController implements Controller {
         window.setTfGoodsCode("");
         window.setTfQuantity("");
         window.setTfStorageCode("");
-        window.getChbStorageStatus().setSelected(false);
+        window.getCbStorageStatus().setSelected(false);
         fillStorageTable();
     }
 
+    /**
+     * Metóda pre výber skladovacej pozície z tabuľky voľných pozícií.
+     * 
+     * @param index riadok, ktorý bol používateľom zvolený z tabuľky
+     */
     private void chooseStorage(int index) {
         if (index != -1) {
             String code = (String) window.getTbFreeStorageModel().getValueAt(index, 0);
@@ -117,6 +163,9 @@ public final class GoodsReceiptController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s voľnými pozíciami v sklade.
+     */
     private void fillStorageTable() {
         window.getTbFreeStorageModel().setRowCount(0);
         for (Storage storage : database.getStorageTable()) {

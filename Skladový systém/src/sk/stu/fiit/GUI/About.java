@@ -9,11 +9,13 @@ import java.util.ResourceBundle;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre Informácie o autorovi.
  *
  * @author Ivan Vykopal
  */
 public class About extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**

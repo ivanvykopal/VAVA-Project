@@ -21,11 +21,13 @@ import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre prihláseného skladníka.
  *
  * @author Ivan Vykopal
  */
 public class WarehousemanWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -60,7 +62,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfStorageCode = new javax.swing.JTextField();
         btnAcceptGoods = new javax.swing.JButton();
-        chbStorageStatus = new javax.swing.JCheckBox();
+        cbStorageStatus = new javax.swing.JCheckBox();
         jPanel10 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         pLogin = new javax.swing.JPanel();
@@ -106,7 +108,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         spGoodsInfo = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        chbStorageOption = new javax.swing.JComboBox<>();
+        cbStorageOption = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         tfCodeFilter = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
@@ -250,14 +252,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
         jPanel1.add(btnAcceptGoods, gridBagConstraints);
 
-        chbStorageStatus.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        chbStorageStatus.setText(bundle.getString("STORAGE_FILL_CHB"));
+        cbStorageStatus.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        cbStorageStatus.setText(bundle.getString("STORAGE_FILL_CHB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        jPanel1.add(chbStorageStatus, gridBagConstraints);
+        jPanel1.add(cbStorageStatus, gridBagConstraints);
 
         pGoodsReceipt.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -672,14 +674,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 300);
         jPanel9.add(jLabel11, gridBagConstraints);
 
-        chbStorageOption.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        chbStorageOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { bundle.getString("CHOOSE"), bundle.getString("GOODS"), bundle.getString("STORAGE") }));
+        cbStorageOption.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        cbStorageOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { bundle.getString("CHOOSE"), bundle.getString("GOODS"), bundle.getString("STORAGE") }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 50;
         gridBagConstraints.insets = new java.awt.Insets(25, 300, 25, 25);
-        jPanel9.add(chbStorageOption, gridBagConstraints);
+        jPanel9.add(cbStorageOption, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel12.setText(bundle.getString("CODE") + ":");
@@ -831,8 +833,8 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnMoveGoods;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnShowStorage;
-    private javax.swing.JComboBox<String> chbStorageOption;
-    private javax.swing.JCheckBox chbStorageStatus;
+    private javax.swing.JComboBox<String> cbStorageOption;
+    private javax.swing.JCheckBox cbStorageStatus;
     private javax.swing.JCheckBox chbStorageStatus1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -906,22 +908,49 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfStorageCode1;
     // End of variables declaration//GEN-END:variables
 
-    public JCheckBox getChbStorageStatus() {
-        return chbStorageStatus;
+    /**
+     * Metóda pre získanie check boxu pre informáciu, či skladovací priestor je
+     * obsadený.
+     * 
+     * @return check box s informáciou o obsadenosti skladovacieho preistoru
+     */
+    public JCheckBox getCbStorageStatus() {
+        return cbStorageStatus;
     }
 
+    /**
+     * Metóda pre získanie tabuľky voľných pozícií v sklade.
+     * 
+     * @return tabuľka voľných pozícii v sklade
+     */
     public JTable getTbFreeStorageTable() {
         return tbFreeStorage;
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky voľných pozícií v sklade.
+     * 
+     * @return model tabuľky voľných pozícii v sklade
+     */
     public DefaultTableModel getTbFreeStorageModel() {
         return (DefaultTableModel) tbFreeStorage.getModel();
     }
 
+    /**
+     * Metóda pre získanie kódu tovaru.
+     * 
+     * @return text z textového poľa 
+     */
     public String getTfGoodsCode() {
         return tfGoodsCode.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie množstva z textového poľa.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby, inak
+     * zadané množstvo
+     */
     public int getTfQuantity() {
         try {
             if (tfQuantity.getText().equals("")) {
@@ -934,14 +963,30 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie kódu skladovacieho priestoru.
+     * 
+     * @return text z textového poľa 
+     */
     public String getTfStorageCode() {
         return tfStorageCode.getText().trim();
     }
 
+    /**
+     * Metóda pre zíksanie panelu príjmu tovaru.
+     * 
+     * @return panel pre príjem tovaru
+     */
     public JPanel getpGoodsReceipt() {
         return pGoodsReceipt;
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void changePasswordListener(IMethod iMethod) {
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
@@ -952,6 +997,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miChangePassword.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void goodsExportListener(IMethod iMethod) {
         btnGoodsExport.addMouseListener(new MouseAdapter() {
             @Override
@@ -962,6 +1013,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miGoodsExport.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void goodsMoveListener(IMethod iMethod) {
         btnGoodsMove.addMouseListener(new MouseAdapter() {
             @Override
@@ -972,6 +1029,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miGoodsMove.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void goodsReceiptListener(IMethod iMethod) {
         btnGoodsReceipt.addMouseListener(new MouseAdapter() {
             @Override
@@ -982,6 +1045,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miGoodsReceipt.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void logoutListener(IMethod iMethod) {
         btnLogout.addMouseListener(new MouseAdapter() {
             @Override
@@ -992,6 +1061,12 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miLogout.addActionListener(e -> iMethod.method());
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void showStorageListener(IMethod iMethod) {
         btnShowStorage.addMouseListener(new MouseAdapter() {
             @Override
@@ -1002,66 +1077,147 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miShowStorage.addActionListener(e -> iMethod.method());
     }
 
-    public void miAboutAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void aboutListener(ActionListener listener) {
         miAbout.addActionListener(listener);
     }
 
-    public void miExitAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void exitListener(ActionListener listener) {
         miExit.addActionListener(listener);
     }
 
-    public void miLoginPageAddListener(ActionListener listener) {
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param listener listener pre stlačenia menu item-u
+     */
+    public void loginListener(ActionListener listener) {
         miLoginPage.addActionListener(listener);
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnAcceptGoodsAddListener(MouseAdapter adapter) {
         btnAcceptGoods.addMouseListener(adapter);
     }
 
+    /**
+     * Metóda pre zíksanie panelu domovskej stránky.
+     * 
+     * @return panel s domovskou stránkou
+     */
     public JPanel getpLogin() {
         return pLogin;
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbName(String text) {
         this.lbName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbUsername(String text) {
         this.lbUsername.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfGoodsCode(String text) {
         this.tfGoodsCode.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfQuantity(String text) {
         this.tfQuantity.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfStorageCode(String text) {
         this.tfStorageCode.setText(text);
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnMoveGoodsAddListener(MouseAdapter adapter) {
         btnMoveGoods.addMouseListener(adapter);
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky voľných pozícií v sklade.
+     * 
+     * @return model tabuľky voľných pozícii v sklade
+     */
     public JTable getTbFreeStorage1Table() {
         return tbFreeStorage1;
     }
     
+    /**
+     * Metóda pre získanie tabuľky voľných pozícií v sklade.
+     * 
+     * @return tabuľka voľných pozícii v sklade
+     */
      public DefaultTableModel getTbFreeStorage1Model() {
         return (DefaultTableModel) tbFreeStorage1.getModel();
     }
 
+    /**
+     * Metóda pre získanie tabuľky tovarov v sklade.
+     * 
+     * @return tabuľka tovarov v sklade
+     */
     public JTable getTbGoodsTable() {
         return tbGoods;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky voľných pozícií v sklade.
+     * 
+     * @return model tabuľky voľných pozícii v sklade
+     */
     public DefaultTableModel getTbGoodsModel() {
         return (DefaultTableModel) tbGoods.getModel();
     }
 
+    /**
+     * Metóda pre získanie množstva z textového poľa.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby, inak
+     * zadané množstvo
+     */
     public int getTfQuantity1() {
         try {
             if (tfQuantity1.getText().equals("")) {
@@ -1074,46 +1230,103 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie kódu skladovacieho priestoru.
+     * 
+     * @return text z textového poľa 
+     */
     public String getTfStorageCode1() {
         return tfStorageCode1.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie scroll panelu okna presun tovaru v sklade.
+     * 
+     * @return scroll panel pre presun tovaru v sklade
+     */
     public JScrollPane getSpGoodsMove() {
         return spGoodsMove;
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfQuantity1(String text) {
         this.tfQuantity1.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfStorageCode1(String text) {
         this.tfStorageCode1.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text dodatočný text pre label
+     */
     public void setLbChoosedItem(String text) {
         this.lbChoosedItem.setText(bundle.getString("CHOOSED_GOODS") +": " + text);
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnExportGoodsAddListener(MouseAdapter adapter) {
         btnExportGoods.addMouseListener(adapter);
     }
 
+    /**
+     * Metóda pre získanie check boxu pre informáciu, či skladovací priestor je
+     * obsadený.
+     * 
+     * @return check box s informáciou o obsadenosti skladovacieho preistoru
+     */
     public JCheckBox getChbStorageStatus1() {
         return chbStorageStatus1;
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text dodatočný text pre label
+     */
     public void setLbChoosedItem1(String text) {
         lbChoosedItem1.setText(bundle.getString("CHOOSED_GOODS") + ": " + text);
     }
 
+    /**
+     * Metóda pre získanie tabuľky tovarov v sklade.
+     * 
+     * @return tabuľka tovarov v sklade
+     */
     public JTable getTbGoods1Table() {
         return tbGoods1;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky tovarov v sklade.
+     * 
+     * @return model tabuľky tovarov v sklade
+     */
     public DefaultTableModel getTbGoods1Model() {
         return (DefaultTableModel) tbGoods1.getModel();
     }
 
+    /**
+     * Metóda pre získanie množstva z textového poľa.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby, inak
+     * zadané množstvo
+     */
     public int getTfQuantity2() {
         try {
             if (tfQuantity2.getText().equals("")) {
@@ -1126,38 +1339,81 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfQuantity2(String text) {
         tfQuantity2.setText(text);
     }
 
+    /**
+     * Metóda pre získanie scroll panelu okna vývoz tovaru.
+     * 
+     * @return scroll panel pre vývoz tovaru
+     */
     public JScrollPane getSpGoodsExport() {
         return spGoodsExport;
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
     public void btnSearchAddListener(MouseAdapter adapter) {
         btnSearch.addMouseListener(adapter);
     }
 
-    public JComboBox<String> getChbStorageOption() {
-        return chbStorageOption;
+    /**
+     * Metóda pre získanie výberového pola pre možnost
+     * @return 
+     */
+    public JComboBox<String> getCbStorageOption() {
+        return cbStorageOption;
     }
 
+    /**
+     * Metóda pre získanie scroll panelu okna pre informácie o tovaroch.
+     * 
+     * @return scroll panel pre informácie o tovaroch
+     */
     public JScrollPane getSpGoodsInfo() {
         return spGoodsInfo;
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky skladovacích pozícií.
+     * 
+     * @return model tabuľky skladovacích pozícií
+     */
     public DefaultTableModel getTbStoragePositionsModel() {
         return (DefaultTableModel) tbStoragePositions.getModel();
     }
 
+    /**
+     * Metóda pre získanie hodnoty z filtra.
+     * 
+     * @return text z textového poľa 
+     */
     public String getTfCodeFilter() {
         return tfCodeFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfCodeFilter(String text) {
         tfCodeFilter.setText(text);
     }
     
+    /**
+     * Metóda pre odstránenie Mouselistenerov z tlačidiel a tabuliek z 
+     * jednotlivých panelov.
+     */
     public void removeListeners() {
         //Login panel ??
         for (MouseListener ml : btnLogout.getMouseListeners()) {

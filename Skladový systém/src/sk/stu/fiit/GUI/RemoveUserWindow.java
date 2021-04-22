@@ -13,11 +13,13 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre odstránenie používateľa.
  *
  * @author Ivan Vykopal
  */
 public class RemoveUserWindow extends javax.swing.JFrame {
 
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
     
     /**
@@ -296,46 +298,101 @@ public class RemoveUserWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie tabuľky používateľov.
+     * 
+     * @return tabuľka používateľov
+     */
     public JTable getTbUsersTable() {
         return tbUsers;
     }
 
+    /**
+     * Metóda pre získanie modelu tabuľky používateľov.
+     * 
+     * @return model tabuľka používateľov
+     */
     public DefaultTableModel getTbUsersModel() {
         return (DefaultTableModel) tbUsers.getModel();
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfEmail(String text) {
         this.tfEmail.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfName(String text) {
         this.tfName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfType(String text) {
         this.tfType.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfUsername(String text) {
         this.tfUsername.setText(text);
     }
 
+    /**
+     * Metóda pre získanie výberového pola pre filtráciu.
+     * 
+     * @return výberové pole pre typ používateľa pre filtráciu
+     */
     public JComboBox<String> getCbTypeFilter() {
         return cbTypeFilter;
     }
 
+    /**
+     * Metóda pre získanie hodnoty filtra.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfFilter() {
         return tfFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnRemoveUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveUser.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseUser.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
         btnFilter.addMouseListener(mouseAdapter);
     }

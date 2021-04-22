@@ -18,16 +18,42 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
 /**
+ * Trieda reprezentujúca controller pre prihláseného referenta.
  *
+ * @see Controller
+ * 
  * @author Ivan Vykopal
  */
 public final class ReferentController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného referenta. **/
     private final ReferentWindow window;
+    
+    /** Atribút user predstavujúci prihláseného referenta. **/
     private final User user;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code ReferentController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V tomto konštruktore sa zároveň vypĺňajú informácie o referentovi viditeľné
+     * na obrazovke ako sú prihlasovacie meno a meno referenta.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného referenta
+     * 
+     * @param user prihlásený referent
+     */
     private ReferentController(Database database, ReferentWindow window, User user) {
         this.database = database;
         this.window = window;
@@ -41,10 +67,23 @@ public final class ReferentController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code ReferentController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného referenta
+     * 
+     * @param user prihlásený referent
+     */
     public static void createController(Database database, ReferentWindow window, User user) {
         new ReferentController(database, window, user);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre tlačidlá a menu itemy nachádzajúce sa
+     * na obrazovke referenta po prihlásení. 
+     */
     @Override
     public void initController() {
         window.changePasswordListener(() -> changePassword());
@@ -57,17 +96,24 @@ public final class ReferentController implements Controller {
 
         window.profitsListener(() -> viewProfits());
         
-        window.miExitAddListener(e -> System.exit(0));
+        window.exitListener(e -> System.exit(0));
         
-        window.miLoginPageAddListener(e -> viewLoginPage());
+        window.loginListener(e -> viewLoginPage());
         
-        window.miAboutAddListener(e -> new About().setVisible(true));
+        window.aboutListener(e -> new About().setVisible(true));
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code ChangePasswordController} a vytvára
+     * k nemu prislúchajúcu obrazovku.
+     */
     private void changePassword() {
         ChangePasswordController.createController(database, new ChangePasswordWindow(), user);
     }
     
+    /**
+     * Metóda, ktorá zobrazuje panel pre domovskú stránku referenta.
+     */
     private void viewLoginPage() {
         hideAll();
         clearAll();
@@ -75,11 +121,21 @@ public final class ReferentController implements Controller {
         window.getpLogin().setVisible(true);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code LoginController} a vytvára
+     * k nemu prislúchajúcu obrazovku. 
+     * 
+     * Predstavuje odhlásenie používateľa zo systému.
+     */
     private void logout() {
         LoginController.createController(database, new LoginWindow());
         window.setVisible(false);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsCostsController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void viewCosts() {
         hideAll();
         clearAll();
@@ -87,6 +143,10 @@ public final class ReferentController implements Controller {
         GoodsCostsController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsOverviewController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void viewGoodsOverview() {
         hideAll();
         clearAll();
@@ -94,6 +154,10 @@ public final class ReferentController implements Controller {
         GoodsOverviewController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsProfitsControlller}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void viewProfits() {
         hideAll();
         clearAll();
@@ -101,6 +165,10 @@ public final class ReferentController implements Controller {
         GoodsProfitsControlller.createController(database, window);
     }
     
+    /**
+     * Metóda pre skrytie všetkých panelov nachádzajúcich sa na obrazovke
+     * referenta.
+     */
     private void hideAll() {
         window.getpGoodsCosts().setVisible(false);
         window.getpGoodsOverview().setVisible(false);
@@ -108,11 +176,18 @@ public final class ReferentController implements Controller {
         window.getpLogin().setVisible(false);
     }
     
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov na jednotlivých paneloch.
+     */
     private void clearAll() {
         clearProfits();
         clearCosts();
     }
     
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel s informáciami o
+     * ziskoch.
+     */
     private void clearProfits() {
         window.setFtfProfitsFrom("");
         window.setFtfProfitsTo("");
@@ -120,6 +195,10 @@ public final class ReferentController implements Controller {
         window.setLbProfits("");
     }
     
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel s informáciami o
+     * nákladoch.
+     */
     private void clearCosts() {
         window.setFtfCostsFrom("");
         window.setFtfCostsTo("");

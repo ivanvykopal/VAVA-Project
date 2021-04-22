@@ -12,11 +12,13 @@ import javax.swing.event.DocumentListener;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre zmenu hesla používateľa.
  *
  * @author Ivan Vykopal
  */
 public class ChangePasswordWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -150,27 +152,59 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfOldPassword;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie potvrdzujúceho hesla.
+     * 
+     * @return text z textového poľa
+     */
     public String getPfConfirmPassword() {
         return new String(pfConfirmPassword.getPassword());
     }
 
+    /**
+     * Metóda pre získanie nového hesla.
+     * 
+     * @return text z textového poľa
+     */
     public String getPfNewPassword() {
         return new String(pfNewPassword.getPassword());
     }
 
+    /**
+     * Metóda pre získanie pôvodného hesla.
+     * 
+     * @return text z textového poľa
+     */
     public String getPfOldPassword() {
         return new String(pfOldPassword.getPassword());
     }
 
+    /**
+     * Metóda pre nastavenie informačnej správy.
+     * 
+     * @param text text správy
+     * 
+     * @param color farba textu
+     */
     public void setLbInfoMessage(String text, Color color) {
         this.lbInfoMessage.setText(text);
         this.lbInfoMessage.setForeground(color);
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChangePasswordAddMouseListener(MouseAdapter mouseAdapter) {
         btnChangePassword.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie DocumentListenera pre zmenu hodnoty v textovom poli.
+     * 
+     * @param listener listener pre zmenu hodnoty v textovom poli
+     */
     public void pfConfirmPasswordAddListener(DocumentListener listener) {
         pfConfirmPassword.getDocument().addDocumentListener(listener);
     }

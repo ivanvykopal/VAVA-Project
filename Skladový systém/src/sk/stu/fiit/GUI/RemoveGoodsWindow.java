@@ -12,11 +12,13 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre odstránenie tovaru.
  *
  * @author Ivan Vykopal
  */
 public class RemoveGoodsWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -319,46 +321,102 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 
+    
+    /**
+     * Metóda pre získanie tabuľky tovarov.
+     * 
+     * @return tabuľka tovarov
+     */
     public JTable getTbGoodsTable() {
         return tbGoods;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky tovarov.
+     * 
+     * @return model tabuľky tovarov
+     */
     public DefaultTableModel getTbGoodsModel() {
         return (DefaultTableModel) tbGoods.getModel();
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTaDescription(String text) {
         this.taDescription.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfCode(String text) {
         this.tfCode.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfExportPrice(String text) {
         this.tfExportPrice.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfImportPrice(String text) {
         this.tfImportPrice.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfName(String text) {
         this.tfName.setText(text);
     }
     
+    /**
+     * Metóda pre získanie hodnoty filtra.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfFilter() {
         return tfFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnRemoveGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnRemoveGoods.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChooseGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseGoods.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
         btnFilter.addMouseListener(mouseAdapter);
     }

@@ -18,16 +18,42 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
 
 /**
+ * Trieda reprezentujúca controller pre prihláseného skladníka.
  *
+ * @see Controller
+ * 
  * @author Ivan Vykopal
  */
 public final class WarehousemanController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného skladníka. **/
     private final WarehousemanWindow window;
+    
+    /** Atribút user predstavujúci prihláseného skladníka. **/
     private final User user;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code WarehousemanController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V tomto konštruktore sa zároveň vypĺňajú informácie o skladníkovi viditeľné
+     * na obrazovke ako sú prihlasovacie meno a meno skladníka.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     * 
+     * @param user prihlásený skladník
+     */
     private WarehousemanController(Database database, WarehousemanWindow window, User user) {
         this.database = database;
         this.window = window;
@@ -40,10 +66,23 @@ public final class WarehousemanController implements Controller {
 
     }
 
+    /**
+     * Metóda pre vytvorenie {@code WarehousemanController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     * 
+     * @param user prihlásený skladník
+     */
     public static void createController(Database database, WarehousemanWindow window, User user) {
         new WarehousemanController(database, window, user);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre tlačidlá a menu itemy nachádzajúce sa
+     * na obrazovke referenta po prihlásení. 
+     */
     @Override
     public void initController() {
         window.changePasswordListener(() -> changePassword());
@@ -58,17 +97,24 @@ public final class WarehousemanController implements Controller {
 
         window.logoutListener(() -> logout());
 
-        window.miAboutAddListener(e -> new About().setVisible(true));
+        window.aboutListener(e -> new About().setVisible(true));
 
-        window.miExitAddListener(e -> System.exit(0));
+        window.exitListener(e -> System.exit(0));
 
-        window.miLoginPageAddListener(e -> viewLoginPage());
+        window.loginListener(e -> viewLoginPage());
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code ChangePasswordController} a vytvára
+     * k nemu prislúchajúcu obrazovku.
+     */
     private void changePassword() {
         ChangePasswordController.createController(database, new ChangePasswordWindow(), user);
     }
 
+    /**
+     * Metóda, ktorá zobrazuje panel pre domovskú stránku skladníka.
+     */
     private void viewLoginPage() {
         hideAll();
         clearAll();
@@ -76,6 +122,10 @@ public final class WarehousemanController implements Controller {
         window.getpLogin().setVisible(true);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsExportController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void exportGoods() {
         hideAll();
         clearAll();
@@ -83,6 +133,10 @@ public final class WarehousemanController implements Controller {
         GoodsExportController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsMoveController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void moveGoods() {
         hideAll();
         clearAll();
@@ -90,6 +144,10 @@ public final class WarehousemanController implements Controller {
         GoodsMoveController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsReceiptController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void accpetGoods() {
         hideAll();
         clearAll();
@@ -97,6 +155,10 @@ public final class WarehousemanController implements Controller {
         GoodsReceiptController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code GoodsInfoController}, pričom 
+     * zvyšné panely nachádzajúce sa na obrazovke sa nastavia za neviditeľné.
+     */
     private void showStorage() {
         hideAll();
         clearAll();
@@ -104,11 +166,21 @@ public final class WarehousemanController implements Controller {
         GoodsInfoController.createController(database, window);
     }
 
+    /**
+     * Metóda, ktorá volá controller pre {@code LoginController} a vytvára
+     * k nemu prislúchajúcu obrazovku. 
+     * 
+     * Predstavuje odhlásenie používateľa zo systému.
+     */
     private void logout() {
         LoginController.createController(database, new LoginWindow());
         window.setVisible(false);
     }
 
+    /**
+     * Metóda pre skrytie všetkých panelov nachádzajúcich sa na obrazovke
+     * skladníka.
+     */
     private void hideAll() {
         window.getpLogin().setVisible(false);
         window.getpGoodsReceipt().setVisible(false);
@@ -117,6 +189,9 @@ public final class WarehousemanController implements Controller {
         window.getSpGoodsInfo().setVisible(false);
     }
 
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov na jednotlivých paneloch.
+     */
     private void clearAll() {
         clearGoodsExport();
         clearGoodsMove();
@@ -124,13 +199,19 @@ public final class WarehousemanController implements Controller {
         clearGoodsInfo();
     }
 
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel príjmu tovarov.
+     */
     private void clearGoodsReceipt() {
         window.setTfGoodsCode("");
         window.setTfQuantity("");
         window.setTfStorageCode("");
-        window.getChbStorageStatus().setSelected(false);
+        window.getCbStorageStatus().setSelected(false);
     }
 
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel presunu tovarov.
+     */
     private void clearGoodsMove() {
         window.setTfQuantity1("");
         window.setTfStorageCode1("");
@@ -138,15 +219,22 @@ public final class WarehousemanController implements Controller {
         window.getChbStorageStatus1().setSelected(false);
     }
 
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel vývozu tovarov.
+     */
     private void clearGoodsExport() {
         window.setTfQuantity2("");
         window.setLbChoosedItem1("");
     }
 
+    /**
+     * Metóda pre vyprázdnenie všetkých komponentov pre panel informácií o
+     * položkách skladu.
+     */
     private void clearGoodsInfo() {
         window.getTbStoragePositionsModel().setRowCount(0);
         window.setTfCodeFilter("");
-        window.getChbStorageOption().setSelectedIndex(0);
+        window.getCbStorageOption().setSelectedIndex(0);
     }
 
 }

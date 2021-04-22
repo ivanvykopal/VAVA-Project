@@ -8,11 +8,18 @@ package sk.stu.fiit.Model;
 import java.io.Serializable;
 
 /**
+ * Trieda enumerátor predstavuje typ používateľa.
  *
  * @author Ivan Vykopal
  */
 public enum Type implements Serializable {
+    
+    /** Typ Administrátor. **/
     ADMINISTRATOR,
+    
+    /** Typ Skladník. **/
     WAREHOUSEMAN,
+    
+    /** Typ Referent. **/
     REFERENT
 }

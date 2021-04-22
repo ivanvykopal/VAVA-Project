@@ -6,10 +6,15 @@
 package sk.stu.fiit.Controllers;
 
 /**
+ * Interface pre jednotlivé controllere.
  *
  * @author Ivan Vykopal
  */
 public interface Controller {
     
+    /**
+     * Abstraktná trieda pre inicializáciu controllera pre pridávanie listenerov
+     * pre jednotlivé komponenty.
+     */
     void initController();
 }

@@ -16,18 +16,35 @@ import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
-import sk.stu.fiit.Model.Position;
 
 /**
+ * Trieda reprezentujúca controller pre informácie o sklade a položkách skladu.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class GoodsInfoController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného skladníka. **/
     private final WarehousemanWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsInfoController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     private GoodsInfoController(Database database, WarehousemanWindow window) {
         this.database = database;
         this.window = window;
@@ -35,10 +52,20 @@ public final class GoodsInfoController implements Controller {
         initController();
     }
     
+    /**
+     * Metóda pre vytvorenie {@code GoodsInfoController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     public static void createController(Database database, WarehousemanWindow window) {
         new GoodsInfoController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo.
+     */
     @Override
     public void initController() {
         window.btnSearchAddListener(new MouseAdapter() {
@@ -49,10 +76,21 @@ public final class GoodsInfoController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky položkami skladu. Tieto položky sú vybrané
+     * na základe možností zvolenými používateľom. Medzi možnosti patrí to, či
+     * sa budú zobrazovať položky na základe skladovacieho preistoru alebo na
+     * základe tovarov.
+     * 
+     * <p>
+     * Používateľ má možnosť filtrovania, pri filtrovaní sa rozlišuje možnosť,
+     * ktorú používateľ zvolil.
+     * </p>
+     */
     private void fillTable() {
         window.getTbStoragePositionsModel().setRowCount(0);
         String filter = window.getTfCodeFilter();
-        int typeIndex = window.getChbStorageOption().getSelectedIndex();
+        int typeIndex = window.getCbStorageOption().getSelectedIndex();
 
         Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
         switch (typeIndex) {
@@ -60,15 +98,15 @@ public final class GoodsInfoController implements Controller {
                 JOptionPane.showMessageDialog(window, bundle.getString("OPTION_ERROR"));
                 return;
             case 1:
-                for (Item item : database.getItemTable()) {
-                    if (pattern.matcher(item.getGoods().getCode()).find() && item.getPosition() == Position.IN_STOCK) {
+                for (Item item : database.getItemTableIn()) {
+                    if (pattern.matcher(item.getGoods().getCode()).find()) {
                         addRow(item);
                     }
                 }
                 break;
             case 2:
-                for (Item item : database.getItemTable()) {
-                    if (pattern.matcher(item.getStorage().getCode()).find() && item.getPosition() == Position.IN_STOCK) {
+                for (Item item : database.getItemTableIn()) {
+                    if (pattern.matcher(item.getStorage().getCode()).find()) {
                         addRow(item);
                     }
                 }
@@ -76,6 +114,11 @@ public final class GoodsInfoController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre pridanie riadku do tabuľky.
+     * 
+     * @param item položka, ktorú pridávame do tabuľky
+     */
     private void addRow(Item item) {
         Object[] row = new Object[7];
         row[0] = item.getStorage().getCode();

@@ -13,11 +13,13 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre úpravu používateľa.
  *
  * @author Ivan Vykopal
  */
 public class EditUserWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -293,30 +295,65 @@ public class EditUserWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie výberového pola.
+     * 
+     * @return výberové pole pre typ používateľa
+     */
     public JComboBox<String> getCbType() {
         return cbType;
     }
 
+    /**
+     * Metóda pre získanie tabuľky používateľov.
+     * 
+     * @return tabuľka používateľov
+     */
     public JTable getTbUsersTable() {
         return tbUsers;
     }
     
+    /**
+     * Metóda pre získanie modelu tabuľky používateľov.
+     * 
+     * @return model tabuľky používateľov
+     */
     public DefaultTableModel getTbUsersModel() {
         return (DefaultTableModel) tbUsers.getModel();
     }
 
+    /**
+     * Metóda pre získanie e-mailu používateľa.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfEmail() {
         return tfEmail.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie mena používateľa.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfName() {
         return tfName.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie používateľského mena.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfUsername() {
         return tfUsername.getText().trim();
     }
 
+    /**
+     * Metóda pre nastavenie typu používateľa vo výberovom poli.
+     * 
+     * @param type typ používateľa
+     */
     public void setCbType(sk.stu.fiit.Model.Type type) {
         switch(type) {
             case ADMINISTRATOR: 
@@ -331,34 +368,74 @@ public class EditUserWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfEmail(String text) {
         this.tfEmail.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfName(String text) {
         this.tfName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie hodnoty v textovom poli.
+     * 
+     * @param text hodnota pre textové pole
+     */
     public void setTfUsername(String text) {
         this.tfUsername.setText(text);
     }
 
+    /**
+     * Metóda pre získanie výberového pola pre filtráciu.
+     * 
+     * @return výberové pole pre typ používateľa pre filtráciu
+     */
     public JComboBox<String> getCbTypeFilter() {
         return cbTypeFilter;
     }
 
+    /**
+     * Metóda pre získanie hodnoty filtra.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfFilter() {
         return tfFilter.getText().trim();
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnEditUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnEditUser.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnChooseUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnChooseUser.addMouseListener(mouseAdapter);
     }
     
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnFilterAddMouseListener(MouseAdapter mouseAdapter) {
         btnFilter.addMouseListener(mouseAdapter);
     }

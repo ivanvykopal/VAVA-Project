@@ -10,14 +10,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ResourceBundle;
+import sk.stu.fiit.CustomLogger;
+import sk.stu.fiit.InternationalizationClass;
 
 
 /**
+ * Trieda určená pre serializáciu databázy.
  *
  * @author Ivan Vykopal
  */
 public final class SerializationClass {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
+    private static final ResourceBundle bundle = InternationalizationClass.getBundle();
+    
+    /**
+     * Metóda pre serializáciu databázy. Vytvorí sa súbor database.ser.
+     * 
+     * @param database 
+     */
     public static void serialize(Database database) {
         try {
             FileOutputStream file = new FileOutputStream("database.ser");
@@ -26,12 +38,17 @@ public final class SerializationClass {
             out.close();
             file.close();
         } catch(IOException ex) {
-            ex.printStackTrace();
+            CustomLogger.getLogger(SerializationClass.class).warn(bundle.getString("SERIALIZATION_ERROR"), ex);
         }
     }
     
+    /**
+     * Metóda pre deserializáciu databázy. Databáza sa načítava z database.ser.
+     * 
+     * @return načítaná databáza, inak prázdna databáza
+     */
     public static Database deserialize() {
-        Database database = null;
+        Database database;
         try {
             FileInputStream file = new FileInputStream("database.ser");
             ObjectInputStream in = new ObjectInputStream(file);
@@ -39,9 +56,8 @@ public final class SerializationClass {
             in.close();
             file.close();
             return database;
-        } catch (IOException ex) {
-            return Database.createDatabase();
-        } catch (ClassNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
+            CustomLogger.getLogger(SerializationClass.class).warn(bundle.getString("SERIALIZATION_ERROR"), ex);
             return Database.createDatabase();
         }
     }

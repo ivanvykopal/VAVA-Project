@@ -18,18 +18,43 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 import sk.stu.fiit.Model.Position;
 import sk.stu.fiit.Model.SerializationClass;
+import sk.stu.fiit.Model.Storage;
 
 /**
+ * Trieda reprezentujúca controller pre vývoz tovarov zo skladu.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class GoodsExportController implements Controller {
 
+    /** Atribút item predstavuje položku, ktorú používateľ vybral z tabuľky. **/
     private Item item;
+    
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre prihláseného skladníka. **/
     private final WarehousemanWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsExportController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * <p>
+     * V tomto konštruktore sa zároveň napĺňa tabuľka s aktuálnymi položkami
+     * zo skladu.
+     * </p>
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     private GoodsExportController(Database database, WarehousemanWindow window) {
         this.database = database;
         this.window = window;
@@ -40,10 +65,21 @@ public final class GoodsExportController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code GoodsExportController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre prihláseného skladníka
+     */
     public static void createController(Database database, WarehousemanWindow window) {
         new GoodsExportController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenerov pre tlačidlo a pre tabuľku na výber položky
+     * zo skladu. 
+     */
     @Override
     public void initController() {
         window.btnExportGoodsAddListener(new MouseAdapter() {
@@ -63,7 +99,25 @@ public final class GoodsExportController implements Controller {
         });
     }
 
-    //TODO: pridať checkbox pre nastavenie, že sklad. priestor je voľný
+    /**
+     * Metóda pre vývoz tovaru zo skladu.
+     * 
+     * <p>
+     * V rámci tejto metódy sa zistí zvolené množstvo. V prípade správnej hodnoty
+     * množstva sa buď vytvorí nová položka, ktorá bude zaznačená ako vyvezená
+     * alebo sa celá položka označí za vyvezenú. Závisí to od zadaného množstva.
+     * </p>
+     * <p>
+     * V prípade množstva rovnému množstvu položky sa celá položka označí za 
+     * vyvezenú.
+     * </p>
+     * <p>
+     * V prípade množstva menšieho ako je množstvo vybranej položky, vtedy sa
+     * vtvorí nová položka s požadovaným množstvom a z pôvodnej položky skladu,
+     * sa zadané množstvo odstráni.
+     * </p>
+     */
+    //TODO: Pridať flag presun na výrobu
     private void exportGoods() {
         if (item == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
@@ -76,6 +130,8 @@ public final class GoodsExportController implements Controller {
             JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR1"));
             return;
         }
+        
+        Storage storage = item.getStorage();
 
         Item newItem = new Item();
         newItem.setReceiptDate(item.getReceiptDate());
@@ -84,15 +140,18 @@ public final class GoodsExportController implements Controller {
         newItem.setPosition(Position.OUT_STOCK);
         newItem.setStorage(null);
         if (quantity == item.getQuantity()) {
-            item = database.removeItem(item);
+            newItem.setId(item.getId());
+            newItem.setQuantity(quantity);
+            item = database.setItem(newItem);
             if (item == null) {
-                JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_ITEM_ERROR"));
-                CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("REMOVE_ITEM_ERROR"));
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
+                CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
+            storage.setFree(true);
+            storage.setItemCount(storage.getItemCount() - 1);
+            database.setStorage(storage);
             item = null;
-            newItem.setQuantity(quantity);
-            addNewItem(newItem);
         } else if (quantity > item.getQuantity()) {
             JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR2"));
             CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("QUANTITY_ERROR2"));
@@ -108,10 +167,17 @@ public final class GoodsExportController implements Controller {
                 CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
+            storage.setFree(true);
+            database.setStorage(storage);
             addNewItem(newItem);
         }
     }
 
+    /**
+     * Metóda pre vytvorenie novej položky skladu.
+     * 
+     * @param it položka skladu
+     */
     private void addNewItem(Item it) {
         it = database.addItem(it);
         if (it == null) {
@@ -127,6 +193,11 @@ public final class GoodsExportController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre výber položky skladu z tabuľky.
+     * 
+     * @param index riadok, ktorý bol používateľom zvolený z tabuľky
+     */
     private void chooseItem(int index) {
         if (index == -1) {
             item = null;
@@ -137,18 +208,19 @@ public final class GoodsExportController implements Controller {
         item = database.findItem(id);
     }
 
+    /**
+     * Metóda pre naplnenie tabuľky s položkami skladu.
+     */
     private void fillTable() {
         window.getTbGoods1Model().setRowCount(0);
-        for (Item it : database.getItemTable()) {
-            if (it.getPosition() == Position.IN_STOCK) {
-                Object[] row = new Object[5];
-                row[0] = it.getId();
-                row[1] = it.getGoods().getCode();
-                row[2] = it.getGoods().getName();
-                row[3] = it.getQuantity();
-                row[4] = it.getStorage().getCode();
-                window.getTbGoods1Model().addRow(row);
-            }
+        for (Item it : database.getItemTableIn()) {
+            Object[] row = new Object[5];
+            row[0] = it.getId();
+            row[1] = it.getGoods().getCode();
+            row[2] = it.getGoods().getName();
+            row[3] = it.getQuantity();
+            row[4] = it.getStorage().getCode();
+            window.getTbGoods1Model().addRow(row);
         }
     }
 

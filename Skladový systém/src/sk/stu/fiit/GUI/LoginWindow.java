@@ -11,11 +11,13 @@ import javax.swing.JComboBox;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre prihlásenie používateľa.
  *
  * @author Ivan Vykopal
  */
 public class LoginWindow extends javax.swing.JFrame{
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -166,19 +168,38 @@ public class LoginWindow extends javax.swing.JFrame{
     private javax.swing.JTextField tfLoginField;
     // End of variables declaration//GEN-END:variables
 
-   
+   /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnLoginAddMouseListener(MouseAdapter mouseAdapter) {
         btnLogin.addMouseListener(mouseAdapter);
     }
 
+    /**
+     * Metóda pre získanie hesla.
+     * 
+     * @return text z textového poľa
+     */
     public String getPfPasswordField() {
         return new String(pfPasswordField.getPassword());
     }
 
+    /**
+     * Metóda pre získanie prihlasovacieho mena.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfLoginField() {
         return tfLoginField.getText();
     }
 
+    /**
+     * Metóda pre získanie výberového pola pre jazykovú verziu.
+     * 
+     * @return výberové pole pre jazykovú verziu
+     */
     public JComboBox<String> getCbLanguage() {
         return cbLanguage;
     }

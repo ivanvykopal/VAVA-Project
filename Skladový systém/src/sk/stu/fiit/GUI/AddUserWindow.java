@@ -11,11 +11,13 @@ import javax.swing.JComboBox;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre pridanie skladovacieho priestoru do systému.
  *
- * @author Acer
+ * @author Ivan Vykopal
  */
 public class AddUserWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -165,22 +167,47 @@ public class AddUserWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre získanie výberového pola.
+     * 
+     * @return výberové pole pre typ používateľa
+     */
     public JComboBox<String> getCbType() {
         return cbType;
     }
 
+    /**
+     * Metóda pre získanie e-mailu používateľa.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfEmail() {
         return tfEmail.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie mena používateľa.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfName() {
         return tfName.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie používateľského mena.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfUsername() {
         return tfUsername.getText().trim();
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnAddUserAddMouseListener(MouseAdapter mouseAdapter) {
         btnAddUser.addMouseListener(mouseAdapter);
     }

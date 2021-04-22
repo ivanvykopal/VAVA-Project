@@ -19,15 +19,32 @@ import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 
 /**
+ * Trieda reprezentujúca controller pre pridávanie používateľov do systému.
  *
+ * @see Controller
+ * 
  * @author Ivan Vykopal
  */
 public final class AddUserController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre pridávanie používateľov. **/
     private final AddUserWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code AddUserController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie používateľov
+     */
     private AddUserController(Database database, AddUserWindow window) {
         this.database = database;
         this.window = window;
@@ -36,10 +53,20 @@ public final class AddUserController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code AddUserController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie používateľov
+     */
     public static void createController(Database database, AddUserWindow window) {
         new AddUserController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo. 
+     */
     @Override
     public void initController() {
         window.btnAddUserAddMouseListener(new MouseAdapter() {
@@ -50,6 +77,16 @@ public final class AddUserController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre pridanie nového používateľa do systému.
+     * 
+     * <p>
+     * V rámci tejto triedy sa kontroluje korektnosť zadaného emailu, to, či sú
+     * všetky polia vyplnené.
+     * V prípade správne zadaných údajov je daný používateľ do systému pridaný,
+     * ak sa ešte v systéme nenachádza.
+     * </p>
+     */
     private void addUser() {
         User user = new User();
         user.setUsername(window.getTfUsername());

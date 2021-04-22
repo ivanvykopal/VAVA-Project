@@ -13,16 +13,29 @@ import sk.stu.fiit.GUI.ReferentWindow;
 import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
-import sk.stu.fiit.Model.Position;
 
 /**
+ * Trieda reprezentujúca controller pre zobrazovanie informácií o tovaroch, 
+ * množstvách a celkovej cene skladovaného tovaru.
+ * 
+ * @see GoodsController
  *
  * @author Ivan Vykopal
  */
 public final class GoodsOverviewController extends GoodsController {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsOverviewController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     private GoodsOverviewController(Database database, ReferentWindow window) {
         super(database, window);
         
@@ -31,28 +44,48 @@ public final class GoodsOverviewController extends GoodsController {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code GoodsOverviewController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zobrazovanie nákladov
+     */
     public static void createController(Database database, ReferentWindow window) {
         new GoodsOverviewController(database, window);
     }
 
+    /**
+     * Metóda pre naplnenie informácií o tovaroch, množstvách a celkovej cene
+     * skladovaného tovaru.
+     */
     @Override
     public void initController() {
         fillInformation();
     }
 
+    /**
+     * Metóda pre zistenie informácií o tovaroch, množstvách a celkovej cene
+     * skladovaného tovaru.
+     * 
+     * <p>
+     * V rámci tejto metódy sa prechádzajú položky, ktoré sa aktuálne nachádzajú 
+     * na sklade a pre jednotlivé tovary sa vypočítavajú množstvá. Po výpočte
+     * a zistení tovarov nachádzajúcich sa v sklade sú tieto informácie zobrazené
+     * v tabuľke a pod tabuľkou.
+     * </p>
+     */
     private void fillInformation() {
         HashMap<String, TableItem> table = new HashMap<>();
         
-        for (Item item : database.getItemTable()) {
-            if (item.getPosition() == Position.IN_STOCK) {
-                TableItem i = table.get(item.getGoods().getCode());
-                if (i == null) {
-                    i = new TableItem(item.getGoods().getName(), item.getQuantity(), item.getGoods().getIncomePrice(), item.getGoods().getExportPrice());
-                    table.put(item.getGoods().getCode(), i);
-                } else {
-                    i.quantity += item.getQuantity();
-                    table.replace(item.getGoods().getCode(), i);
-                }
+        for (Item item : database.getItemTableIn()) {
+            TableItem i = table.get(item.getGoods().getCode());
+            if (i == null) {
+                i = new TableItem(item.getGoods().getName(), item.getQuantity(), item.getGoods().getIncomePrice(), item.getGoods().getExportPrice());
+                table.put(item.getGoods().getCode(), i);
+            } else {
+                i.quantity += item.getQuantity();
+                table.replace(item.getGoods().getCode(), i);
             }
         }
         
@@ -71,7 +104,6 @@ public final class GoodsOverviewController extends GoodsController {
         }
 
         window.setLbTotalPrice(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
-
     }
 
 }

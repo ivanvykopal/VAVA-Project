@@ -11,13 +11,26 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 
 /**
- *
- * @author Acer
+ * Trieda predstavujúca Logger. Využíva sa Log4j spolu s konfigurátorom, v ktorom
+ * sa určuje kde sa logy zapisujú. Logy sa zapisujú aj do konzoly aj do súboru.
+ * 
+ * @author Ivan Vykopal
  */
-public class CustomLogger {
+public final class CustomLogger {
     
+    /**
+     * Privátny konštruktor triedy {@code CustomLogger}.
+     */
     private CustomLogger() {}
     
+    /**
+     * Metóda pre vytvorenie loggera na základe triedy {@code clazz} spolu s
+     * kofigurátorom.
+     * 
+     * @param clazz trieda, pre ktorú sa logger vytvára
+     * 
+     * @return logger, prostredníctvom, ktorého sa loguje do súboru a konzoly
+     */
     public static Logger getLogger(final Class<?> clazz) {
         Logger logger = Logger.getLogger(clazz);
         DOMConfigurator.configure(new File("src/sk/stu/fiit/log4j.xml").getAbsolutePath());

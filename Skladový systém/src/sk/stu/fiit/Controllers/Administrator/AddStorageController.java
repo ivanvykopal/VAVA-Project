@@ -18,15 +18,32 @@ import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.Storage;
 
 /**
+ * Trieda reprezentujúca controller pre pridávanie skladovacích priestorov do systému.
+ * 
+ * @see Controller
  *
  * @author Ivan Vykopal
  */
 public final class AddStorageController implements Controller {
 
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre pridávanie skladovacích priestorov. **/
     private final AddStorageWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code AddStorageController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie skladovacích priestorov
+     */
     private AddStorageController(Database database, AddStorageWindow window) {
         this.database = database;
         this.window = window;
@@ -35,10 +52,20 @@ public final class AddStorageController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code AddStorageController}.
+     *
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre pridávanie skladovacích priestorov
+     */
     public static void createController(Database database, AddStorageWindow window) {
         new AddStorageController(database, window);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo. 
+     */
     @Override
     public void initController() {
         window.btnAddStorageAddMouseListener(new MouseAdapter() {
@@ -49,6 +76,15 @@ public final class AddStorageController implements Controller {
         });
     }
 
+    /**
+     * Metóda pre pridanie nového skladovacieho priestoru do systému.
+     * 
+     * <p>
+     * V rámci tejto triedy sa kontroluje to, či sú vyplnené všetky polia.
+     * Pri správne zadaných údajoch je následne daný skladovací priestor pridaný
+     * do systému v prípade, ak sa v ňom ešte nenachádza.
+     * </p>
+     */
     private void addStorage() {
         Storage storage = new Storage();
         storage.setBuilding(window.getTfBuilding());

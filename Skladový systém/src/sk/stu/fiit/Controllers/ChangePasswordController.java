@@ -20,16 +20,37 @@ import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 
 /**
- *
+ * Trieda reprezentujúca controller pre zmenu hesla používateľa.
+ * 
+ * @see Controller
+ * 
  * @author Ivan Vykopal
  */
 public final class ChangePasswordController implements Controller {
     
+    /** Atribút database predstavuje databázu so všetkými údajmi zo systému. **/
     private final Database database;
+    
+    /** Atribút window predstavuje obrazovku pre zmenu hesla. **/
     private final ChangePasswordWindow window;
+    
+    /** Atribút user predstavuje používateľa, ktorý si mení heslo. **/
     private User user;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
     
+    /**
+     * Privátny konštruktor pre inicializáciu atribútov triedy {@code ChangePasswordController}, 
+     * nastavenie aktuálneho panelu a pridanie listenerov pre jednotlivé komponenty
+     * pre podporu interakcie.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zmenu hesla
+     * 
+     * @param user používate, ktorý požaduje zmenu hesla
+     */
     private ChangePasswordController(Database database, ChangePasswordWindow window, User user) {
         this.database = database;
         this.window = window;
@@ -39,10 +60,23 @@ public final class ChangePasswordController implements Controller {
         initController();
     }
 
+    /**
+     * Metóda pre vytvorenie {@code ChangePasswordController}.
+     * 
+     * @param database databáza so všetkými údajmi zo systému
+     * 
+     * @param window obrazovka pre zmenu hesla
+     * 
+     * @param user používate, ktorý požaduje zmenu hesla
+     */
     public static void createController(Database database, ChangePasswordWindow window, User user) {
         new ChangePasswordController(database, window, user);
     }
 
+    /**
+     * Metóda pre pridanie listenera pre tlačidlo a pridanie listenera pre zmenu
+     * udájov nachádzajúcich sa v textovom poli pre kontrolu hesla. 
+     */
     @Override
     public void initController() {
         window.btnChangePasswordAddMouseListener(new MouseAdapter() {
@@ -70,6 +104,14 @@ public final class ChangePasswordController implements Controller {
         });
     }
 
+    /**
+     * Metóda určená pre pridanie funkcionality zmeny hesla používateľa.
+     * 
+     * <p> 
+     * V rámci tejto triedy sa kontroluje, či nové heslo nie je rovnaké ako 
+     * aktuálne a zároveň, či potvrdzujúce heslo je zhodné so zadaným novým heslom.
+     * </p>
+     */
     private void changePassword() {
         String oldPassword = window.getPfOldPassword();
         String newPassword = window.getPfNewPassword();
@@ -100,6 +142,9 @@ public final class ChangePasswordController implements Controller {
         }
     }
 
+    /**
+     * Metóda pre kontrolu, či nové heslo je zhodné s potvrdzujúcim heslom.
+     */
     private void warning() {
         String newPassword = window.getPfNewPassword();
         String confirmPassword = window.getPfConfirmPassword();

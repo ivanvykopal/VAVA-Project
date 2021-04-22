@@ -13,11 +13,13 @@ import sk.stu.fiit.Controllers.IMethod;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre prihláseného administrátora.
  *
  * @author Ivan Vykopal
  */
 public class AdministratorWindow extends javax.swing.JFrame {
     
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -340,6 +342,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem miRemoveUser;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void addGoodsListener(IMethod iMethod) {
         btnAddGoods.addMouseListener(new MouseAdapter(){
             @Override
@@ -350,6 +358,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miAddGoods.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void addStorageListener(IMethod iMethod) {
         btnAddStorage.addMouseListener(new MouseAdapter(){
             @Override
@@ -360,6 +374,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miAddStorage.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void addUserListener(IMethod iMethod) {
         btnAddUser.addMouseListener(new MouseAdapter(){
             @Override
@@ -370,6 +390,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miAddUser.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void changePasswordListener(IMethod iMethod) {
         btnChangePassword.addMouseListener(new MouseAdapter(){
             @Override
@@ -380,6 +406,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miChangePassword.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void editGoodsListener(IMethod iMethod) {
         btnEditGoods.addMouseListener(new MouseAdapter(){
             @Override
@@ -390,6 +422,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miEditGoods.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void editUserListener(IMethod iMethod) {
         btnEditUser.addMouseListener(new MouseAdapter(){
             @Override
@@ -400,6 +438,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miEditUser.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void logoutListener(IMethod iMethod) {
         btnLogout.addMouseListener(new MouseAdapter(){
             @Override
@@ -410,6 +454,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miLogout.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void removeGoodsListener(IMethod iMethod) {
         btnRemoveGoods.addMouseListener(new MouseAdapter(){
             @Override
@@ -420,6 +470,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miRemoveGoods.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void removeStorageListener(IMethod iMethod) {
         btnRemoveStorage.addMouseListener(new MouseAdapter(){
             @Override
@@ -430,6 +486,12 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miRemoveStorage.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo a Actionlistenera pre
+     * menu item.
+     * 
+     * @param iMethod listener pre stlačenia tlačidla a menu item
+     */
     public void removeUserListener(IMethod iMethod) {
         btnRemoveUser.addMouseListener(new MouseAdapter(){
             @Override
@@ -440,18 +502,38 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miRemoveUser.addActionListener(e -> iMethod.method());
     }
 
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param actionListener listener pre stlačenia menu item-u
+     */
     public void aboutListener(ActionListener actionListener) {
         miAbout.addActionListener(actionListener);
     }
 
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param actionListener listener pre stlačenia menu item-u
+     */
     public void exitListener(ActionListener actionListener) {
         miExit.addActionListener(actionListener);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbName(String text) {
         this.lbName.setText(text);
     }
 
+    /**
+     * Metóda pre nastavenie textu pre label.
+     * 
+     * @param text text pre label
+     */
     public void setLbUsername(String text) {
         this.lbUsername.setText(text);
     }

@@ -11,11 +11,13 @@ import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
+ * Trieda predstavujúca obrazovku pre pridanie tovaru do systému.
  *
  * @author Ivan Vykopal
  */
 public class AddGoodsWindow extends javax.swing.JFrame {
 
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
@@ -198,18 +200,39 @@ public class AddGoodsWindow extends javax.swing.JFrame {
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param mouseAdapter listener pre stlačenia tlačidla
+     */
     public void btnAddGoodsAddMouseListener(MouseAdapter mouseAdapter) {
         btnAddGoods.addMouseListener(mouseAdapter);
     }
 
+    /**
+     * Metóda pre získanie textu pre opis tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTaDescription() {
         return taDescription.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie textu z textového poľa pre kód tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfCode() {
         return tfCode.getText().trim();
     }
 
+    /**
+     * Metóda pre získanie predajnej ceny z textového poľa.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby, inak 
+     * korektnú predajnú cenu
+     */
     public double getTfExportPrice() {
         try {
             if (tfExportPrice.getText().equals("")) {
@@ -222,6 +245,12 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie nákupnej ceny z textového poľa.
+     * 
+     * @return 0 v prípade prázdneho textového poľa, -1 v prípade chyby, inak 
+     * korektnú nákupnú cenu
+     */
     public double getTfIncomePrice() {
         try {
             if (tfIncomePrice.getText().equals("")) {
@@ -234,6 +263,11 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metóda pre získanie názvu tovaru.
+     * 
+     * @return text z textového poľa
+     */
     public String getTfName() {
         return tfName.getText().trim();
     }

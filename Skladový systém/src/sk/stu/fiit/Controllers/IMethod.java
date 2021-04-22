@@ -6,9 +6,12 @@
 package sk.stu.fiit.Controllers;
 
 /**
+ * Interface určený pre možnosť vkladať metódy ako parametre metód.
  *
- * @author Ivan Vykopa
+ * @author Ivan Vykopal
  */
 public interface IMethod {
+
+    
     void method();
 }
