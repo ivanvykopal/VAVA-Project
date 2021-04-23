@@ -49,8 +49,9 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         btnChangePassword = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("CHANGE_PASSWORD_TITLE"));
+        setPreferredSize(new java.awt.Dimension(700, 700));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -126,7 +127,6 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel6.setText(bundle.getString("CHANGE_PASSWORD_TITLE"));
-        jLabel6.setPreferredSize(new java.awt.Dimension(200, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

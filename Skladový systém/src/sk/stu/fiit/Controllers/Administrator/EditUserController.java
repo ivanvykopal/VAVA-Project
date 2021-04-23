@@ -253,7 +253,7 @@ public final class EditUserController implements Controller {
             return;
         }
 
-        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE);
         for (User u : users) {
             if (pattern.matcher(u.getName()).find()) {
                 Object[] row = new Object[4];

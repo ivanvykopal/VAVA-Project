@@ -84,7 +84,7 @@ public class RemoveGoodsWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel2.setText(bundle.getString("GOODS_INFO"));
+        jLabel2.setText(bundle.getString("GOODS_INFO_LB"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;

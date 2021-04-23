@@ -184,7 +184,7 @@ public final class RemoveStorageController implements Controller {
      */
     private void fillStorageTable(String filter) {
         window.getTbStoragesModel().setRowCount(0);
-        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE);
         for (Storage s : database.getStorageTable()) {
             if (pattern.matcher(s.getBuilding()).find()) {
                 Object[] row = new Object[4];

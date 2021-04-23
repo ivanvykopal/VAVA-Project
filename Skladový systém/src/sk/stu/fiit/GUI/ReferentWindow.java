@@ -54,11 +54,13 @@ public class ReferentWindow extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnChangePassword = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         pGoodsOverview = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbOverviewGoods = new javax.swing.JTable();
         lbTotalPrice = new javax.swing.JLabel();
+        btnExportData = new javax.swing.JButton();
         pGoodsCosts = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -94,7 +96,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("REFERENT_TITLE"));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -144,7 +146,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         lbName.setText(bundle.getString("NAME_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
@@ -154,7 +156,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         btnLogout.setText(bundle.getString("LOGOUT_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -165,7 +167,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         btnChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -176,11 +178,21 @@ public class ReferentWindow extends javax.swing.JFrame {
         lbUsername.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel5.add(lbUsername, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel8.setText(bundle.getString("REFERENT"));
+        jLabel8.setPreferredSize(new java.awt.Dimension(210, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel5.add(jLabel8, gridBagConstraints);
 
         pLogin.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -238,6 +250,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsOverview.add(lbTotalPrice, gridBagConstraints);
+
+        btnExportData.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        btnExportData.setText(bundle.getString("EXPORT"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        pGoodsOverview.add(btnExportData, gridBagConstraints);
 
         jPanel1.add(pGoodsOverview, "card3");
 
@@ -506,6 +526,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnCosts;
+    private javax.swing.JButton btnExportData;
     private javax.swing.JButton btnGoodsOverview;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnProfits;
@@ -522,6 +543,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -860,6 +882,15 @@ public class ReferentWindow extends javax.swing.JFrame {
     public void setLbUsername(String text) {
         this.lbUsername.setText(text);
     }
+    
+    /**
+     * Metóda pre pridanie Mouselistenera pre tlačidlo.
+     * 
+     * @param adapter listener pre stlačenia tlačidla
+     */
+    public void btnExportDataAddListener(MouseAdapter adapter) {
+        btnExportData.addMouseListener(adapter);
+    }
  
     /**
      * Metóda pre odstránenie Mouselistenerov z tlačidiel z jednotlivých panelov.
@@ -881,6 +912,11 @@ public class ReferentWindow extends javax.swing.JFrame {
         //GoodsProfits panel
         for (MouseListener ml : btnViewProfits.getMouseListeners()) {
             btnViewProfits.removeMouseListener(ml);
+        }
+        
+        //GoodsOverview panel
+        for (MouseListener ml : btnExportData.getMouseListeners()) {
+            btnExportData.removeMouseListener(ml);
         }
     }
     

@@ -59,7 +59,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         btnFilter = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("REMOVE_STORAGE_TITLE"));
         setPreferredSize(new java.awt.Dimension(1400, 1000));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));

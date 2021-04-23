@@ -225,6 +225,7 @@ public final class WarehousemanController implements Controller {
     private void clearGoodsExport() {
         window.setTfQuantity2("");
         window.setLbChoosedItem1("");
+        window.getChbProduction().setSelected(false);
     }
 
     /**

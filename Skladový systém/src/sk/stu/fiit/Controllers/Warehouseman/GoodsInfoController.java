@@ -92,7 +92,7 @@ public final class GoodsInfoController implements Controller {
         String filter = window.getTfCodeFilter();
         int typeIndex = window.getCbStorageOption().getSelectedIndex();
 
-        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE);
         switch (typeIndex) {
             case 0:
                 JOptionPane.showMessageDialog(window, bundle.getString("OPTION_ERROR"));

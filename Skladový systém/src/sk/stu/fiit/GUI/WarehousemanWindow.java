@@ -76,6 +76,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnChangePassword = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         spGoodsMove = new javax.swing.JScrollPane();
         pGoodsMove = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -105,6 +106,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         lbChoosedItem1 = new javax.swing.JLabel();
         tfQuantity2 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        chbProduction = new javax.swing.JCheckBox();
         spGoodsInfo = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -133,6 +135,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("WAREHOUSEMAN_TITLE"));
+        setPreferredSize(new java.awt.Dimension(1400, 1000));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel3.setLayout(new java.awt.CardLayout());
@@ -334,7 +337,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         lbName.setText(bundle.getString("NAME_LB") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
@@ -344,7 +347,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         btnLogout.setText(bundle.getString("LOGOUT_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -355,7 +358,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         btnChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
@@ -366,11 +369,21 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         lbUsername.setText(bundle.getString("USER_USERNAME") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel5.add(lbUsername, gridBagConstraints);
+
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
+        jLabel17.setText(bundle.getString("WAREHOUSEMAN"));
+        jLabel17.setPreferredSize(new java.awt.Dimension(210, 41));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel5.add(jLabel17, gridBagConstraints);
 
         pLogin.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -629,7 +642,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         btnExportGoods.setText(bundle.getString("EXPORT_GOODS_BNT"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 50;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel8.add(btnExportGoods, gridBagConstraints);
@@ -658,6 +671,14 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel8.add(jLabel15, gridBagConstraints);
+
+        chbProduction.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        chbProduction.setText(bundle.getString("PRODUCTION_EXPORT"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        jPanel8.add(chbProduction, gridBagConstraints);
 
         spGoodsExport.setViewportView(jPanel8);
 
@@ -835,6 +856,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnShowStorage;
     private javax.swing.JComboBox<String> cbStorageOption;
     private javax.swing.JCheckBox cbStorageStatus;
+    private javax.swing.JCheckBox chbProduction;
     private javax.swing.JCheckBox chbStorageStatus1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -844,6 +866,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1408,6 +1431,16 @@ public class WarehousemanWindow extends javax.swing.JFrame {
      */
     public void setTfCodeFilter(String text) {
         tfCodeFilter.setText(text);
+    }
+
+    /**
+     * Metóda pre získanie check boxu pre informáciu, či tovar bol vyvezený do 
+     * výroby.
+     * 
+     * @return check box s informáciou o vývoze do výroby
+     */
+    public JCheckBox getChbProduction() {
+        return chbProduction;
     }
     
     /**

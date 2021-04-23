@@ -117,12 +117,18 @@ public final class GoodsExportController implements Controller {
      * sa zadané množstvo odstráni.
      * </p>
      */
-    //TODO: Pridať flag presun na výrobu
     private void exportGoods() {
         if (item == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("RECORD_ERROR"));
             CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("RECORD_ERROR"));
             return;
+        }
+        
+        Position pos;
+        if (window.getChbProduction().isSelected()) {
+            pos = Position.PRODUCTION;
+        } else {
+            pos = Position.OUT_STOCK;
         }
 
         int quantity = window.getTfQuantity2();
@@ -137,7 +143,7 @@ public final class GoodsExportController implements Controller {
         newItem.setReceiptDate(item.getReceiptDate());
         newItem.setExportDate(new Date());
         newItem.setGoods(item.getGoods());
-        newItem.setPosition(Position.OUT_STOCK);
+        newItem.setPosition(pos);
         newItem.setStorage(null);
         if (quantity == item.getQuantity()) {
             newItem.setId(item.getId());

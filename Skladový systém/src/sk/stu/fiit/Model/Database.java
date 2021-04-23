@@ -598,7 +598,7 @@ public final class Database implements Serializable {
      */
     private void addAdministrator() {
         if (checkAdministrators() == 0) {
-            User user = new User(itemIdGenerator, "admin", "admin@gmail.com", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", "Administrátor", Type.REFERENT);
+            User user = new User(itemIdGenerator, "admin", "admin@gmail.com", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", "Administrátor", Type.ADMINISTRATOR);
             addUser(user);
         }
     }

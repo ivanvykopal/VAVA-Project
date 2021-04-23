@@ -51,6 +51,7 @@ public class AddUserWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("ADD_USER_TITLE"));
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -140,7 +141,6 @@ public class AddUserWindow extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel6.setText(bundle.getString("ADD_USER_TITLE"));
-        jLabel6.setPreferredSize(new java.awt.Dimension(325, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

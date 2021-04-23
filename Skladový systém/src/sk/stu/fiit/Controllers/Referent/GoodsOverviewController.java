@@ -5,10 +5,20 @@
  */
 package sk.stu.fiit.Controllers.Referent;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ReferentWindow;
 import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
@@ -26,6 +36,8 @@ public final class GoodsOverviewController extends GoodsController {
     
     /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
+    
+    private HashMap<String, TableItem> table = new HashMap<>();
 
     /**
      * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsOverviewController}, 
@@ -62,6 +74,13 @@ public final class GoodsOverviewController extends GoodsController {
     @Override
     public void initController() {
         fillInformation();
+        
+        window.btnExportDataAddListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                exportData();
+            }
+        });
     }
 
     /**
@@ -75,9 +94,7 @@ public final class GoodsOverviewController extends GoodsController {
      * v tabuľke a pod tabuľkou.
      * </p>
      */
-    private void fillInformation() {
-        HashMap<String, TableItem> table = new HashMap<>();
-        
+    private void fillInformation() { 
         for (Item item : database.getItemTableIn()) {
             TableItem i = table.get(item.getGoods().getCode());
             if (i == null) {
@@ -104,6 +121,29 @@ public final class GoodsOverviewController extends GoodsController {
         }
 
         window.setLbTotalPrice(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
+    }
+    
+    /**
+     * Metoda pre export dát do csv formátu.
+     */
+    private void exportData() {
+        File file = new File("goods_overview.csv");
+        file.delete();
+        try {
+            file.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
+            writer.write(bundle.getString("GOODS_CODE") + "," + bundle.getString("GOODS_NAME")
+                    + "," + bundle.getString("QUANTITY") + "," + bundle.getString("GOODS_INCOME") 
+                    + "," + bundle.getString("GOODS_EXPORT") + "\n");
+            
+            for(String key : table.keySet()) {
+                TableItem item = table.get(key);
+                writer.write(key + "," + item.name + "," + item.quantity + "," + item.incomePrice + "," + item.exportPrice + "\n");
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(window, bundle.getString("CSV_ERROR"));
+            CustomLogger.getLogger(GoodsOverviewController.class).warn(bundle.getString("CSV_ERROR"), ex);
+        }
     }
 
 }

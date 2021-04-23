@@ -5,9 +5,7 @@
  */
 package sk.stu.fiit;
 
-import java.io.File;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
 
 /**
@@ -33,7 +31,6 @@ public final class CustomLogger {
      */
     public static Logger getLogger(final Class<?> clazz) {
         Logger logger = Logger.getLogger(clazz);
-        DOMConfigurator.configure(new File("src/sk/stu/fiit/log4j.xml").getAbsolutePath());
         return logger;
     }
 }

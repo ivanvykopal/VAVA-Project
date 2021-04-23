@@ -17,6 +17,7 @@ import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
+import sk.stu.fiit.PasswordGenerator;
 
 /**
  * Trieda reprezentujúca controller pre pridávanie používateľov do systému.
@@ -105,6 +106,9 @@ public final class AddUserController implements Controller {
             CustomLogger.getLogger(AddUserController.class).warn(bundle.getString("EMPTY_ATT_ERROR2"));
             return;
         }
+        
+        String password = PasswordGenerator.generatePassword();
+        user.setPassword(password);
 
         user = database.addUser(user);
         if (user == null) {
@@ -112,6 +116,7 @@ public final class AddUserController implements Controller {
             CustomLogger.getLogger(AddUserController.class).warn(bundle.getString("USER_ERROR2"));
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("USER_INFO"));
+            JOptionPane.showMessageDialog(window, bundle.getString("PASSWORD_INFO") + ": " + password);
             CustomLogger.getLogger(AddUserController.class).info(user.getUsername() + ": " + bundle.getString("USER_INFO"));
             SerializationClass.serialize(database);
             window.dispose();

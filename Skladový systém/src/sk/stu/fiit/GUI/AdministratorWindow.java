@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
+import javax.swing.JMenuItem;
 import sk.stu.fiit.Controllers.IMethod;
 import sk.stu.fiit.InternationalizationClass;
 
@@ -74,6 +75,9 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miRemoveGoods = new javax.swing.JMenuItem();
         miRemoveUser = new javax.swing.JMenuItem();
         miRemoveStorage = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        miExportGoodsData = new javax.swing.JMenuItem();
+        miImportGoodsData = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
 
@@ -285,6 +289,15 @@ public class AdministratorWindow extends javax.swing.JFrame {
         miRemoveStorage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miRemoveStorage.setText(bundle.getString("REMOVE_STORAGE_BTN1"));
         jMenu2.add(miRemoveStorage);
+        jMenu2.add(jSeparator4);
+
+        miExportGoodsData.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miExportGoodsData.setText(bundle.getString("XML_EXPORT_TITLE"));
+        jMenu2.add(miExportGoodsData);
+
+        miImportGoodsData.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miImportGoodsData.setText(bundle.getString("XML_IMPORT_TITLE"));
+        jMenu2.add(miImportGoodsData);
 
         jMenuBar1.add(jMenu2);
 
@@ -326,6 +339,7 @@ public class AdministratorWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JMenuItem miAbout;
@@ -336,6 +350,8 @@ public class AdministratorWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem miEditGoods;
     private javax.swing.JMenuItem miEditUser;
     private javax.swing.JMenuItem miExit;
+    private javax.swing.JMenuItem miExportGoodsData;
+    private javax.swing.JMenuItem miImportGoodsData;
     private javax.swing.JMenuItem miLogout;
     private javax.swing.JMenuItem miRemoveGoods;
     private javax.swing.JMenuItem miRemoveStorage;
@@ -509,6 +525,24 @@ public class AdministratorWindow extends javax.swing.JFrame {
      */
     public void aboutListener(ActionListener actionListener) {
         miAbout.addActionListener(actionListener);
+    }
+
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param actionListener listener pre stlačenia menu item-u
+     */
+    public void exportGoodsData(ActionListener actionListener) {
+        this.miExportGoodsData.addActionListener(actionListener);
+    }
+    
+    /**
+     * Metóda pre pridanie Actionlistenera pre menu item.
+     * 
+     * @param actionListener listener pre stlačenia menu item-u
+     */
+    public void importGoodsData(ActionListener actionListener) {
+        this.miImportGoodsData.addActionListener(actionListener);
     }
 
     /**

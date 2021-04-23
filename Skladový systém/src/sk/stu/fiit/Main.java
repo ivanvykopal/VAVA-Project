@@ -5,9 +5,12 @@
  */
 package sk.stu.fiit;
 
+import java.io.File;
+import org.apache.log4j.xml.DOMConfigurator;
 import sk.stu.fiit.Controllers.LoginController;
 import sk.stu.fiit.GUI.LoginWindow;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.SerializationClass;
 
 /**
  * Hlavná trieda určená pre spúštanie programu.
@@ -45,10 +48,12 @@ public class Main {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
+            DOMConfigurator.configure(new File("src/sk/stu/fiit/log4j.xml").getAbsolutePath());
             InternationalizationClass.setBundle("bundles/Bundle_SK", "sk", "SK");
             LoginWindow window = new LoginWindow();
             window.getCbLanguage().setSelectedIndex(0);
-            LoginController.createController(Database.createDatabase(), new LoginWindow());
+            Database database = SerializationClass.deserialize();
+            LoginController.createController(database, new LoginWindow());
         });
     }
     

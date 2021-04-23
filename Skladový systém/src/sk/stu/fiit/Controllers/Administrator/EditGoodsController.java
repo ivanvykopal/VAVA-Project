@@ -191,7 +191,7 @@ public final class EditGoodsController implements Controller {
      */
     private void fillGoodsTable(String filter) {
         window.getTbGoodsModel().setRowCount(0);
-        Pattern pattern = Pattern.compile("*" + filter + "*", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE);
         for (Goods g : database.getGoodsTable()) {
             if (!g.isDeleted()) {
                 if (pattern.matcher(g.getName()).find()) {
