@@ -135,11 +135,9 @@ public final class EditUserController implements Controller {
         String username = (String) window.getTbUsersModel().getValueAt(index, 0);
 
         user = database.findUser(username);
+        
         if (user == null) {
-            window.setTfEmail("");
-            window.setTfName("");
-            window.setCbType(Type.ADMINISTRATOR);
-            window.setTfUsername("");
+            clear();
         } else {
             window.setTfEmail(user.getEmail());
             window.setTfName(user.getName());
@@ -178,6 +176,7 @@ public final class EditUserController implements Controller {
         if (user == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_USER_ERROR"));
             CustomLogger.getLogger(EditUserController.class).warn(bundle.getString("CHANGE_USER_ERROR"));
+            clear();
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_USER_INFO"));
             CustomLogger.getLogger(EditUserController.class).info(user.getUsername() + ": " + bundle.getString("CHANGE_USER_INFO"));
@@ -208,7 +207,7 @@ public final class EditUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("administrator", record);
+                    usersTable.put("administrator", record);
                     break;
                 case WAREHOUSEMAN:
                     record = usersTable.get("warehouseman");
@@ -216,7 +215,7 @@ public final class EditUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("warehouseman", record);
+                    usersTable.put("warehouseman", record);
                     break;
                 case REFERENT:
                     record = usersTable.get("referent");
@@ -224,7 +223,7 @@ public final class EditUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("referent", record);
+                    usersTable.put("referent", record);
                     break;
             }
         }
@@ -264,6 +263,16 @@ public final class EditUserController implements Controller {
                 window.getTbUsersModel().addRow(row);
             }
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        window.setTfEmail("");
+        window.setTfName("");
+        window.setCbType(Type.ADMINISTRATOR);
+        window.setTfUsername("");
     }
 
 }

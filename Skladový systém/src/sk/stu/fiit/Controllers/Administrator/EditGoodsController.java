@@ -116,11 +116,7 @@ public final class EditGoodsController implements Controller {
 
         goods = database.findGoods(code);
         if (goods == null) {
-            window.setTfCode("");
-            window.setTfName("");
-            window.setTaDescription("");
-            window.setTfImportPrice("");
-            window.setTfExportPrice("");
+            clear();
         } else {
             window.setTfCode(code);
             window.setTfName(goods.getName());
@@ -167,6 +163,7 @@ public final class EditGoodsController implements Controller {
         if (goods == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_GOODS_ERROR"));
             CustomLogger.getLogger(EditGoodsController.class).warn(bundle.getString("CHANGE_GOODS_ERROR"));
+            clear();
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_GOODS_INFO"));
             CustomLogger.getLogger(EditGoodsController.class).info(goods.getCode() + ": " + bundle.getString("CHANGE_GOODS_INFO"));
@@ -204,6 +201,17 @@ public final class EditGoodsController implements Controller {
                 }
             }
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        window.setTfCode("");
+        window.setTfName("");
+        window.setTaDescription("");
+        window.setTfImportPrice("");
+        window.setTfExportPrice("");
     }
 
 }

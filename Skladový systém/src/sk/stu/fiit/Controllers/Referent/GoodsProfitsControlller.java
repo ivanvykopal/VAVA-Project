@@ -30,9 +30,6 @@ import sk.stu.fiit.Model.Item;
  * @author Ivan Vykopal
  */
 public final class GoodsProfitsControlller extends GoodsController {
-    
-    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
-    private final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsProfitsControlller}, 
@@ -46,7 +43,7 @@ public final class GoodsProfitsControlller extends GoodsController {
     private GoodsProfitsControlller(Database database, ReferentWindow window) {
         super(database, window);
 
-        window.getpGoodsProfits().setVisible(true);
+        window.getspGoodsProfits().setVisible(true);
 
         initController();
     }
@@ -113,7 +110,7 @@ public final class GoodsProfitsControlller extends GoodsController {
         }
         
         window.getTbGoodsProfits().setRowCount(0);
-        BigDecimal price = new BigDecimal(0);
+        double price = 0;
         for(String key : table.keySet()) {
             TableItem item = table.get(key);
             Object[] row = new Object[5];
@@ -122,11 +119,11 @@ public final class GoodsProfitsControlller extends GoodsController {
             row[2] = item.quantity;
             row[3] = item.incomePrice;
             row[4] = item.exportPrice;
-            price.add(new BigDecimal(item.quantity * (item.exportPrice - item.incomePrice)));
+            price += item.quantity * (item.exportPrice - item.incomePrice);
             window.getTbGoodsProfits().addRow(row);
         }
         
-        window.setLbProfits(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
+        window.setLbProfits(new BigDecimal(price).setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
     }
     
 }

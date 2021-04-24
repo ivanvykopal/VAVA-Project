@@ -6,7 +6,6 @@
 package sk.stu.fiit.Model;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
 import sk.stu.fiit.InternationalizationClass;
 
 /**
@@ -34,9 +33,6 @@ public final class User implements Serializable {
     /** Atribút type predstavuje typ používateľa. **/
     private Type type = null;
     
-    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
-    private final ResourceBundle bundle = InternationalizationClass.getBundle();
-    
     /**
      * Konštruktor triedy {@code User}.
      */
@@ -59,6 +55,20 @@ public final class User implements Serializable {
         this.email = email;
         this.name = name;
         setType(typeString);
+    }
+    
+    /**
+     * Konštruktor pre inicializáciu atribútov triedy {@code User}.
+     * 
+     * @param user používateľ na základe, ktorého inicializujeme
+     */
+    public User(User user) {
+        this.email = user.getEmail();
+        this.id = user.getId();
+        this.name = user.getName();
+        this.password = user.getPassword();
+        this.type = user.getType();
+        this.username = user.getUsername();
     }
 
     /**
@@ -104,7 +114,8 @@ public final class User implements Serializable {
 
     /**
      * Metóda pre nastavenie ID používateľa.
-     * @param id 
+     * 
+     * @param id ID používateľa
      */
     public void setId(int id) {
         this.id = id;
@@ -199,11 +210,11 @@ public final class User implements Serializable {
     public String getTypeString() {
         switch (type) {
             case ADMINISTRATOR:
-                return bundle.getString("ADMINISTRATOR");
+                return InternationalizationClass.getBundle().getString("ADMINISTRATOR");
             case REFERENT:
-                return bundle.getString("REFERENT");
+                return InternationalizationClass.getBundle().getString("REFERENT");
             default:
-                return bundle.getString("WAREHOUSEMAN");
+                return InternationalizationClass.getBundle().getString("WAREHOUSEMAN");
         }
     }
 
@@ -223,9 +234,9 @@ public final class User implements Serializable {
      */
     public void setType(String typeString) {
         Type userType;
-        if(typeString.equals(bundle.getString("ADMINISTRATOR")) || typeString.equals("administrator")) {
+        if(typeString.equals(InternationalizationClass.getBundle().getString("ADMINISTRATOR")) || typeString.equals("administrator")) {
             userType = Type.ADMINISTRATOR;
-        } else if (typeString.equals(bundle.getString("REFERENT")) || typeString.equals("referent")) {
+        } else if (typeString.equals(InternationalizationClass.getBundle().getString("REFERENT")) || typeString.equals("referent")) {
             userType = Type.REFERENT;
         } else {
             userType = Type.WAREHOUSEMAN;

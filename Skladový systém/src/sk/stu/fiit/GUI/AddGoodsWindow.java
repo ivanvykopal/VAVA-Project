@@ -55,7 +55,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("ADD_GOODS_TITLE"));
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1000, 1000));
+        setPreferredSize(new java.awt.Dimension(900, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -66,7 +66,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 200, 25, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
@@ -84,7 +84,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
@@ -103,8 +103,11 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 200, 250, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 200, 200, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
+
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(300, 200));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 200));
 
         taDescription.setColumns(20);
         taDescription.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -117,8 +120,6 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 150;
-        gridBagConstraints.ipady = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 200);
         jPanel1.add(jScrollPane1, gridBagConstraints);
@@ -128,7 +129,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 25, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
@@ -146,7 +147,7 @@ public class AddGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 200, 50, 0);
         jPanel1.add(jLabel5, gridBagConstraints);
 

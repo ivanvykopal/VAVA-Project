@@ -117,11 +117,7 @@ public final class RemoveGoodsController implements Controller {
 
         goods = database.findGoods(code);
         if (goods == null) {
-            window.setTfCode("");
-            window.setTfName("");
-            window.setTaDescription("");
-            window.setTfImportPrice("");
-            window.setTfExportPrice("");
+            clear();
         } else {
             window.setTfCode(code);
             window.setTfName(goods.getName());
@@ -146,6 +142,7 @@ public final class RemoveGoodsController implements Controller {
         if (goods == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_GOODS_ERROR"));
             CustomLogger.getLogger(RemoveGoodsController.class).warn(bundle.getString("REMOVE_GOODS_ERROR"));
+            clear();
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_GOODS_INFO"));
             CustomLogger.getLogger(RemoveGoodsController.class).info(goods.getCode() + ": " + bundle.getString("REMOVE_GOODS_INFO"));
@@ -183,6 +180,17 @@ public final class RemoveGoodsController implements Controller {
                 }
             }
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        window.setTfCode("");
+        window.setTfName("");
+        window.setTaDescription("");
+        window.setTfImportPrice("");
+        window.setTfExportPrice("");
     }
 
 }

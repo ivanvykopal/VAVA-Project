@@ -48,7 +48,7 @@ public class Main {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            DOMConfigurator.configure(new File("src/sk/stu/fiit/log4j.xml").getAbsolutePath());
+            DOMConfigurator.configure(new File("log4j.xml").getAbsolutePath());
             InternationalizationClass.setBundle("bundles/Bundle_SK", "sk", "SK");
             LoginWindow window = new LoginWindow();
             window.getCbLanguage().setSelectedIndex(0);

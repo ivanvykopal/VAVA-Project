@@ -84,26 +84,26 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         pfOldPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        pfOldPassword.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 25, 50);
         jPanel1.add(pfOldPassword, gridBagConstraints);
 
         pfNewPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        pfNewPassword.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 50);
         jPanel1.add(pfNewPassword, gridBagConstraints);
 
         pfConfirmPassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        pfConfirmPassword.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 50);
         jPanel1.add(pfConfirmPassword, gridBagConstraints);
 
@@ -205,8 +205,9 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
      * 
      * @param listener listener pre zmenu hodnoty v textovom poli
      */
-    public void pfConfirmPasswordAddListener(DocumentListener listener) {
+    public void passwordAddListener(DocumentListener listener) {
         pfConfirmPassword.getDocument().addDocumentListener(listener);
+        pfNewPassword.getDocument().addDocumentListener(listener);
     }
 
 }

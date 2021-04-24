@@ -68,6 +68,20 @@ public class Storage implements Serializable {
     }
     
     /**
+     * Konštruktor pre inicializáciu atribútov triedy {@code Storage}.
+     * 
+     * @param storage skladovací priestor na základe, ktorého inicializujeme
+     */
+    public Storage(Storage storage) {
+        this.building = storage.getBuilding();
+        this.code = storage.getCode();
+        this.free = storage.isFree();
+        this.id = storage.getId();
+        this.itemCount = storage.getItemCount();
+        this.shelf = storage.getShelf();
+    }
+    
+    /**
      * Metóda pre zistenie, či niektorý z atribútov je prázdny.
      * 
      * @return true, ak niektorý atribút je prázdny, inak false

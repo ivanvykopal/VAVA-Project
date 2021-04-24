@@ -61,7 +61,7 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("REMOVE_STORAGE_TITLE"));
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,30 +133,31 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
         tfCode.setEditable(false);
         tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfCode.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfCode, gridBagConstraints);
 
         tfBuilding.setEditable(false);
         tfBuilding.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfBuilding.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfBuilding.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfBuilding, gridBagConstraints);
 
         tfShelf.setEditable(false);
         tfShelf.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfShelf.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfShelf, gridBagConstraints);
@@ -172,13 +173,15 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
         tfContainItem.setEditable(false);
         tfContainItem.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfContainItem.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfContainItem, gridBagConstraints);
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbStorages.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbStorages.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -210,13 +213,11 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane3, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel8.setText(bundle.getString("FILTER_LB") + ":");
+        jLabel8.setText(bundle.getString("FILTER_LB") + "(" + bundle.getString("BUILDING") + "):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -247,7 +248,6 @@ public class RemoveStorageWindow extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel9.setText(bundle.getString("REMOVE_STORAGE_TITLE"));
-        jLabel9.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

@@ -157,7 +157,9 @@ public final class GoodsExportController implements Controller {
             storage.setFree(true);
             storage.setItemCount(storage.getItemCount() - 1);
             database.setStorage(storage);
+            SerializationClass.serialize(database);
             item = null;
+            clear();
         } else if (quantity > item.getQuantity()) {
             JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR2"));
             CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("QUANTITY_ERROR2"));
@@ -194,8 +196,7 @@ public final class GoodsExportController implements Controller {
             CustomLogger.getLogger(GoodsExportController.class).info(it.getGoods().getCode() +": " + bundle.getString("EXPORT_ITEM_INFO"));
             SerializationClass.serialize(database);
             item = null;
-            fillTable();
-            window.setTfQuantity2("");
+            clear();
         }
     }
 
@@ -212,6 +213,7 @@ public final class GoodsExportController implements Controller {
 
         int id = (int) window.getTbGoods1Model().getValueAt(index, 0);
         item = database.findItem(id);
+        window.setLbChoosedItem1(item.getGoods().getName()+ ", " + item.getStorage().getCode() + ", " + item.getQuantity());
     }
 
     /**
@@ -228,6 +230,15 @@ public final class GoodsExportController implements Controller {
             row[4] = it.getStorage().getCode();
             window.getTbGoods1Model().addRow(row);
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        fillTable();
+        window.setTfQuantity2("");
+        window.getChbProduction().setSelected(false);
     }
 
 }

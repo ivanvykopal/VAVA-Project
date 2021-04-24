@@ -1,70 +1,71 @@
-2021-04-23 16:13:25 INFO  LoginController:148 - admin: Používateľ prihlásený ako administrátor!
-2021-04-23 16:58:18 WARN  SerializationClass:60 - Chyba pri serializácii!
-java.io.FileNotFoundException: database.ser (The system cannot find the file specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sk.stu.fiit.Model.SerializationClass.deserialize(SerializationClass.java:53)
-	at sk.stu.fiit.Main.lambda$main$0(Main.java:55)
-	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+2021-04-24 19:43:51 INFO  GoodsReceiptController:156 - M-16: Nový tovar bol prijatý!
+2021-04-24 19:44:03 INFO  GoodsReceiptController:156 - M-18: Nový tovar bol prijatý!
+2021-04-24 19:48:29 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 19:49:05 WARN  GoodsMoveController:182 - Zadané množstvo je väčšie ako množstvo vybranej položky!
+2021-04-24 19:49:14 WARN  GoodsMoveController:185 - Množstvo je nulové!
+2021-04-24 19:49:23 WARN  GoodsMoveController:257 - S-M3: Tovar bol premiestnený!
+2021-04-24 19:49:55 WARN  GoodsMoveController:254 - Chyba pri pridávaní novej položky skladu!
+2021-04-24 20:02:01 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:02:32 WARN  GoodsMoveController:133 - Nebol vybraný žiaden záznam!
+2021-04-24 20:02:52 WARN  GoodsMoveController:133 - Nebol vybraný žiaden záznam!
+2021-04-24 20:06:34 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:07:15 WARN  GoodsMoveController:264 - M-16: Tovar bol premiestnený!
+2021-04-24 20:09:06 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:13:16 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:14:24 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:14:37 INFO  GoodsExportController:195 - S-M3: Tovar bol vyvezený!
+2021-04-24 20:14:52 WARN  GoodsExportController:164 - Zadané množstvo je väčšie ako množstvo vybranej položky!
+2021-04-24 20:14:56 WARN  GoodsExportController:167 - Množstvo je nulové!
+2021-04-24 20:21:01 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:21:41 WARN  GoodsExportController:123 - Nebol vybraný žiaden záznam!
+2021-04-24 20:23:42 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 20:23:57 INFO  GoodsExportController:196 - M-16: Tovar bol vyvezený!
+2021-04-24 20:24:05 INFO  GoodsExportController:196 - M-16: Tovar bol vyvezený!
+2021-04-24 20:24:28 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 20:28:16 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 20:29:45 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 20:48:33 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 20:56:16 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 21:07:34 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 21:10:37 INFO  LoginController:161 - cfasham0: Používateľ prihlásený ako referent!
+2021-04-24 21:10:43 WARN  GoodsCostsController:93 - Chybný formát dátumu!
+java.text.ParseException: Unparseable date: ""
+	at java.text.DateFormat.parse(DateFormat.java:366)
+	at sk.stu.fiit.Controllers.Referent.GoodsCostsController.viewCosts(GoodsCostsController.java:89)
+	at sk.stu.fiit.Controllers.Referent.GoodsCostsController.access$000(GoodsCostsController.java:32)
+	at sk.stu.fiit.Controllers.Referent.GoodsCostsController$1.mouseReleased(GoodsCostsController.java:70)
+	at java.awt.Component.processMouseEvent(Component.java:6539)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6304)
+	at java.awt.Container.processEvent(Container.java:2239)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+	at java.awt.Container.dispatchEventImpl(Container.java:2283)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
 	at java.awt.EventQueue.access$500(EventQueue.java:97)
 	at java.awt.EventQueue$3.run(EventQueue.java:709)
 	at java.awt.EventQueue$3.run(EventQueue.java:703)
 	at java.security.AccessController.doPrivileged(Native Method)
 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+	at java.awt.EventQueue$4.run(EventQueue.java:733)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-2021-04-23 16:58:23 INFO  LoginController:148 - admin: Používateľ prihlásený ako administrátor!
-2021-04-23 16:58:36 WARN  SerializationClass:60 - Chyba pri serializácii!
-java.io.FileNotFoundException: database.ser (The system cannot find the file specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sk.stu.fiit.Model.SerializationClass.deserialize(SerializationClass.java:53)
-	at sk.stu.fiit.Main.lambda$main$0(Main.java:55)
-	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:709)
-	at java.awt.EventQueue$3.run(EventQueue.java:703)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-2021-04-23 16:58:41 INFO  LoginController:148 - admin: Používateľ prihlásený ako administrátor!
-2021-04-23 17:44:28 WARN  SerializationClass:60 - Chyba pri serializácii!
-java.io.FileNotFoundException: database.ser (The system cannot find the file specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sk.stu.fiit.Model.SerializationClass.deserialize(SerializationClass.java:53)
-	at sk.stu.fiit.Main.lambda$main$0(Main.java:55)
-	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:709)
-	at java.awt.EventQueue$3.run(EventQueue.java:703)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-2021-04-23 17:44:35 INFO  LoginController:148 - admin: Používateľ prihlásený ako administrátor!
+2021-04-24 21:11:04 INFO  LoginController:161 - cfasham0: User logged in as referent!
+2021-04-24 21:12:40 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!
+2021-04-24 21:12:59 INFO  LoginController:156 - eserraillier1: User logged in as warehouseman!
+2021-04-24 21:15:32 INFO  LoginController:156 - eserraillier1: Používateľ prihlásený ako skladník!

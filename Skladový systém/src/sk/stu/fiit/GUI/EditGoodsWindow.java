@@ -65,7 +65,7 @@ public class EditGoodsWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("EDIT_GOODS_TITLE"));
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -147,23 +147,26 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel7, gridBagConstraints);
 
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfName.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfName.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfName, gridBagConstraints);
 
         tfCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfCode.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfCode.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfCode, gridBagConstraints);
 
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(300, 200));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 150));
 
         taDescription.setColumns(20);
@@ -176,26 +179,26 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 300;
-        gridBagConstraints.ipady = 200;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 500, 25, 50);
         jPanel1.add(jScrollPane2, gridBagConstraints);
 
         tfImportPrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfImportPrice.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfImportPrice.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfImportPrice, gridBagConstraints);
 
         tfExportPrice.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfExportPrice.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfExportPrice.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 25, 50);
         jPanel1.add(tfExportPrice, gridBagConstraints);
@@ -241,8 +244,6 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
@@ -257,7 +258,7 @@ public class EditGoodsWindow extends javax.swing.JFrame {
         jPanel1.add(tfFilter, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel8.setText(bundle.getString("FILTER_LB") + ":");
+        jLabel8.setText(bundle.getString("FILTER_LB") + "(" + bundle.getString("NAME") + "):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -278,7 +279,6 @@ public class EditGoodsWindow extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel9.setText(bundle.getString("EDIT_GOODS_TITLE"));
-        jLabel9.setPreferredSize(new java.awt.Dimension(300, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

@@ -200,7 +200,7 @@ public final class AdministratorController implements Controller {
      */
     private void logout() {
         LoginController.createController(database, new LoginWindow());
-        window.setVisible(false);
+        window.dispose();
     }
 
     /**
@@ -299,6 +299,8 @@ public final class AdministratorController implements Controller {
             StreamResult streamResult = new StreamResult(new File("goods.xml"));
             transformer.transform(domSource, streamResult);
             
+            JOptionPane.showMessageDialog(window, bundle.getString("EXPORT_INFO"));
+            CustomLogger.getLogger(GoodsOverviewController.class).warn(bundle.getString("EXPORT_INFO"));
         } catch (ParserConfigurationException | TransformerException ex) {
             JOptionPane.showMessageDialog(window, bundle.getString("XML_ERROR"));
             CustomLogger.getLogger(GoodsOverviewController.class).warn(bundle.getString("XML_ERROR"), ex);

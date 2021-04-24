@@ -22,13 +22,10 @@ import sk.stu.fiit.InternationalizationClass;
  */
 public final class SerializationClass {
     
-    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
-    private static final ResourceBundle bundle = InternationalizationClass.getBundle();
-    
     /**
      * Metóda pre serializáciu databázy. Vytvorí sa súbor database.ser.
      * 
-     * @param database 
+     * @param database databáza so všetkými údajmi zo systému
      */
     public static void serialize(Database database) {
         try {
@@ -38,7 +35,7 @@ public final class SerializationClass {
             out.close();
             file.close();
         } catch(IOException ex) {
-            CustomLogger.getLogger(SerializationClass.class).warn(bundle.getString("SERIALIZATION_ERROR"), ex);
+            CustomLogger.getLogger(SerializationClass.class).warn(InternationalizationClass.getBundle().getString("SERIALIZATION_ERROR"), ex);
         }
     }
     
@@ -57,7 +54,7 @@ public final class SerializationClass {
             file.close();
             return database;
         } catch (IOException | ClassNotFoundException ex) {
-            CustomLogger.getLogger(SerializationClass.class).warn(bundle.getString("SERIALIZATION_ERROR"), ex);
+            CustomLogger.getLogger(SerializationClass.class).warn(InternationalizationClass.getBundle().getString("SERIALIZATION_ERROR"), ex);
             return Database.createDatabase();
         }
     }

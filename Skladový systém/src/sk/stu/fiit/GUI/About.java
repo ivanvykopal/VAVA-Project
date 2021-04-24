@@ -44,7 +44,7 @@ public class About extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jTextArea1.setText(bundle.getString("ABOUT_TEXT"));

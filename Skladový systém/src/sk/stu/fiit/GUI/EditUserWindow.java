@@ -63,7 +63,7 @@ public class EditUserWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("EDIT_USER_TITLE"));
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -137,28 +137,31 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel7, gridBagConstraints);
 
         tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfUsername.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfUsername.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfUsername, gridBagConstraints);
 
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfName.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfName.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfName, gridBagConstraints);
 
         tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfEmail.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfEmail.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfEmail, gridBagConstraints);
@@ -181,6 +184,8 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 25, 200);
         jPanel1.add(cbType, gridBagConstraints);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbUsers.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbUsers.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -212,8 +217,6 @@ public class EditUserWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
@@ -227,7 +230,7 @@ public class EditUserWindow extends javax.swing.JFrame {
         jPanel1.add(cbTypeFilter, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel5.setText(bundle.getString("FILTER_LB") + ":");
+        jLabel5.setText(bundle.getString("FILTER_LB") + "(" + bundle.getString("NAME_LB") + "):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -258,7 +261,6 @@ public class EditUserWindow extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel9.setText(bundle.getString("EDIT_USER_TITLE"));
-        jLabel9.setPreferredSize(new java.awt.Dimension(300, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -283,7 +285,7 @@ public class EditUserWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private volatile javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;

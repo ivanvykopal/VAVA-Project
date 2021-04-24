@@ -15,8 +15,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ReferentWindow;
@@ -37,7 +35,7 @@ public final class GoodsOverviewController extends GoodsController {
     /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
     private final ResourceBundle bundle = InternationalizationClass.getBundle();
     
-    private HashMap<String, TableItem> table = new HashMap<>();
+    private final HashMap<String, TableItem> table = new HashMap<>();
 
     /**
      * Privátny konštruktor pre inicializáciu atribútov triedy {@code GoodsOverviewController}, 
@@ -51,7 +49,7 @@ public final class GoodsOverviewController extends GoodsController {
     private GoodsOverviewController(Database database, ReferentWindow window) {
         super(database, window);
         
-        window.getpGoodsOverview().setVisible(true);
+        window.getspGoodsOverview().setVisible(true);
 
         initController();
     }
@@ -107,7 +105,7 @@ public final class GoodsOverviewController extends GoodsController {
         }
         
         window.getTbOverviewGoodsModel().setRowCount(0);
-        BigDecimal price = new BigDecimal(0);
+        double price = 0;
         for(String key : table.keySet()) {
             TableItem item = table.get(key);
             Object[] row = new Object[5];
@@ -116,11 +114,11 @@ public final class GoodsOverviewController extends GoodsController {
             row[2] = item.quantity;
             row[3] = item.incomePrice;
             row[4] = item.exportPrice;
-            price.add(new BigDecimal(item.quantity * item.incomePrice));
+            price += item.quantity * item.incomePrice;
             window.getTbOverviewGoodsModel().addRow(row);
         }
 
-        window.setLbTotalPrice(price.setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
+        window.setLbTotalPrice(new BigDecimal(price).setScale(2, RoundingMode.HALF_UP) + " " + bundle.getString("CURRENCY"));
     }
     
     /**
@@ -140,6 +138,9 @@ public final class GoodsOverviewController extends GoodsController {
                 TableItem item = table.get(key);
                 writer.write(key + "," + item.name + "," + item.quantity + "," + item.incomePrice + "," + item.exportPrice + "\n");
             }
+            writer.close();
+            JOptionPane.showMessageDialog(window, bundle.getString("EXPORT_INFO"));
+            CustomLogger.getLogger(GoodsOverviewController.class).warn(bundle.getString("EXPORT_INFO"));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(window, bundle.getString("CSV_ERROR"));
             CustomLogger.getLogger(GoodsOverviewController.class).warn(bundle.getString("CSV_ERROR"), ex);

@@ -64,6 +64,21 @@ public class Goods implements Serializable {
     }
     
     /**
+     * Konštruktor pre inicializáciu atribútov triedy {@code Goods}.
+     * 
+     * @param goods tovar na základe, ktorého inicializujeme
+     */
+    public Goods(Goods goods) {
+        this.id = goods.getId();
+        this.name = goods.getName();
+        this.code = goods.getCode();
+        this.description = goods.getDescription();
+        this.incomePrice = goods.getIncomePrice();
+        this.exportPrice = goods.getExportPrice();
+        this.deleted = goods.isDeleted();
+    }
+    
+    /**
      * Metóda pre zistenie, či niektorý z atribútov je prázdny.
      * 
      * @return true, ak niektorý atribút je prázdny, inak false

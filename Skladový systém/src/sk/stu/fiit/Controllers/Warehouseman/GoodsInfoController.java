@@ -48,6 +48,8 @@ public final class GoodsInfoController implements Controller {
     private GoodsInfoController(Database database, WarehousemanWindow window) {
         this.database = database;
         this.window = window;
+        
+        window.getSpGoodsInfo().setVisible(true);
 
         initController();
     }

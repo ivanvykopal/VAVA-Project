@@ -61,7 +61,9 @@ public final class ReferentController implements Controller {
         
         window.setLbName(bundle.getString("NAME_LB") + ": " + user.getName());
         window.setLbUsername(bundle.getString("USER_USERNAME") + ": " + user.getUsername());
-        
+       
+        window.setVisible(true);
+        hideAll();
         window.getpLogin().setVisible(true);
 
         initController();
@@ -129,7 +131,7 @@ public final class ReferentController implements Controller {
      */
     private void logout() {
         LoginController.createController(database, new LoginWindow());
-        window.setVisible(false);
+        window.dispose();
     }
 
     /**
@@ -170,9 +172,9 @@ public final class ReferentController implements Controller {
      * referenta.
      */
     private void hideAll() {
-        window.getpGoodsCosts().setVisible(false);
-        window.getpGoodsOverview().setVisible(false);
-        window.getpGoodsProfits().setVisible(false);
+        window.getspGoodsCosts().setVisible(false);
+        window.getspGoodsOverview().setVisible(false);
+        window.getspGoodsProfits().setVisible(false);
         window.getpLogin().setVisible(false);
     }
     

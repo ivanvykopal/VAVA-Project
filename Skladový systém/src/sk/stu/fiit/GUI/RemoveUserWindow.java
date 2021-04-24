@@ -63,7 +63,7 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bundle.getString("REMOVE_USER_TITLE"));
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -137,30 +137,30 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         tfUsername.setEditable(false);
         tfUsername.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfUsername.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfUsername, gridBagConstraints);
 
         tfName.setEditable(false);
         tfName.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfName.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfName, gridBagConstraints);
 
         tfEmail.setEditable(false);
         tfEmail.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfEmail.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfEmail, gridBagConstraints);
@@ -176,13 +176,15 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         tfType.setEditable(false);
         tfType.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfType.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 500, 0, 50);
         jPanel1.add(tfType, gridBagConstraints);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbUsers.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbUsers.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -214,13 +216,11 @@ public class RemoveUserWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 500;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 50);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel5.setText(bundle.getString("FILTER_LB") + ":");
+        jLabel5.setText(bundle.getString("FILTER_LB") + "(" + bundle.getString("NAME_LB") + "):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -260,7 +260,6 @@ public class RemoveUserWindow extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel9.setText(bundle.getString("REMOVE_USER_TITLE"));
-        jLabel9.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

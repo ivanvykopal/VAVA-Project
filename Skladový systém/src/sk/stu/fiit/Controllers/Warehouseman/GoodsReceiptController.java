@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.Controllers.Administrator.AddUserController;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
@@ -122,20 +123,32 @@ public final class GoodsReceiptController implements Controller {
         } else {
             if (window.getCbStorageStatus().isSelected()) {
                 storage.setFree(false);
-                storage = database.setStorage(storage);
-                if (storage == null) {
-                    JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
-                    CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
-                    return;
-                }
-                SerializationClass.serialize(database);
             }
             item.setStorage(storage);
         }
+        
+        if (item.getGoods() == null) {
+            JOptionPane.showMessageDialog(window, bundle.getString("GOODS_ERROR1"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("GOODS_ERROR1"));
+            return;
+        }
+        
+        if (item.isAnyAttributeEmpty()) {
+            JOptionPane.showMessageDialog(window, bundle.getString("EMPTY_ATT_ERROR1"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("EMPTY_ATT_ERROR2"));
+            return;
+        }
+        
         item = database.addItem(item);
         if (item == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("ADD_ITEM_ERROR"));
             CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("ADD_ITEM_ERROR"));
+            return;
+        }
+        storage = database.setStorage(storage);
+        if (storage == null) {
+            JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
             return;
         }
         SerializationClass.serialize(database);

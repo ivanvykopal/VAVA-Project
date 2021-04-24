@@ -8,6 +8,7 @@ package sk.stu.fiit.Controllers;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -18,6 +19,7 @@ import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
+import sk.stu.fiit.PasswordHasher;
 
 /**
  * Trieda reprezentujúca controller pre zmenu hesla používateľa.
@@ -86,7 +88,7 @@ public final class ChangePasswordController implements Controller {
             }
         });
 
-        window.pfConfirmPasswordAddListener(new DocumentListener() {
+        window.passwordAddListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 warning();
@@ -129,7 +131,14 @@ public final class ChangePasswordController implements Controller {
             return;
         }
 
-        user.setPassword(newPassword);
+        try {
+            user.setPassword(PasswordHasher.SHAtoString(PasswordHasher.getSHA(newPassword)));
+        } catch (NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(window, bundle.getString("PASS_LOAD_ERROR1"));
+            CustomLogger.getLogger(LoginController.class).warn(bundle.getString("PASS_LOAD_ERROR2"));
+            return;
+        }
+        
         user = database.setUser(user);
         if (user == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_PASS_ERROR"));

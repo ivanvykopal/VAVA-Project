@@ -8,9 +8,11 @@ package sk.stu.fiit.Controllers.Administrator;
 import sk.stu.fiit.EmailValidator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.Controllers.LoginController;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.AddUserWindow;
 import sk.stu.fiit.InternationalizationClass;
@@ -18,6 +20,7 @@ import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.SerializationClass;
 import sk.stu.fiit.Model.User;
 import sk.stu.fiit.PasswordGenerator;
+import sk.stu.fiit.PasswordHasher;
 
 /**
  * Trieda reprezentujúca controller pre pridávanie používateľov do systému.
@@ -108,7 +111,12 @@ public final class AddUserController implements Controller {
         }
         
         String password = PasswordGenerator.generatePassword();
-        user.setPassword(password);
+        try {
+            user.setPassword(PasswordHasher.SHAtoString(PasswordHasher.getSHA(password)));
+        } catch (NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(window, bundle.getString("PASS_LOAD_ERROR1"));
+            CustomLogger.getLogger(LoginController.class).warn(bundle.getString("PASS_LOAD_ERROR2"));
+        }
 
         user = database.addUser(user);
         if (user == null) {

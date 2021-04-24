@@ -153,13 +153,6 @@ public final class GoodsMoveController implements Controller {
         
         if (window.getChbStorageStatus1().isSelected()) {
             storage.setFree(false);
-            storage = database.setStorage(storage);
-            if (storage == null) {
-                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
-                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
-                return;
-            }
-            SerializationClass.serialize(database);
         }
         
         newItem.setStorage(storage);
@@ -173,10 +166,18 @@ public final class GoodsMoveController implements Controller {
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
                 return;
             }
+            storage = database.setStorage(storage);
+            if (storage == null) {
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
+                return;
+            }
             oldStorage.setFree(true);
             oldStorage.setItemCount(storage.getItemCount() - 1);
             database.setStorage(oldStorage);
             item = null;
+            clear();
+            SerializationClass.serialize(database);
         } else if (quantity > item.getQuantity()){
             JOptionPane.showMessageDialog(window, bundle.getString("QUANTITY_ERROR2"));
             CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("QUANTITY_ERROR2"));
@@ -190,6 +191,12 @@ public final class GoodsMoveController implements Controller {
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
+                return;
+            }
+            storage = database.setStorage(storage);
+            if (storage == null) {
+                JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
+                CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
                 return;
             }
             oldStorage.setFree(true);
@@ -225,18 +232,19 @@ public final class GoodsMoveController implements Controller {
 
         int id = (int) window.getTbGoodsModel().getValueAt(index, 0);
         item = database.findItem(id);
+        window.setLbChoosedItem(item.getGoods().getName()+ ", " + item.getStorage().getCode() + ", " + item.getQuantity());
     }
 
     /**
      * Metóda pre naplnenie tabuľky s voľnými pozíciami v sklade.
      */
     private void fillStorageTable() {
-        window.getTbFreeStorageModel().setRowCount(0);
+        window.getTbFreeStorage1Model().setRowCount(0);
         for (Storage storage : database.getStorageTable()) {
             if (storage.isFree()) {
                 Object[] row = new Object[1];
                 row[0] = storage.getCode();
-                window.getTbFreeStorageModel().addRow(row);
+                window.getTbFreeStorage1Model().addRow(row);
             }
         }
     }
@@ -256,11 +264,7 @@ public final class GoodsMoveController implements Controller {
             CustomLogger.getLogger(GoodsMoveController.class).warn(it.getGoods().getCode() + ": " + bundle.getString("MOVE_GOODS_INFO"));
             SerializationClass.serialize(database);
             item = null;
-            fillGoodsTable();
-            window.setTfQuantity1("");
-            window.setTfStorageCode1("");
-            fillStorageTable();
-            window.getChbStorageStatus1().setSelected(false);
+            clear();
         }
     }
 
@@ -278,6 +282,17 @@ public final class GoodsMoveController implements Controller {
             row[4] = it.getStorage().getCode();
             window.getTbGoodsModel().addRow(row);
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        fillGoodsTable();
+        window.setTfQuantity1("");
+        window.setTfStorageCode1("");
+        fillStorageTable();
+        window.getChbStorageStatus1().setSelected(false);
     }
 
 }

@@ -61,6 +61,10 @@ public final class WarehousemanController implements Controller {
 
         window.setLbName(bundle.getString("NAME_LB") + ": " + user.getName());
         window.setLbUsername(bundle.getString("USER_USERNAME") + ": " + user.getUsername());
+        
+        window.setVisible(true);
+        hideAll();
+        window.getpLogin().setVisible(true);
 
         initController();
 
@@ -174,7 +178,7 @@ public final class WarehousemanController implements Controller {
      */
     private void logout() {
         LoginController.createController(database, new LoginWindow());
-        window.setVisible(false);
+        window.dispose();
     }
 
     /**

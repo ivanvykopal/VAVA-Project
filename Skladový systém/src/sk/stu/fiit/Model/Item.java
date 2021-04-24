@@ -71,6 +71,21 @@ public class Item implements Serializable {
     }
     
     /**
+     * Konštruktor pre inicializáciu atribútov triedy {@code Item}.
+     * 
+     * @param item položka na základe, ktorej inicializujeme
+     */
+    public Item(Item item) {
+        this.id = item.getId();
+        this.exportDate = item.getExportDate();
+        this.goods = new Goods(item.getGoods());
+        this.position = item.getPosition();
+        this.quantity = item.getQuantity();
+        this.receiptDate = item.getReceiptDate();
+        this.storage = new Storage(item.getStorage());
+    }
+    
+    /**
      * Metóda pre zistenie, či niektorý z atribútov je prázdny.
      * 
      * @return true, ak niektorý atribút je prázdny, inak false

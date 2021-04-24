@@ -102,7 +102,12 @@ public final class Database implements Serializable {
      * @return zoznam položiek nachádzajúcich sa v sklade
      */
     public ArrayList<Item> getItemTableIn() {
-        return itemTable.get(Position.IN_STOCK);
+        ArrayList<Item> items = itemTable.get(Position.IN_STOCK);
+        if (items == null) {
+            return new ArrayList<>();
+        } else {
+            return items;
+        }
     }
     
     /**
@@ -111,7 +116,12 @@ public final class Database implements Serializable {
      * @return zoznam položiek vyvezených zo skladu
      */
     public ArrayList<Item> getItemTableOut() {
-        return itemTable.get(Position.OUT_STOCK);
+        ArrayList<Item> items = itemTable.get(Position.OUT_STOCK);
+        if (items == null) {
+            return new ArrayList<>();
+        } else {
+            return items;
+        }
     }
     
     /**
@@ -120,7 +130,12 @@ public final class Database implements Serializable {
      * @return zoznam položiek nachádzajúcich sa vo výrobe 
      */
     public ArrayList<Item> getItemTableProduction() {
-        return itemTable.get(Position.PRODUCTION);
+        ArrayList<Item> items = itemTable.get(Position.PRODUCTION);
+        if (items == null) {
+            return new ArrayList<>();
+        } else {
+            return items;
+        }
     }
 
     /**
@@ -154,7 +169,7 @@ public final class Database implements Serializable {
     public User findUser(String username, String password) {
         for (User user : userTable) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user;
+                return new User(user);
             }
         }
         return null;
@@ -170,7 +185,7 @@ public final class Database implements Serializable {
     public User findUser(String username) {
         for (User user : userTable) {
             if (user.getUsername().equals(username)) {
-                return user;
+                return new User(user);
             }
         }
         return null;
@@ -186,7 +201,7 @@ public final class Database implements Serializable {
     public User findUser(int id) {
         for (User user : userTable) {
             if (user.getId() == id) {
-                return user;
+                return new User(user);
             }
         }
         return null;
@@ -336,7 +351,7 @@ public final class Database implements Serializable {
     public Goods findGoods(String code) {
         for (Goods goods : goodsTable) {
             if (goods.getCode().equals(code)) {
-                return goods;
+                return new Goods(goods);
             }
         }
         return null;
@@ -352,7 +367,7 @@ public final class Database implements Serializable {
     public Goods findGoods(int id) {
         for (Goods goods : goodsTable) {
             if (goods.getId() == id) {
-                return goods;
+                return new Goods(goods);
             }
         }
         return null;
@@ -440,7 +455,7 @@ public final class Database implements Serializable {
     public Storage findStorage(String code) {
         for (Storage storage : storageTable) {
             if (storage.getCode().equals(code)) {
-                return storage;
+                return new Storage(storage);
             }
         }
         return null;
@@ -456,7 +471,7 @@ public final class Database implements Serializable {
     public Storage findStorage(int id) {
         for (Storage storage : storageTable) {
             if (storage.getId() == id) {
-                return storage;
+                return new Storage(storage);
             }
         }
         return null;
@@ -513,12 +528,14 @@ public final class Database implements Serializable {
      * @return pridaná položka skladu, inak null
      */
     public Item addItem(Item item) {
-        Storage storage = findStorage(item.getStorage().getCode());
-        if (!storage.isFree()) {
-            return null;
+        if (item.getStorage() != null) {
+            Storage storage = findStorage(item.getStorage().getCode());
+            if (!storage.isFree()) {
+                return null;
+            }
+            storage.setItemCount(storage.getItemCount() + 1);
+            setStorage(storage);
         }
-        storage.setItemCount(storage.getItemCount() + 1);
-        setStorage(storage);
         item.setId(itemIdGenerator);
         itemIdGenerator++;
         ArrayList<Item> items = itemTable.get(item.getPosition());
@@ -526,7 +543,7 @@ public final class Database implements Serializable {
             items = new ArrayList<>();
         }
         items.add(item);
-        this.itemTable.replace(item.getPosition(), items);
+        this.itemTable.put(item.getPosition(), items);
         return item;
     }
     
@@ -540,7 +557,7 @@ public final class Database implements Serializable {
     public Item findItem(int id) {
         for (Item item : getItemTableAll()) {
             if (item.getId() == id) {
-                return item;
+                return new Item(item);
             }
         }
         return null;
@@ -556,6 +573,19 @@ public final class Database implements Serializable {
     public Item setItem(Item item) {
         Item it = findItem(item.getId());
         ArrayList<Item> items = itemTable.get(it.getPosition());
+        if (it.getStorage() != null && item.getStorage() == null) {
+            Storage storage = it.getStorage();
+            storage.setItemCount(storage.getItemCount() - 1);
+            setStorage(storage);
+        }
+        
+        if (item.getStorage()!= null && !it.getStorage().getCode().equals(item.getStorage().getCode())) {
+            Storage storage = findStorage(item.getStorage().getCode());
+            if (!storage.isFree()) {
+                return null;
+            }
+        }
+
         if (item.getPosition() == it.getPosition()) {
             boolean set = false;
             for(int i = 0; i < items.size(); i++) {

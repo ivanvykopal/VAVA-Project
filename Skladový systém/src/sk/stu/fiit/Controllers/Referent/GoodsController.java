@@ -5,9 +5,15 @@
  */
 package sk.stu.fiit.Controllers.Referent;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 import sk.stu.fiit.Controllers.Controller;
+import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ReferentWindow;
+import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 
 /**
@@ -25,6 +31,9 @@ public abstract class GoodsController implements Controller {
     
     /** Atribút window predstavuje obrazovku referenta. **/
     protected ReferentWindow window;
+    
+    /** Atribút bundle predstavuje súbor s aktuálnou jazykovou verziou. **/
+    protected final ResourceBundle bundle = InternationalizationClass.getBundle();
 
     /**
      * Konštruktor pre inicializáciu atribútov triedy {@code GoodsController}.
@@ -51,7 +60,16 @@ public abstract class GoodsController implements Controller {
      * false
      */
     protected boolean matchDates(Date date, Date from, Date to) {
-        return date.equals(from) || date.equals(to) || (date.after(from) && date.before(to));
+        SimpleDateFormat format = new SimpleDateFormat(bundle.getString("DATE_FORMAT"));
+        Date newDate;
+        try {
+            newDate = format.parse(format.format(date));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(window, bundle.getString("DATE_ERROR"));
+            CustomLogger.getLogger(GoodsController.class).warn(bundle.getString("DATE_ERROR"), ex);
+            return false;
+        }
+        return newDate.compareTo(from) == 0 || newDate.compareTo(to) == 0 || (newDate.after(from) && newDate.before(to));
     }
     
     /**

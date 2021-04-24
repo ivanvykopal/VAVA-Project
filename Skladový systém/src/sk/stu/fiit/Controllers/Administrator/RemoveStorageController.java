@@ -123,10 +123,7 @@ public final class RemoveStorageController implements Controller {
 
         storage = database.findStorage(code);
         if (storage == null) {
-            window.setTfBuilding("");
-            window.setTfCode("");
-            window.setTfShelf("");
-            window.setTfContainItem("");
+            clear();
         } else {
             window.setTfBuilding(storage.getBuilding());
             window.setTfCode(storage.getCode());
@@ -159,6 +156,7 @@ public final class RemoveStorageController implements Controller {
         if (storage == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_STORAGE_ERROR"));
             CustomLogger.getLogger(RemoveStorageController.class).warn(bundle.getString("REMOVE_STORAGE_ERROR"));
+            clear();
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_STORAGE_INFO"));
             CustomLogger.getLogger(RemoveStorageController.class).info(storage.getCode() + ": " + bundle.getString("REMOVE_STORAGE_INFO"));
@@ -199,6 +197,16 @@ public final class RemoveStorageController implements Controller {
                 window.getTbStoragesModel().addRow(row);
             }
         }
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        window.setTfBuilding("");
+        window.setTfCode("");
+        window.setTfShelf("");
+        window.setTfContainItem("");
     }
 
 }

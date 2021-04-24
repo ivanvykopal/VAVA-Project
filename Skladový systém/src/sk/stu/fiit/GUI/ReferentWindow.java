@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Controllers.IMethod;
 import sk.stu.fiit.InternationalizationClass;
@@ -55,12 +56,14 @@ public class ReferentWindow extends javax.swing.JFrame {
         btnChangePassword = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        spGoodsOverview = new javax.swing.JScrollPane();
         pGoodsOverview = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbOverviewGoods = new javax.swing.JTable();
         lbTotalPrice = new javax.swing.JLabel();
         btnExportData = new javax.swing.JButton();
+        spGoodsCosts = new javax.swing.JScrollPane();
         pGoodsCosts = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -71,6 +74,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         ftfCostsTo = new javax.swing.JFormattedTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbGoodsCosts = new javax.swing.JTable();
+        spGoodsProfits = new javax.swing.JScrollPane();
         pGoodsProfits = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -82,8 +86,8 @@ public class ReferentWindow extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tbGoodsProfits = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        miLoginPage = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        JMenu3 = new javax.swing.JMenu();
+        miLoginPage = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         miChangePassword = new javax.swing.JMenuItem();
         miLogout = new javax.swing.JMenuItem();
@@ -96,7 +100,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("REFERENT_TITLE"));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -203,12 +207,11 @@ public class ReferentWindow extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel1.setText(bundle.getString("GOODS_OVERVIEW"));
-        jLabel1.setPreferredSize(new java.awt.Dimension(250, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsOverview.add(jLabel1, gridBagConstraints);
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 500));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbOverviewGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbOverviewGoods.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -259,7 +262,9 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsOverview.add(btnExportData, gridBagConstraints);
 
-        jPanel1.add(pGoodsOverview, "card3");
+        spGoodsOverview.setViewportView(pGoodsOverview);
+
+        jPanel1.add(spGoodsOverview, "card6");
 
         pGoodsCosts.setBackground(new java.awt.Color(255, 255, 255));
         pGoodsCosts.setLayout(new java.awt.GridBagLayout());
@@ -326,7 +331,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsCosts.add(ftfCostsTo, gridBagConstraints);
 
         jScrollPane3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane3.setMinimumSize(new java.awt.Dimension(800, 500));
+        jScrollPane3.setMinimumSize(new java.awt.Dimension(1000, 500));
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbGoodsCosts.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -362,7 +367,9 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsCosts.add(jScrollPane3, gridBagConstraints);
 
-        jPanel1.add(pGoodsCosts, "card4");
+        spGoodsCosts.setViewportView(pGoodsCosts);
+
+        jPanel1.add(spGoodsCosts, "card6");
 
         pGoodsProfits.setBackground(new java.awt.Color(255, 255, 255));
         pGoodsProfits.setLayout(new java.awt.GridBagLayout());
@@ -429,7 +436,7 @@ public class ReferentWindow extends javax.swing.JFrame {
         pGoodsProfits.add(ftfProfitsTo, gridBagConstraints);
 
         jScrollPane4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane4.setMinimumSize(new java.awt.Dimension(800, 500));
+        jScrollPane4.setMinimumSize(new java.awt.Dimension(1000, 500));
         jScrollPane4.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbGoodsProfits.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -465,32 +472,34 @@ public class ReferentWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         pGoodsProfits.add(jScrollPane4, gridBagConstraints);
 
-        jPanel1.add(pGoodsProfits, "card4");
+        spGoodsProfits.setViewportView(pGoodsProfits);
+
+        jPanel1.add(spGoodsProfits, "card6");
 
         getContentPane().add(jPanel1);
 
-        miLoginPage.setText(bundle.getString("ACCOUNT_MENU"));
-        miLoginPage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        JMenu3.setText(bundle.getString("ACCOUNT_MENU"));
+        JMenu3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jMenuItem1.setText(bundle.getString("VIEW_HOMEPAGE_MENU"));
-        miLoginPage.add(jMenuItem1);
-        miLoginPage.add(jSeparator2);
+        miLoginPage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        miLoginPage.setText(bundle.getString("VIEW_HOMEPAGE_MENU"));
+        JMenu3.add(miLoginPage);
+        JMenu3.add(jSeparator2);
 
         miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
-        miLoginPage.add(miChangePassword);
+        JMenu3.add(miChangePassword);
 
         miLogout.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miLogout.setText(bundle.getString("LOGOUT_BTN"));
-        miLoginPage.add(miLogout);
-        miLoginPage.add(jSeparator1);
+        JMenu3.add(miLogout);
+        JMenu3.add(jSeparator1);
 
         miExit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miExit.setText(bundle.getString("EXIT_MENU"));
-        miLoginPage.add(miExit);
+        JMenu3.add(miExit);
 
-        jMenuBar1.add(miLoginPage);
+        jMenuBar1.add(JMenu3);
 
         jMenu1.setText(bundle.getString("VIEW_MENU"));
         jMenu1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -524,6 +533,7 @@ public class ReferentWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JMenu3;
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnCosts;
     private javax.swing.JButton btnExportData;
@@ -547,7 +557,6 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -566,13 +575,16 @@ public class ReferentWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem miCosts;
     private javax.swing.JMenuItem miExit;
     private javax.swing.JMenuItem miGoodsOverview;
-    private javax.swing.JMenu miLoginPage;
+    private javax.swing.JMenuItem miLoginPage;
     private javax.swing.JMenuItem miLogout;
     private javax.swing.JMenuItem miProfits;
     private javax.swing.JPanel pGoodsCosts;
     private javax.swing.JPanel pGoodsOverview;
     private javax.swing.JPanel pGoodsProfits;
     private javax.swing.JPanel pLogin;
+    private javax.swing.JScrollPane spGoodsCosts;
+    private javax.swing.JScrollPane spGoodsOverview;
+    private javax.swing.JScrollPane spGoodsProfits;
     private javax.swing.JTable tbGoodsCosts;
     private javax.swing.JTable tbGoodsProfits;
     private javax.swing.JTable tbOverviewGoods;
@@ -776,21 +788,21 @@ public class ReferentWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Metóda pre získanie panelu okna pre informácie o nákladoch.
+     * Metóda pre získanie scroll panelu okna pre informácie o nákladoch.
      * 
-     * @return panel s informáciami o nákladoch
+     * @return scroll panel s informáciami o nákladoch
      */
-    public JPanel getpGoodsCosts() {
-        return pGoodsCosts;
+    public JScrollPane getspGoodsCosts() {
+        return spGoodsCosts;
     }
 
     /**
-     * Metóda pre získanie panelu okna pre informácie o tovaroch.
+     * Metóda pre získanie scroll panelu okna pre informácie o tovaroch.
      * 
-     * @return panel s informáciami o tovaroch
+     * @return scroll panel s informáciami o tovaroch
      */
-    public JPanel getpGoodsOverview() {
-        return pGoodsOverview;
+    public JScrollPane getspGoodsOverview() {
+        return spGoodsOverview;
     }
 
     /**
@@ -848,12 +860,12 @@ public class ReferentWindow extends javax.swing.JFrame {
     }
 
      /**
-     * Metóda pre získanie panelu okna pre informácie o ziskoch.
+     * Metóda pre získanie scroll panelu okna pre informácie o ziskoch.
      * 
-     * @return panel s informáciami o ziskoch
+     * @return scroll panel s informáciami o ziskoch
      */
-    public JPanel getpGoodsProfits() {
-        return pGoodsProfits;
+    public JScrollPane getspGoodsProfits() {
+        return spGoodsProfits;
     }
 
     /**
@@ -896,14 +908,6 @@ public class ReferentWindow extends javax.swing.JFrame {
      * Metóda pre odstránenie Mouselistenerov z tlačidiel z jednotlivých panelov.
      */
     public void removeListeners() {
-        //Login panel 
-        for (MouseListener ml : btnLogout.getMouseListeners()) {
-            btnLogout.removeMouseListener(ml);
-        }
-        for (MouseListener ml : btnChangePassword.getMouseListeners()) {
-            btnChangePassword.removeMouseListener(ml);
-        }
-        
         //GoodsCosts panel
         for (MouseListener ml : btnViewCosts.getMouseListeners()) {
             btnViewCosts.removeMouseListener(ml);

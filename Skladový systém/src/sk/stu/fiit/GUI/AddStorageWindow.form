@@ -7,7 +7,7 @@
       <Connection code="bundle.getString(&quot;ADD_STORAGE_TITLE&quot;)" type="code"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1000, 1000]"/>
+      <Dimension value="[900, 900]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

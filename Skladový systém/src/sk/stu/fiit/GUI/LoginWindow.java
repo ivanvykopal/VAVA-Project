@@ -125,7 +125,7 @@ public class LoginWindow extends javax.swing.JFrame{
         gridBagConstraints.ipadx = 75;
         jPanel8.add(btnLogin, gridBagConstraints);
 
-        cbLanguage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        cbLanguage.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         cbLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SK", "EN" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -136,7 +136,7 @@ public class LoginWindow extends javax.swing.JFrame{
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 25, 100);
         jPanel8.add(cbLanguage, gridBagConstraints);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel5.setText(bundle.getString("LANGUAGE") + ":");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

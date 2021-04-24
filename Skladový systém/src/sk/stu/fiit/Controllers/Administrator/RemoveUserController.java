@@ -135,10 +135,7 @@ public final class RemoveUserController implements Controller {
 
         user = database.findUser(username);
         if (user == null) {
-            window.setTfEmail("");
-            window.setTfName("");
-            window.setTfType("");
-            window.setTfUsername("");
+            clear();
         } else {
             window.setTfEmail(user.getEmail());
             window.setTfName(user.getName());
@@ -171,6 +168,7 @@ public final class RemoveUserController implements Controller {
         if (user == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_USER_ERROR"));
             CustomLogger.getLogger(RemoveUserController.class).warn(bundle.getString("REMOVE_USER_ERROR"));
+            clear();
         } else {
             JOptionPane.showMessageDialog(window, bundle.getString("REMOVE_USER_INFO"));
             CustomLogger.getLogger(RemoveUserController.class).info(user.getUsername() + ": " + bundle.getString("REMOVE_USER_INFO"));
@@ -192,7 +190,7 @@ public final class RemoveUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("administrator", record);
+                    usersTable.put("administrator", record);
                     break;
                 case WAREHOUSEMAN:
                     record = usersTable.get("warehouseman");
@@ -200,7 +198,7 @@ public final class RemoveUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("warehouseman", record);
+                    usersTable.put("warehouseman", record);
                     break;
                 case REFERENT:
                     record = usersTable.get("referent");
@@ -208,7 +206,7 @@ public final class RemoveUserController implements Controller {
                         record = new ArrayList<>();
                     }
                     record.add(u);
-                    usersTable.replace("referent", record);
+                    usersTable.put("referent", record);
                     break;
             }
         }
@@ -256,6 +254,16 @@ public final class RemoveUserController implements Controller {
     private void filter() {
         String filter = window.getTfFilter();
         fillUsersTable(filter, (String) window.getCbTypeFilter().getSelectedItem());
+    }
+    
+    /**
+     * Metóda pre premazanie komponentov.
+     */
+    private void clear() {
+        window.setTfEmail("");
+        window.setTfName("");
+        window.setTfType("");
+        window.setTfUsername("");
     }
 
 }

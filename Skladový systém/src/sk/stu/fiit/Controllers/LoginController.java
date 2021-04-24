@@ -11,8 +11,6 @@ import sk.stu.fiit.Controllers.Referent.ReferentController;
 import sk.stu.fiit.Controllers.Administrator.AdministratorController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
@@ -24,6 +22,7 @@ import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.User;
+import sk.stu.fiit.PasswordHasher;
 
 /**
  * Trieda reprezentujúca controller pre prihlásenie používateľov do systému.
@@ -55,6 +54,12 @@ public final class LoginController implements Controller {
     private LoginController(Database database, LoginWindow window) {
         this.database = database;
         this.window = window;
+        
+        if (InternationalizationClass.getLocale().getLanguage().equals("sk")) {
+            window.getCbLanguage().setSelectedIndex(0);
+        } else {
+            window.getCbLanguage().setSelectedIndex(1);
+        }
         
         window.setVisible(true);
         initController();
@@ -102,14 +107,12 @@ public final class LoginController implements Controller {
             case 0:
                 InternationalizationClass.setBundle("bundles/Bundle_SK", "sk", "SK");
                 newWindow = new LoginWindow();
-                newWindow.getCbLanguage().setSelectedIndex(0);
                 LoginController.createController(database, newWindow);
                 window.dispose();
                 break;
             case 1:
                 InternationalizationClass.setBundle("bundles/Bundle_EN", "en", "US");
                 newWindow = new LoginWindow();
-                newWindow.getCbLanguage().setSelectedIndex(1);
                 LoginController.createController(database, newWindow);
                 window.dispose();
                 break;
@@ -129,7 +132,7 @@ public final class LoginController implements Controller {
         String userName = window.getTfLoginField();
         String password;
         try {
-            password = SHAtoString(getSHA(window.getPfPasswordField()));
+            password = PasswordHasher.SHAtoString(PasswordHasher.getSHA(window.getPfPasswordField()));
         } catch (NoSuchAlgorithmException ex) {
             JOptionPane.showMessageDialog(window, bundle.getString("PASS_LOAD_ERROR1"));
             CustomLogger.getLogger(LoginController.class).warn(bundle.getString("PASS_LOAD_ERROR2"));
@@ -160,41 +163,6 @@ public final class LoginController implements Controller {
                 window.setVisible(false);
                 break;
         }
-    }
-
-    /**
-     * Metóda určená pre konverziu zadaného hesla na pole znakov pomocou SHA-256.
-     * 
-     * @param input heslo
-     * 
-     * @return pole znakov konvertovaného hesla
-     * 
-     * @throws NoSuchAlgorithmException výnimka pri nenájdení algoritmu pre
-     * kryptografiu
-     */
-    //https://www.baeldung.com/sha-256-hashing-java
-    private byte[] getSHA(String input) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        return md.digest(input.getBytes(StandardCharsets.UTF_8));
-    }
-
-    /**
-     * Metóda pre skonvertovanie poľa znakov na reťazec.
-     * 
-     * @param hash pole znakov konvertovaného hesla
-     * 
-     * @return reťazcová reprezentácia zahashovaného hesla
-     */
-    private String SHAtoString(byte[] hash) {
-        StringBuilder hexString = new StringBuilder(2 * hash.length);
-        for (int i = 0; i < hash.length; i++) {
-            String hex = Integer.toHexString(0xff & hash[i]);
-            if (hex.length() == 1) {
-                hexString.append('0');
-            }
-            hexString.append(hex);
-        }
-        return hexString.toString();
     }
 
 }

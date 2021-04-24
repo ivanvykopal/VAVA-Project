@@ -120,6 +120,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         miLoginPage = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         miChangePassword = new javax.swing.JMenuItem();
         miLogout = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -133,9 +134,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         miAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("WAREHOUSEMAN_TITLE"));
-        setPreferredSize(new java.awt.Dimension(1400, 1000));
+        setMinimumSize(new java.awt.Dimension(1400, 900));
+        setPreferredSize(new java.awt.Dimension(1500, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel3.setLayout(new java.awt.CardLayout());
@@ -204,10 +206,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         tfGoodsCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfGoodsCode.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 100);
         jPanel1.add(tfGoodsCode, gridBagConstraints);
 
@@ -221,10 +223,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel2, gridBagConstraints);
 
         tfQuantity.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfQuantity.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 100);
         jPanel1.add(tfQuantity, gridBagConstraints);
 
@@ -238,10 +240,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         tfStorageCode.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfStorageCode.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 100);
         jPanel1.add(tfStorageCode, gridBagConstraints);
 
@@ -377,7 +379,6 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 35)); // NOI18N
         jLabel17.setText(bundle.getString("WAREHOUSEMAN"));
-        jLabel17.setPreferredSize(new java.awt.Dimension(210, 41));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -389,7 +390,9 @@ public class WarehousemanWindow extends javax.swing.JFrame {
 
         jPanel3.add(pLogin, "card3");
 
-        pGoodsMove.setPreferredSize(new java.awt.Dimension(1400, 1000));
+        spGoodsMove.setPreferredSize(new java.awt.Dimension(1400, 900));
+
+        pGoodsMove.setPreferredSize(new java.awt.Dimension(1400, 900));
         pGoodsMove.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -442,7 +445,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         pGoodsMove.add(jPanel6, java.awt.BorderLayout.LINE_START);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setPreferredSize(new java.awt.Dimension(956, 600));
+        jPanel7.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -451,15 +454,16 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
         jPanel7.add(jLabel5, gridBagConstraints);
 
         tfQuantity1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfQuantity1.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfQuantity1.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 100);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 100);
         jPanel7.add(tfQuantity1, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -468,15 +472,16 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 0);
         jPanel7.add(jLabel6, gridBagConstraints);
 
         tfStorageCode1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfStorageCode1.setMinimumSize(new java.awt.Dimension(250, 30));
+        tfStorageCode1.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 100, 50, 100);
+        gridBagConstraints.insets = new java.awt.Insets(25, 100, 25, 100);
         jPanel7.add(tfStorageCode1, gridBagConstraints);
 
         btnMoveGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -486,7 +491,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 150;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 50, 0);
         jPanel7.add(btnMoveGoods, gridBagConstraints);
 
         chbStorageStatus1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -497,6 +502,9 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         jPanel7.add(chbStorageStatus1, gridBagConstraints);
+
+        jScrollPane3.setMinimumSize(new java.awt.Dimension(700, 350));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(700, 350));
 
         tbGoods.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbGoods.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -535,9 +543,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 400;
-        gridBagConstraints.ipady = 250;
-        gridBagConstraints.insets = new java.awt.Insets(50, 50, 50, 50);
+        gridBagConstraints.insets = new java.awt.Insets(25, 50, 50, 50);
         jPanel7.add(jScrollPane3, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
@@ -576,7 +582,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jScrollPane5.setPreferredSize(new java.awt.Dimension(600, 400));
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         tbGoods1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tbGoods1.getTableHeader().setFont(new java.awt.Font("Arial", 1, 15));
@@ -603,11 +609,11 @@ public class WarehousemanWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbGoods1.setPreferredSize(null);
         tbGoods1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(tbGoods1);
         if (tbGoods1.getColumnModel().getColumnCount() > 0) {
             tbGoods1.getColumnModel().getColumn(0).setMinWidth(0);
-            tbGoods1.getColumnModel().getColumn(0).setPreferredWidth(0);
             tbGoods1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
@@ -615,8 +621,6 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 400;
-        gridBagConstraints.ipady = 100;
         gridBagConstraints.insets = new java.awt.Insets(10, 50, 25, 50);
         jPanel8.add(jScrollPane5, gridBagConstraints);
 
@@ -656,10 +660,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         jPanel8.add(lbChoosedItem1, gridBagConstraints);
 
         tfQuantity2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfQuantity2.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 250;
         gridBagConstraints.insets = new java.awt.Insets(25, 50, 25, 25);
         jPanel8.add(tfQuantity2, gridBagConstraints);
 
@@ -787,6 +791,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
         miLoginPage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miLoginPage.setText(bundle.getString("VIEW_HOMEPAGE_MENU"));
         jMenu3.add(miLoginPage);
+        jMenu3.add(jSeparator3);
 
         miChangePassword.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         miChangePassword.setText(bundle.getString("CHANGE_PASSWORD_BTN"));
@@ -898,6 +903,7 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel lbChoosedItem;
     private javax.swing.JLabel lbChoosedItem1;
     private javax.swing.JLabel lbName;
@@ -1390,8 +1396,10 @@ public class WarehousemanWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Metóda pre získanie výberového pola pre možnost
-     * @return 
+     * Metóda pre získanie výberového pola pre možnosť vyhľadávanie v skladovacom
+     * systéme.
+     * 
+     * @return výberové pole
      */
     public JComboBox<String> getCbStorageOption() {
         return cbStorageOption;
@@ -1448,14 +1456,6 @@ public class WarehousemanWindow extends javax.swing.JFrame {
      * jednotlivých panelov.
      */
     public void removeListeners() {
-        //Login panel ??
-        for (MouseListener ml : btnLogout.getMouseListeners()) {
-            btnLogout.removeMouseListener(ml);
-        }
-        for (MouseListener ml : btnChangePassword.getMouseListeners()) {
-            btnChangePassword.removeMouseListener(ml);
-        }
-        
         //GoodsReceipt panel
         for (MouseListener ml : btnAcceptGoods.getMouseListeners()) {
             btnAcceptGoods.removeMouseListener(ml);
