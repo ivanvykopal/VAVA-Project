@@ -164,6 +164,7 @@ public final class GoodsMoveController implements Controller {
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
+                window.setLbChoosedItem("");
                 return;
             }
             storage = database.setStorage(storage);
@@ -191,6 +192,7 @@ public final class GoodsMoveController implements Controller {
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
+                window.setLbChoosedItem("");
                 return;
             }
             storage = database.setStorage(storage);
@@ -293,6 +295,7 @@ public final class GoodsMoveController implements Controller {
         window.setTfStorageCode1("");
         fillStorageTable();
         window.getChbStorageStatus1().setSelected(false);
+        window.setLbChoosedItem("");
     }
 
 }

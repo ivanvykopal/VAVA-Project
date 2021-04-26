@@ -13,11 +13,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.ReferentWindow;
-import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
 import sk.stu.fiit.Model.Item;
 
@@ -91,6 +89,12 @@ public final class GoodsCostsController extends GoodsController {
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(window, bundle.getString("DATE_ERROR"));
             CustomLogger.getLogger(GoodsCostsController.class).warn(bundle.getString("DATE_ERROR"), ex);
+            return;
+        }
+        
+        if (from.after(to)) {
+            JOptionPane.showMessageDialog(window, bundle.getString("DATE_ERROR2"));
+            CustomLogger.getLogger(GoodsCostsController.class).warn(bundle.getString("DATE_ERROR2"));
             return;
         }
         

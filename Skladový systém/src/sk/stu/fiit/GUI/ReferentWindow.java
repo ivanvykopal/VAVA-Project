@@ -102,6 +102,7 @@ public class ReferentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("REFERENT_TITLE"));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setLayout(new java.awt.CardLayout());

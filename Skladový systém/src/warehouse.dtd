@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Pre kontrolu správnosti formátu XML súboru vložte nasledujúci riadok do xml súboru:
+        <!DOCTYPE warehouse SYSTEM "warehouse.dtd"> 
+-->
+
+<!ELEMENT warehouse (goods)*>
+<!ELEMENT goods (name, code, description, prices, deleted)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT prices (incomePrice, exportPrice)>
+<!ELEMENT deleted (#PCDATA)>
+<!ELEMENT incomePrice (#PCDATA)>
+<!ELEMENT exportPrice (#PCDATA)>

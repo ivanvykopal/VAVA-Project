@@ -152,6 +152,7 @@ public final class GoodsExportController implements Controller {
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
                 CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
+                window.setLbChoosedItem1("");
                 return;
             }
             storage.setFree(true);
@@ -173,6 +174,7 @@ public final class GoodsExportController implements Controller {
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
                 CustomLogger.getLogger(GoodsExportController.class).warn(bundle.getString("CHANGE_ITEM_ERROR"));
+                window.setLbChoosedItem1("");
                 return;
             }
             storage.setFree(true);
@@ -239,6 +241,7 @@ public final class GoodsExportController implements Controller {
         fillTable();
         window.setTfQuantity2("");
         window.getChbProduction().setSelected(false);
+        window.setLbChoosedItem1("");
     }
 
 }
