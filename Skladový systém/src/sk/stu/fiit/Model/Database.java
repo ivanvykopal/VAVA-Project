@@ -375,12 +375,21 @@ public final class Database implements Serializable {
     
     /**
      * Metóda pre nastavenie príznaku tovaru o tom, že tovar je vymazaný.
+     * Tovar môže byť vymazaný len v prípade, ak sa už nenachádza na sklade.
      * 
      * @param goods tovar, ktorý chceme označiť ako vymazaný
      * 
      * @return tovar, ktorý bol označený ako vymazaný, inak null
      */
     public Goods removeGoods(Goods goods) {
+        ArrayList<Item> items = itemTable.get(Position.IN_STOCK);
+        if (items != null) {
+            for(Item item : items) {
+                if (item.getGoods().equals(goods)) {
+                    return null;
+                }
+            }
+        }
         goods.setDeleted(true);
         return setGoods(goods);
     }
@@ -534,7 +543,9 @@ public final class Database implements Serializable {
                 return null;
             }
             storage.setItemCount(storage.getItemCount() + 1);
-            setStorage(storage);
+            storage.setFree(item.getStorage().isFree());
+            storage = setStorage(storage);
+            item.setStorage(storage);
         }
         item.setId(itemIdGenerator);
         itemIdGenerator++;
@@ -572,14 +583,8 @@ public final class Database implements Serializable {
      */
     public Item setItem(Item item) {
         Item it = findItem(item.getId());
-        ArrayList<Item> items = itemTable.get(it.getPosition());
-        if (it.getStorage() != null && item.getStorage() == null) {
-            Storage storage = it.getStorage();
-            storage.setItemCount(storage.getItemCount() - 1);
-            setStorage(storage);
-        }
-        
-        if (item.getStorage()!= null && !it.getStorage().getCode().equals(item.getStorage().getCode())) {
+        ArrayList<Item> items = itemTable.get(it.getPosition());      
+        if (item.getStorage() != null && !it.getStorage().equals(item.getStorage())) {
             Storage storage = findStorage(item.getStorage().getCode());
             if (!storage.isFree()) {
                 return null;
@@ -618,6 +623,7 @@ public final class Database implements Serializable {
                 items = new ArrayList<>();
             }
             items.add(item);
+            itemTable.put(item.getPosition(), items);
             return item;
         }
     }

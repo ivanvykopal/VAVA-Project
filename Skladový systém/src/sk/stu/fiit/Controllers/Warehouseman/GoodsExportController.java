@@ -137,7 +137,7 @@ public final class GoodsExportController implements Controller {
             return;
         }
         
-        Storage storage = item.getStorage();
+        Storage storage = database.findStorage(item.getStorage().getId());
 
         Item newItem = new Item();
         newItem.setReceiptDate(item.getReceiptDate());
@@ -170,6 +170,8 @@ public final class GoodsExportController implements Controller {
         } else {
             item.setQuantity(item.getQuantity() - quantity);
             newItem.setQuantity(quantity);
+            storage.setFree(true);
+            item.setStorage(storage);
             item = database.setItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
@@ -177,7 +179,6 @@ public final class GoodsExportController implements Controller {
                 window.setLbChoosedItem1("");
                 return;
             }
-            storage.setFree(true);
             database.setStorage(storage);
             addNewItem(newItem);
         }

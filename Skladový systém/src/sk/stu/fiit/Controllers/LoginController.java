@@ -21,6 +21,7 @@ import sk.stu.fiit.GUI.ReferentWindow;
 import sk.stu.fiit.GUI.WarehousemanWindow;
 import sk.stu.fiit.InternationalizationClass;
 import sk.stu.fiit.Model.Database;
+import sk.stu.fiit.Model.Storage;
 import sk.stu.fiit.Model.User;
 import sk.stu.fiit.PasswordHasher;
 
@@ -63,6 +64,7 @@ public final class LoginController implements Controller {
         
         window.setVisible(true);
         initController();
+        
     }
 
     /**

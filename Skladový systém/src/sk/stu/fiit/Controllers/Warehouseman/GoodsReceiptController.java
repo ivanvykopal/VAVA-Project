@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.Controllers.Administrator.AddUserController;
 import sk.stu.fiit.Controllers.Controller;
 import sk.stu.fiit.CustomLogger;
 import sk.stu.fiit.GUI.WarehousemanWindow;
@@ -112,6 +111,11 @@ public final class GoodsReceiptController implements Controller {
         Item item = new Item();
         item.setReceiptDate(new Date());
         item.setGoods(database.findGoods(goodsCode));
+        if (item.getGoods() != null && item.getGoods().isDeleted() == true) {
+            JOptionPane.showMessageDialog(window, bundle.getString("GOODS_ERROR1"));
+            CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("GOODS_ERROR1"));
+            return;
+        }
         item.setPosition(Position.IN_STOCK);
         item.setQuantity(quantity);
 
@@ -145,7 +149,7 @@ public final class GoodsReceiptController implements Controller {
             CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("ADD_ITEM_ERROR"));
             return;
         }
-        storage = database.setStorage(storage);
+        storage = database.setStorage(item.getStorage());
         if (storage == null) {
             JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
             CustomLogger.getLogger(GoodsReceiptController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));

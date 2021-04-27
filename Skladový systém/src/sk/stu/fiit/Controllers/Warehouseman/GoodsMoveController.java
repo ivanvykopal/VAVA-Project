@@ -160,6 +160,8 @@ public final class GoodsMoveController implements Controller {
         if (quantity == item.getQuantity()) {
             newItem.setId(item.getId());
             newItem.setQuantity(quantity);
+            storage.setItemCount(storage.getItemCount() + 1);
+            newItem.setStorage(storage);
             item = database.setItem(newItem);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
@@ -167,7 +169,7 @@ public final class GoodsMoveController implements Controller {
                 window.setLbChoosedItem("");
                 return;
             }
-            storage = database.setStorage(storage);
+            storage = database.setStorage(item.getStorage());
             if (storage == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_STORAGE_ERROR"));
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
@@ -188,6 +190,8 @@ public final class GoodsMoveController implements Controller {
         } else {
             item.setQuantity(item.getQuantity() - quantity);
             newItem.setQuantity(quantity);
+            oldStorage.setFree(true);
+            item.setStorage(oldStorage);
             item = database.setItem(item);
             if (item == null) {
                 JOptionPane.showMessageDialog(window, bundle.getString("CHANGE_ITEM_ERROR"));
@@ -201,7 +205,6 @@ public final class GoodsMoveController implements Controller {
                 CustomLogger.getLogger(GoodsMoveController.class).warn(bundle.getString("CHANGE_STORAGE_ERROR"));
                 return;
             }
-            oldStorage.setFree(true);
             database.setStorage(oldStorage);
             addNewItem(newItem);
         }
