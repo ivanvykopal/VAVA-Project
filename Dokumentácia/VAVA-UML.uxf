@@ -1,0 +1,1635 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>2015</y>
+      <w>345</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::AdministratorController
+--
+-database: Database
+-window: AdministratorWindow
+-user: User
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;AdministratorController(database: Database, window: AdministratorWindow, user: User)
++createController(database: Database, window: AdministratorWindow, user: User): void
++initController(): void
+-addGoods(): void
+-addStorage(): void
+-addUser(): void
+-changePassword(): void
+-editGoods(): void
+-editUser(): void
+-logout(): void
+-removeGoods(): void
+-removeStorage(): void
+-removeUser(): void
+-exportGoodsData(): void
+-importGoodsData(): void
+-getFile(): String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1680</x>
+      <y>2050</y>
+      <w>350</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Warehouseman::WarehousemanController
+--
+-database: Database
+-window: WarehousemanWindow
+-user: User
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;WarehousemanController(database: Database, window: WarehousemanWindow, user: User)
++createController(database: Database, window: WarehousemanWindow, user: User): void
++initController(): void
+-changePassword(): void
+-viewLoginPage(): void
+-exportGoods(): void
+-moveGoods(): void
+-accpetGoods(): void
+-showStorage(): void
+-logout(): void
+-hideAll(): void
+-clearAll(): void
+-clearGoodsReceipt(): void
+-clearGoodsMove(): void
+-clearGoodsExport(): void
+-clearGoodsInfo(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1690</x>
+      <y>2340</y>
+      <w>305</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Referent::ReferentController
+--
+-database: Database
+-window: ReferentWindow
+-user: User
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;ReferentController(database: Database, window: ReferentWindow, user: User)
++createController(database: Database, window: ReferentWindow, user: User): void
++initController(): void
+-changePassword(): void
+-viewLoginPage(): void
+-logout(): void
+-viewCosts(): void
+-viewGoodsOverview(): void
+-viewProfits(): void
+-hideAll(): void
+-clearAll(): void
+-clearProfits(): void
+-clearCosts(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>1890</y>
+      <w>260</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::EditUserController
+--
+-database: Database
+-window: EditUserWindow
+-user = null: User
+-usersTable = new HashMap(): HashMap&lt;String, ArrayList&lt;User&gt;&gt;
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;EditUserController(database: Database, window: EditUserWindow)
++createController(database: Database, window: EditUserWindow): void
++initController(): void
+-chooseUser(): void
+-editUser(): void
+-filter(): void
+-fillHashTable(): void
+-fillUsersTable(filter: String, type: String): void
+-clear(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1360</x>
+      <y>2255</y>
+      <w>290</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::RemoveUserController
+--
+-database: Database
+-window: RemoveUserWindow
+-user = null: User
+-usersTable = new HashMap(): HashMap&lt;String, ArrayList&lt;User&gt;&gt;
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;RemoveUserController(database: Database, window: RemoveUserWindow)
++createController(database: Database, window: RemoveUserWindow): void
++initController(): void
+-chooseUser(): void
+-removeUser(): void
+-fillHashTable(): void
+-fillUsersTable(filter: String, type: String): void
+-filter(): void
+-clear(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>1705</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Warehouseman::GoodsMoveController
+--
+-item: Item
+-database: Database
+-window: WarehousemanWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;GoodsMoveController(database: Database, window: WarehousemanWindow)
++createController(database: Database, window: WarehousemanWindow): void
++initController(): void
+-moveGoods(): void
+-chooseStorage(index: int): void
+-chooseItem(index: int): void
+-fillStorageTable(): void
+-addNewItem(it: Item): void
+-fillGoodsTable(): void
+-clear(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1555</x>
+      <y>40</y>
+      <w>290</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::EditGoodsController
+--
+-database: Database
+-window: EditGoodsWindow
+-goods = null: Goods
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;EditGoodsController(database: Database, window: EditGoodsWindow)
++createController(database: Database, window: EditGoodsWindow): void
++initController(): void
+-chooseGoods(): void
+-editGoods(): void
+-filter(): void
+-fillGoodsTable(filter: String): void
+-clear(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1540</x>
+      <y>610</y>
+      <w>305</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::RemoveGoodsController
+--
+-database: Database
+-window: RemoveGoodsWindow
+-goods = null: Goods
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;RemoveGoodsController(database: Database, window: RemoveGoodsWindow)
++createController(database: Database, window: RemoveGoodsWindow): void
++initController(): void
+-chooseGoods(): void
+-removeGoods(): void
+-filter(): void
+-fillGoodsTable(filter: String): void
+-clear(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1510</x>
+      <y>1155</y>
+      <w>320</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::RemoveStorageController
+--
+-database: Database
+-window: RemoveStorageWindow
+-storage = null: Storage
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;RemoveStorageController(database: Database, window: RemoveStorageWindow)
++createController(database: Database, window: RemoveStorageWindow): void
++initController(): void
+-chooseStorage(): void
+-removeStorage(): void
+-filter(): void
+-fillStorageTable(filter: String): void
+-clear(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>305</x>
+      <y>1375</y>
+      <w>305</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Warehouseman::GoodsExportController
+--
+-item: Item
+-database: Database
+-window: WarehousemanWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;GoodsExportController(database: Database, window: WarehousemanWindow)
++createController(database: Database, window: WarehousemanWindow): void
++initController(): void
+-exportGoods(): void
+-addNewItem(it: Item): void
+-chooseItem(index: int): void
+-fillTable(): void
+-clear(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2015</x>
+      <y>1780</y>
+      <w>355</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers::ChangePasswordController
+--
+-database: Database
+-window: ChangePasswordWindow
+-user: User
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;ChangePasswordController(database: Database, window: ChangePasswordWindow, user: User)
++createController(database: Database, window: ChangePasswordWindow, user: User): void
++initController(): void
+-changePassword(): void
+-warning(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>895</y>
+      <w>310</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Warehouseman::GoodsReceiptController
+--
+-database: Database
+-window: WarehousemanWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;GoodsReceiptController(database: Database, window: WarehousemanWindow)
++createController(database: Database, window: WarehousemanWindow): void
++initController(): void
+-acceptGoods(): void
+-chooseStorage(index: int): void
+-fillStorageTable(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>1020</y>
+      <w>250</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers::LoginController
+--
+-database: Database
+-window: LoginWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;LoginController(database: Database, window: LoginWindow)
++createController(database: Database, window: LoginWindow): void
++initController(): void
+-changeLanguage(): void
+-login(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1525</y>
+      <w>290</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Warehouseman::GoodsInfoController
+--
+-database: Database
+-window: WarehousemanWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;GoodsInfoController(database: Database, window: WarehousemanWindow)
++createController(database: Database, window: WarehousemanWindow): void
++initController(): void
+-fillTable(): void
+-addRow(item: Item): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>775</y>
+      <w>275</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::AddGoodsController
+--
+-database: Database
+-window: AddGoodsWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;AddGoodsController(database: Database, window: AddGoodsWindow)
++createController(database: Database, window: AddGoodsWindow): void
++initController(): void
+-addGoods(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>535</x>
+      <y>1135</y>
+      <w>285</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::AddStorageController
+--
+-database: Database
+-window: AddStorageWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;AddStorageController(database: Database, window: AddStorageWindow)
++createController(database: Database, window: AddStorageWindow): void
++initController(): void
+-addStorage(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>535</x>
+      <y>1240</y>
+      <w>270</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Administrator::AddUserController
+--
+-database: Database
+-window: AddUserWindow
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
+-&lt;&lt;constructor&gt;&gt;AddUserController(database: Database, window: AddUserWindow)
++createController(database: Database, window: AddUserWindow): void
++initController(): void
+-addUser(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>415</x>
+      <y>360</y>
+      <w>285</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Referent::GoodsOverviewController
+--
+-bundle = InternationalizationClass.getBundle(): ResourceBundle
+-table = new HashMap(): HashMap&lt;String, TableItem&gt;
+--
+-&lt;&lt;constructor&gt;&gt;GoodsOverviewController(database: Database, window: ReferentWindow)
++createController(database: Database, window: ReferentWindow): void
++initController(): void
+-fillInformation(): void
+-exportData(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2080</x>
+      <y>725</y>
+      <w>195</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::PasswordGenerator
+--
+-LOWER = "abcdefghijklmnopqrstuvwxyz": String
+-UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ": String
+-DIGITS = "0123456789": String
+-PUNCTUATION = ".,": String
+-LENGTH = 12: int
+--
+-&lt;&lt;constructor&gt;&gt;PasswordGenerator()
++generatePassword(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2085</x>
+      <y>880</y>
+      <w>195</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::InternationalizationClass
+--
+-bundle: ResourceBundle
+-locale: Locale
+--
+-&lt;&lt;constructor&gt;&gt;InternationalizationClass()
++setBundle(path: String, lang: String, country: String): void
++getBundle(): ResourceBundle
++getLocale(): Locale
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>225</y>
+      <w>255</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>/sk.stu.fiit.Controllers.Referent::GoodsController/
+--
+#database: Database
+#window: ReferentWindow
+#bundle = InternationalizationClass.getBundle(): ResourceBundle
+--
++&lt;&lt;constructor&gt;&gt;GoodsController(database: Database, window: ReferentWindow)
+#matchDates(date: Date, from: Date, to: Date): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>290</y>
+      <w>270</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Referent::GoodsCostsController
+--
+--
+-&lt;&lt;constructor&gt;&gt;GoodsCostsController(database: Database, window: ReferentWindow)
++createController(database: Database, window: ReferentWindow): void
++initController(): void
+-viewCosts(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>300</y>
+      <w>280</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Referent::GoodsProfitsControlller
+--
+--
+-&lt;&lt;constructor&gt;&gt;GoodsProfitsControlller(database: Database, window: ReferentWindow)
++createController(database: Database, window: ReferentWindow): void
++initController(): void
+-viewProfits(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2125</x>
+      <y>1410</y>
+      <w>115</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::PasswordHasher
+--
+--
+-PasswordHasher(): ctor
++getSHA(input: String): byte[]
++SHAtoString(hash: byte[]): String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>70</y>
+      <w>105</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+sk.stu.fiit.Controllers::Controller
+--
+--
+~initController(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2130</x>
+      <y>1020</y>
+      <w>100</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+sk.stu.fiit.Controllers::IMethod
+--
+--
+~method(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2115</x>
+      <y>1310</y>
+      <w>140</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::CustomLogger
+--
+--
+-&lt;&lt;constructor&gt;&gt;CustomLogger()
++getLogger(final clazz: Class&lt;?&gt;): Logger
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2120</x>
+      <y>1215</y>
+      <w>120</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::EmailValidator
+--
+--
+-&lt;&lt;constructor&gt;&gt;EmailValidator()
++checkEmail(email: String): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2140</x>
+      <y>1520</y>
+      <w>90</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit::Main
+--
+--
++main(args: String[]): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1760</x>
+      <y>1575</y>
+      <w>170</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::Database
+--
+-goodsIdGenerator = 1: int
+-itemIdGenerator = 1: int
+-storageIdGenerator = 1: int
+-userIdGenerator = 1: int
+-goodsTable: ArrayList&lt;Goods&gt;
+-itemTable: HashMap&lt;Position, ArrayList&lt;Item&gt;&gt;
+-storageTable: ArrayList&lt;Storage&gt;
+-userTable: ArrayList&lt;User&gt;
+--
+-&lt;&lt;constructor&gt;&gt;Database()
++createDatabase(): Database
++getGoodsTable(): ArrayList&lt;Goods&gt;
++getItemTableAll(): ArrayList&lt;Item&gt;
++getItemTableIn(): ArrayList&lt;Item&gt;
++getItemTableOut(): ArrayList&lt;Item&gt;
++getItemTableProduction(): ArrayList&lt;Item&gt;
++getStorageTable(): ArrayList&lt;Storage&gt;
++getUserTable(): ArrayList&lt;User&gt;
++findUser(username: String, password: String): User
++findUser(username: String): User
++findUser(id: int): User
++existUser(user: User): boolean
++addUser(user: User): User
++setUser(user: User): User
+-checkAdministrators(): int
++removeUser(user: User): User
++existGoods(goods: Goods): boolean
++addGoods(goods: Goods): Goods
++findGoods(code: String): Goods
++findGoods(id: int): Goods
++removeGoods(goods: Goods): Goods
++setGoods(goods: Goods): Goods
++existStorage(storage: Storage): boolean
++addStorage(storage: Storage): Storage
++findStorage(code: String): Storage
++findStorage(id: int): Storage
++removeStorage(storage: Storage): Storage
++setStorage(storage: Storage): Storage
++addItem(item: Item): Item
++findItem(id: int): Item
++setItem(item: Item): Item
+-addAdministrator(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1515</x>
+      <y>250</y>
+      <w>340</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::Goods
+--
+-id = 1: int
+-name = "": String
+-code = "": String
+-description = "": String
+-incomePrice = 0: double
+-exportPrice = 0: double
+-deleted = false: boolean
+--
++&lt;&lt;constructor&gt;&gt;Goods()
++&lt;&lt;constructor&gt;&gt;Goods(name: String, code: String, description:, incomePrice: double, exportPrice: double)
++&lt;&lt;constructor&gt;&gt;Goods(goods: Goods)
++isAnyAttributeEmpty(): boolean
++getName(): String
++setName(name: String): void
++getCode(): String
++setCode(code: String): void
++getDescription(): String
++setDescription(description: String): void
++getIncomePrice(): double
++setIncomePrice(incomePrice: double): void
++getExportPrice(): double
++setExportPrice(exportPrice: double): void
++equals(goods: Goods): boolean
++getId(): int
++setId(int id): void
++isDeleted(): boolean
++setDeleted(deleted: boolean): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>995</x>
+      <y>2110</y>
+      <w>335</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::User
+--
+-id = 1: int
+-username = "": String
+-email = "": String
+-password = "": String
+-name = "": String
+-type = null: Type
+--
++&lt;&lt;constructor&gt;&gt;User()
++&lt;&lt;constructor&gt;&gt;User(username: String, email: String, name: String, typeString: String)
++&lt;&lt;constructor&gt;&gt;User(user: User)
++&lt;&lt;constructor&gt;&gt;User(id: int, username: String, email: String, password: String, name: String, type: Type)
++isAnyAttributeEmpty(): boolean
++getId(): int
++setId(id: int): void
++getEmail(): String
++setEmail(email: String): void
++getUsername(): String
++setUsername(username: String): void
++getPassword(): String
++setPassword(password: String): void
++getName(): String
++setName(name: String): void
++getType(): Type
++getTypeString(): String
++setType(type: Type): void
++setType(typeString: String): void
++equals(user: User): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>925</x>
+      <y>435</y>
+      <w>355</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::Item
+--
+-id: int
+-goods = null: Goods
+-storage = null: Storage
+-quantity = 0: int
+-receiptDate = null: Date
+-exportDate = null: Date
+-position = null: Position
+--
++&lt;&lt;constructor&gt;&gt;Item()
++&lt;&lt;constructor&gt;&gt;Item(id: int, goods: Goods, quantity: int, receiptDate: Date, exportDate: Date, position: Position)
++&lt;&lt;constructor&gt;&gt;Item(item: Item)
++isAnyAttributeEmpty(): boolean
++getId(): int
++setId(int id): void
++getGoods(): Goods
++setGoods(goods: Goods): void
++getQuantity(): int
++setQuantity(quantity: int): void
++getReceiptDate(): Date
++setReceiptDate(receiptDate: Date): void
++getExportDate(): Date
++setExportDate(exportDate: Date): void
++getPosition(): Position
++setPosition(position: Position): void
++getStorage(): Storage
++setStorage(storage: Storage): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1515</x>
+      <y>855</y>
+      <w>315</w>
+      <h>205</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::Storage
+--
+-id = 1: int
+-code = "": String
+-building = "": String
+-shelf = "": String
+-itemCount = 0: int
+-free = true: boolean
+--
++&lt;&lt;constructor&gt;&gt;Storage()
++&lt;&lt;constructor&gt;&gt;Storage(code: String, building: String, shelf: String, itemCount: int, free: boolean)
++&lt;&lt;constructor&gt;&gt;Storage(storage: Storage)
++isAnyAttributeEmpty(): boolean
++getCode(): String
++setCode(code: String): void
++getBuilding(): String
++setBuilding(building: String): void
++getShelf(): String
++setShelf(shelf: String): void
++isFree(): boolean
++setFree(free: boolean): void
++equals(storage: Storage): boolean
++getId(): int
++setId(id: int): void
++getItemCount(): int
++setItemCount(itemCount: int): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2115</x>
+      <y>1125</y>
+      <w>125</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Model::SerializationClass
+--
+--
++serialize(database: Database): void
++deserialize(): Database
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1065</x>
+      <y>310</y>
+      <w>105</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+sk.stu.fii.Model::Position
+--
+IN_STOCK
+PRODUCTION
+OUT_STCOK
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>2385</y>
+      <w>105</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+sk.stu.fii.Model::Type
+--
+ADMINISTRATOR
+WAREHOUSEMAN
+REFERENT
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>90</y>
+      <w>1465</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;2910.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>110</y>
+      <w>485</w>
+      <h>850</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1680.0;950.0;1680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>810</y>
+      <w>495</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;970.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>945</y>
+      <w>505</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;260.0;990.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1070</y>
+      <w>500</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;980.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1175</y>
+      <w>500</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;980.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1280</y>
+      <w>270</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0;520.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1430</y>
+      <w>465</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0;910.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1565</y>
+      <w>70</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;420.0;120.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1770</y>
+      <w>995</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0;1970.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1925</y>
+      <w>560</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0;1100.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>2090</y>
+      <w>1795</w>
+      <h>445</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;870.0;3570.0;860.0;3570.0;810.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1485</x>
+      <y>2380</y>
+      <w>15</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>255</y>
+      <w>395</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;770.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>280</y>
+      <w>15</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>365</x>
+      <y>280</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;300.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>255</y>
+      <w>185</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;10.0;350.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>125</y>
+      <w>310</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>sk.stu.fiit.Controllers.Referent.GoodsController::TableItem
+--
+~name:String
+~quantity: int
+~incomePrice: double
+~exportPrice: double
+--
++&lt;&lt;constructor&gt;&gt;TableItem(name: String, quantity: int, incomePrice: double, exportPrice: double)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>545</x>
+      <y>180</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(+)</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1115</x>
+      <y>365</y>
+      <w>20</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>670</y>
+      <w>1505</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;2990.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1675</x>
+      <y>470</y>
+      <w>20</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1670</x>
+      <y>150</y>
+      <w>20</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1840</x>
+      <y>90</y>
+      <w>90</w>
+      <h>1495</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>150.0;2970.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1275</x>
+      <y>330</y>
+      <w>250</w>
+      <h>205</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>480.0;10.0;240.0;10.0;240.0;390.0;10.0;390.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1850</x>
+      <y>365</y>
+      <w>55</w>
+      <h>1220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;2420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1840</x>
+      <y>665</y>
+      <w>55</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>80.0;1820.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1085</x>
+      <y>650</y>
+      <w>440</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>860.0;630.0;10.0;630.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1680</x>
+      <y>1055</y>
+      <w>20</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1825</x>
+      <y>940</y>
+      <w>50</w>
+      <h>645</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0;80.0;1270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1825</x>
+      <y>1200</y>
+      <w>35</w>
+      <h>385</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>40.0;750.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>1220</y>
+      <w>1475</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;2930.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>25</y>
+      <w>1275</w>
+      <h>1680</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>2500.0;3330.0;2530.0;3330.0;2520.0;10.0;280.0;10.0;280.0;440.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>610</y>
+      <w>525</w>
+      <h>775</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1030.0;10.0;10.0;10.0;10.0;1530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>235</x>
+      <y>510</y>
+      <w>700</w>
+      <h>1205</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1380.0;10.0;10.0;10.0;10.0;2390.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>805</y>
+      <w>970</w>
+      <h>820</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1920.0;1610.0;420.0;1610.0;410.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>930</y>
+      <w>945</w>
+      <h>730</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1870.0;1430.0;290.0;1420.0;290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>785</x>
+      <y>1055</y>
+      <w>985</w>
+      <h>630</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1950.0;1230.0;310.0;1220.0;310.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>815</x>
+      <y>1170</y>
+      <w>955</w>
+      <h>535</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1890.0;1040.0;210.0;1040.0;210.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>1275</y>
+      <w>970</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1920.0;870.0;200.0;870.0;200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>1420</y>
+      <w>1165</w>
+      <h>325</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>2310.0;620.0;550.0;620.0;550.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>785</x>
+      <y>1565</y>
+      <w>985</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1950.0;370.0;160.0;370.0;160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>1765</y>
+      <w>1370</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>2720.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1285</x>
+      <y>1915</y>
+      <w>520</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>1010.0;10.0;1010.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1140</x>
+      <y>2015</y>
+      <w>20</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>935</x>
+      <y>2135</y>
+      <w>70</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>1785</y>
+      <w>1010</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>2000.0;10.0;10.0;10.0;10.0;460.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1130</x>
+      <y>2330</y>
+      <w>20</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1205</x>
+      <y>1865</y>
+      <w>1020</w>
+      <h>695</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;940.0;10.0;1370.0;2020.0;1370.0;2020.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>2330</y>
+      <w>460</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0;900.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1265</x>
+      <y>2330</y>
+      <w>105</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;190.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1325</x>
+      <y>1915</y>
+      <w>510</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;470.0;220.0;470.0;220.0;130.0;1000.0;130.0;1000.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1325</x>
+      <y>2190</y>
+      <w>365</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;710.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1475</x>
+      <y>1915</y>
+      <w>400</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>770.0;10.0;770.0;180.0;10.0;180.0;10.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1925</x>
+      <y>1890</y>
+      <w>145</w>
+      <h>540</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;10.0;270.0;1060.0;140.0;1060.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1825</x>
+      <y>2135</y>
+      <w>315</w>
+      <h>395</h>
+    </coordinates>
+    <panel_attributes>lt=.
+</panel_attributes>
+    <additional_attributes>410.0;10.0;610.0;10.0;610.0;770.0;10.0;770.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1890</x>
+      <y>1915</y>
+      <w>20</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1925</x>
+      <y>1810</y>
+      <w>100</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>0</y>
+      <w>2360</w>
+      <h>1825</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;
+</panel_attributes>
+    <additional_attributes>4650.0;3630.0;4700.0;3630.0;4690.0;20.0;10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+</diagram>

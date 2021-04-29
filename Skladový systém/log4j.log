@@ -1,75 +1,60 @@
-2021-04-27 10:48:51 WARN  SerializationClass:57 - Chyba pri serializÃ¡cii!
+2021-04-27 14:30:44 WARN  SerializationClass:57 - Chyba pri serializácii!
 java.io.FileNotFoundException: database.ser (The system cannot find the file specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
 	at sk.stu.fiit.Model.SerializationClass.deserialize(SerializationClass.java:50)
 	at sk.stu.fiit.Main.lambda$main$0(Main.java:55)
-	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:709)
-	at java.awt.EventQueue$3.run(EventQueue.java:703)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-2021-04-27 10:48:55 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 10:49:17 WARN  GoodsOverviewController:363 - Tovary boli pridanÃ©!
-2021-04-27 10:49:52 INFO  AddUserController:128 - cfasham0: PouÅ¾Ã­vateÄ¾ bol pridanÃ½!
-2021-04-27 10:50:01 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 10:50:16 INFO  AddStorageController:106 - A-A1: SkladovacÃ­ priestor bol pridanÃ½!
-2021-04-27 10:50:26 INFO  AddStorageController:106 - A-A2: SkladovacÃ­ priestor bol pridanÃ½!
-2021-04-27 10:50:45 INFO  AddStorageController:106 - A-A3: SkladovacÃ­ priestor bol pridanÃ½!
-2021-04-27 10:50:56 INFO  AddStorageController:106 - A-A5: SkladovacÃ­ priestor bol pridanÃ½!
-2021-04-27 10:51:08 INFO  AddStorageController:106 - A-A4: SkladovacÃ­ priestor bol pridanÃ½!
-2021-04-27 10:51:16 INFO  LoginController:158 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 10:51:35 WARN  GoodsReceiptController:125 - Chyba pri naÄÃ­tanÃ­ skladovacieho priestoru!
-2021-04-27 10:51:39 WARN  GoodsReceiptController:136 - Tovar sa v systÃ©me nenachÃ¡dza!
-2021-04-27 10:51:44 INFO  GoodsReceiptController:160 - M-16: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 10:51:56 INFO  GoodsReceiptController:160 - M-18: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 10:52:03 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 10:52:20 INFO  LoginController:158 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 10:52:51 WARN  GoodsExportController:123 - Nebol vybranÃ½ Å¾iaden zÃ¡znam!
-2021-04-27 10:52:55 INFO  GoodsExportController:198 - M-18: Tovar bol vyvezenÃ½!
-2021-04-27 10:53:10 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 10:53:38 INFO  LoginController:158 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 10:54:19 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 10:54:34 INFO  LoginController:158 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 10:54:53 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 14:00:51 INFO  LoginController:153 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 14:01:39 INFO  LoginController:157 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 14:04:26 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:04:53 INFO  GoodsReceiptController:160 - M-16: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:05:12 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:05:45 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:06:03 INFO  GoodsExportController:198 - M-16: Tovar bol vyvezenÃ½!
-2021-04-27 14:06:23 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:06:45 INFO  LoginController:157 - admin: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako administrÃ¡tor!
-2021-04-27 14:07:26 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:07:42 INFO  GoodsReceiptController:160 - M-18: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:07:58 INFO  GoodsReceiptController:160 - M-16: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:08:13 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:08:58 INFO  GoodsExportController:198 - M-18: Tovar bol vyvezenÃ½!
-2021-04-27 14:10:03 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:11:43 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:15:55 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:16:11 INFO  GoodsReceiptController:160 - M-18: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:16:26 INFO  GoodsReceiptController:160 - S-M6: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:16:38 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:16:53 INFO  GoodsExportController:198 - M-18: Tovar bol vyvezenÃ½!
-2021-04-27 14:17:19 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:17:41 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:25:26 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:25:41 INFO  GoodsReceiptController:160 - M-16: NovÃ½ tovar bol prijatÃ½!
-2021-04-27 14:25:52 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:26:18 WARN  GoodsMoveController:269 - M-16: Tovar bol premiestnenÃ½!
-2021-04-27 14:26:37 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
-2021-04-27 14:26:49 INFO  GoodsExportController:199 - M-16: Tovar bol vyvezenÃ½!
-2021-04-27 14:27:01 INFO  LoginController:162 - cfasham0: PouÅ¾Ã­vateÄ¾ prihlÃ¡senÃ½ ako skladnÃ­k!
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2021-04-27 14:32:40 INFO  LoginController:153 - admin: Pouívate¾ prihlásenı ako administrátor!
+2021-04-27 14:33:05 WARN  GoodsOverviewController:363 - Tovary boli pridané!
+2021-04-27 14:33:20 INFO  AddStorageController:106 - A-A1: Skladovací priestor bol pridanı!
+2021-04-27 14:33:33 INFO  AddStorageController:106 - A-A2: Skladovací priestor bol pridanı!
+2021-04-27 14:33:42 INFO  AddStorageController:106 - A-A3: Skladovací priestor bol pridanı!
+2021-04-27 14:33:53 INFO  AddStorageController:106 - A-A4: Skladovací priestor bol pridanı!
+2021-04-27 14:34:02 INFO  AddStorageController:106 - A-A5: Skladovací priestor bol pridanı!
+2021-04-27 14:34:15 INFO  AddStorageController:106 - A-B1: Skladovací priestor bol pridanı!
+2021-04-27 14:34:35 INFO  AddStorageController:106 - A-B2: Skladovací priestor bol pridanı!
+2021-04-27 14:34:46 INFO  AddStorageController:106 - A-B3: Skladovací priestor bol pridanı!
+2021-04-27 14:34:57 INFO  AddStorageController:106 - A-B4: Skladovací priestor bol pridanı!
+2021-04-27 14:35:08 INFO  AddStorageController:106 - A-B5: Skladovací priestor bol pridanı!
+2021-04-27 14:36:02 INFO  AddUserController:128 - cfasham0: Pouívate¾ bol pridanı!
+2021-04-27 14:37:03 INFO  AddUserController:128 - eserraillier1: Pouívate¾ bol pridanı!
+2021-04-27 14:37:56 INFO  AddUserController:128 - brye2: Pouívate¾ bol pridanı!
+2021-04-27 14:38:53 INFO  AddUserController:128 - mchampkin3: Pouívate¾ bol pridanı!
+2021-04-27 14:39:38 INFO  AddUserController:128 - aimesen4: Pouívate¾ bol pridanı!
+2021-04-27 14:39:53 INFO  LoginController:163 - cfasham0: Pouívate¾ prihlásenı ako referent!
+2021-04-27 14:40:10 INFO  LoginController:163 - eserraillier1: Pouívate¾ prihlásenı ako referent!
+2021-04-27 14:40:24 INFO  LoginController:158 - brye2: Pouívate¾ prihlásenı ako skladník!
+2021-04-27 14:40:45 INFO  LoginController:158 - mchampkin3: Pouívate¾ prihlásenı ako skladník!
+2021-04-27 14:40:56 INFO  LoginController:158 - aimesen4: Pouívate¾ prihlásenı ako skladník!
+2021-04-27 14:41:15 INFO  GoodsReceiptController:160 - M-16: Novı tovar bol prijatı!
+2021-04-27 14:42:10 INFO  GoodsReceiptController:160 - M-18: Novı tovar bol prijatı!
+2021-04-27 14:42:24 INFO  GoodsReceiptController:160 - S-M6: Novı tovar bol prijatı!
+2021-04-27 14:42:36 INFO  LoginController:153 - admin: Pouívate¾ prihlásenı ako administrátor!
+2021-04-27 14:43:40 INFO  LoginController:158 - brye2: Pouívate¾ prihlásenı ako skladník!
+2021-04-27 14:43:51 INFO  GoodsExportController:199 - M-16: Tovar bol vyvezenı!
+2021-04-27 14:43:58 INFO  GoodsExportController:199 - M-18: Tovar bol vyvezenı!
+2021-04-27 14:44:04 INFO  GoodsExportController:199 - S-M6: Tovar bol vyvezenı!
+2021-04-27 14:44:09 INFO  GoodsExportController:199 - M-18: Tovar bol vyvezenı!
+2021-04-27 14:44:15 INFO  GoodsExportController:199 - M-16: Tovar bol vyvezenı!
+2021-04-27 14:44:56 INFO  LoginController:163 - cfasham0: Pouívate¾ prihlásenı ako referent!
+2021-04-27 14:46:13 WARN  GoodsOverviewController:143 - Export bol úspešne vykonanı!
+2021-04-27 14:46:27 INFO  LoginController:153 - admin: Pouívate¾ prihlásenı ako administrátor!
+2021-04-27 14:46:32 WARN  GoodsOverviewController:303 - Export bol úspešne vykonanı!
+2021-04-27 14:47:04 INFO  LoginController:158 - mchampkin3: Pouívate¾ prihlásenı ako skladník!
+2021-04-27 14:47:31 WARN  GoodsMoveController:269 - M-18: Tovar bol premiestnenı!
+2021-04-27 14:47:38 INFO  LoginController:153 - admin: Pouívate¾ prihlásenı ako administrátor!
